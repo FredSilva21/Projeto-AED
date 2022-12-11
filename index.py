@@ -9,7 +9,7 @@ window = Tk()
 window.title("ToDo Eat")
 window.iconbitmap("./assets/icone.ico")
 window.configure(bg="white")
-window.resizable(0,0)
+
 
 
 
@@ -86,19 +86,20 @@ def janelaLogin():
     entPass.place(x=280,y=84)
     
     #INSERE BOTÕES CRIAR E ENTRAR CONTA
-    btnEntrar.place(x=120,y=200)
-    btnCriarConta.place(x=240,y=200)
+    btnEntrarApp.place(x=120,y=200)
+    btnCriar.place(x=240,y=200)
     btnVoltar.place(x=360,y=200)
     
     #Interfaces não utilizadas na janela
     ctnImg.place_forget()
     lblBemVindo.place_forget()
-    btnCriar.place_forget()
+    btnCriarConta.place_forget()
     btnConvid.place_forget()
     lblEmail.place_forget()
     entEmail.place_forget()
     lblCpass.place_forget()
     entCpass.place_forget()
+    btnEntrar.place_forget()
 # endregion
 
 # region Window Inicial
@@ -141,13 +142,53 @@ def janelaInicial():
     btnCriarConta.place_forget()
     btnConvidUtil.place_forget()
     btnVoltar.place_forget()
+    btnEntrarApp.place_forget()
 #endregion
+
+#region Janela App
+def janelaApp():
+
+    # Obter resolução do portátil
+    screenWidth = window.winfo_screenwidth()
+    screenHeigth = window.winfo_screenheight()
+
+    # Resolução da Aplicação
+    appWidth = screenWidth
+    appHeigth = screenHeigth
+
+    window.geometry("%dx%d" % (appWidth, appHeigth))
+    window.state("zoomed")
+
+    menuCima=Menu(window)
+    window.config(menuCima)
+
+    fileMenu=Menu(menuCima)
+    menuCima.add_cascade(Label="file",menu=fileMenu)
+
+
+    #Interface não utilizada
+    ctnImg.place_forget()
+    lblBemVindo.place_forget()
+    btnCriar.place_forget()
+    btnEntrar.place_forget()
+    btnConvid.place_forget()
+    lblUtilizador.place_forget()
+    entUtilizador.place_forget()
+    lblPass.place_forget()
+    entPass.place_forget()
+    btnEntrarApp.place_forget()
+    btnCriar.place_forget()
+    btnVoltar.place_forget()
+
+#endregion
+
 
 #region Criar Conta
 def guardarConta(resultado):
     fBaseDados=open("./ficheiros/basedados.txt","a",encoding="utf-8")
-    fBaseDados.write(resultado)
+    fBaseDados.write(resultado + "\n")
     fBaseDados.close()
+    janelaLogin()
 
 def verificarConta(nome,email,passe,cpasse,resultado):
     fBaseDados=open("./ficheiros/basedados.txt","r",encoding="utf-8")
@@ -155,7 +196,7 @@ def verificarConta(nome,email,passe,cpasse,resultado):
     if nome == "" or email == "" or passe== "" or cpasse == "":
         messagebox.showerror("Erro","Por favor forneça todos os dados corretamente.")
 
-    if nome != "" and passe != "":
+    if nome != "" and  passe != "":
         
         linhas=fBaseDados.readlines()
         for lin in linhas:
@@ -171,19 +212,66 @@ def verificarConta(nome,email,passe,cpasse,resultado):
             else:
                 messagebox.showerror("Erro","As duas passwords não coincidem.")
 
-
 def criarConta():
     nome=entUtilizador.get()
     email=entEmail.get()
     passe=entPass.get()
     cpasse=entCpass.get()
 
-    resultado=nome + ";" + email + ";" + passe + "\n"
+    resultado=nome + ";" + email + ";" + passe + "user"
 
     verificarConta(nome,email,passe,cpasse,resultado)
 
 #endregion  
    
+#region Login
+def login():
+    nome=entUtilizador.get()
+    passe=entPass.get()
+
+    #ABRE O FICHEIRO basedados.txt E PARA LEITURA
+    fBaseDados = open("ficheiros/basedados.txt","r",encoding="utf-8")
+    linhas = fBaseDados.readlines()
+    campos=[]
+
+    for lin in linhas:
+        campos=lin.split(";")
+
+    #CASO OS CAMPOS "UTILIZADOR" OU "PALAVRA-PASSE" ESTEJAM VAZIOS, RETORNA UM ERRO
+    if nome == "" or  passe== "":
+        messagebox.showerror("Erro","Por favor forneça os seus dados de acesso.")
+    
+    #CASO OS DADOS DE ACESSO ESTEJAM CORRETOS, EFETUA LOGIN
+    if nome != "" and passe!= "":
+        if campos[0]==nome and campos[2]==passe and campos[3]=="admin":
+           messagebox.showinfo("Bem vindo ADMINISTRADOR",f"Olá {nome}! Está autenticado como ADMIN")
+           janelaApp()
+           
+
+        elif campos[0]==nome and campos[2]==passe and campos[3]=="user":
+            messagebox.showinfo("Bem vindo",f"Olá {nome}, o seu login foi efetuado com sucesso!")
+            janelaApp()
+            
+        
+        #SE OS DADOS ESTIVEREM ERRADOS, RETORNA UM ERRO
+        else:
+            messagebox.showerror("Tentativa de Login sem sucesso","Utilizador ou palavra-passe incorreta. Por favor tente novamente ou crie conta.")
+            entPass.delete(0,"end") 
+#endregion
+
+#region Convidado
+def convidado():
+    fBaseDados=open("ficheiros/basedados.txt","r",encoding="utf-8")
+    linha=fBaseDados.readline()
+    campos=linha.split(";")
+
+    if campos[0]=="conv":
+        messagebox.showinfo("Bem vindo",f"Olá {campos[0]}, o seu login foi efetuado com sucesso!")
+        janelaApp()
+
+
+#endregion
+
 #region Interface Window
 
 # Canvas para imagem
@@ -203,7 +291,7 @@ btnCriar = Button(window, text="Criar Conta", fg="white",bg="#62C370", width=10,
 btnEntrar = Button(window, text="Entrar", fg="black",bg="#99DDC8", width=10, height=1, command=janelaLogin)
 
 # Botão Entrar como Convidado
-btnConvid = Button(window, text="Convidado", fg="black",bg="#CBDFBD", width=10, height=1)
+btnConvid = Button(window, text="Convidado", fg="black",bg="#CBDFBD", width=10, height=1,command=convidado)
 
 #endregion
 
@@ -236,11 +324,14 @@ entCpass = Entry(window, fg="black", width=25,show="*")
 btnCriarConta = Button(window, text="Criar Conta", fg="white",bg="#62C370", width=10, height=1,command=criarConta)
 btnConvidUtil=Button(window, text="Convidado", fg="black",bg="#CBDFBD", width=10, height=1)
 btnVoltar=Button(window, text="Voltar", fg="black",bg="#767B91", width=10, height=1,command=janelaInicial)
-
+btnEntrarApp=Button(window, text="Entrar", fg="black",bg="#99DDC8", width=10, height=1, command=login)
 
 #endregion
 
-
+#region Interface Janela App
+#Frame parte de cima
+frameCima=LabelFrame(window,width=200,height=10,text="abc")
+#endregion
 
 janelaInicial()
 
