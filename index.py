@@ -2,16 +2,14 @@ from tkinter import *
 from tkinter import messagebox
 
 
-
-
-
 window = Tk()
 window.title("ToDo Eat")
 window.iconbitmap("./assets/icone.ico")
 window.configure(bg="white")
 
 
-
+screenWidth = window.winfo_screenwidth()
+screenHeigth = window.winfo_screenheight()
 
 
 #region Janela Login e Criar Conta
@@ -59,6 +57,7 @@ def janelaCriarConta():
     btnCriar.place_forget()
     btnEntrar.place_forget()
     btnConvid.place_forget()
+    topBar.place_forget()
 
 def janelaLogin():
     # Janela Inicial
@@ -100,9 +99,10 @@ def janelaLogin():
     lblCpass.place_forget()
     entCpass.place_forget()
     btnEntrar.place_forget()
+    topBar.place_forget()
 # endregion
 
-# region Window Inicial
+#region Window Inicial
 def janelaInicial():
     # Janela Inicial
 
@@ -143,27 +143,25 @@ def janelaInicial():
     btnConvidUtil.place_forget()
     btnVoltar.place_forget()
     btnEntrarApp.place_forget()
+    topBar.place_forget()
 #endregion
 
 #region Janela App
 def janelaApp():
-
-    # Obter resolução do portátil
-    screenWidth = window.winfo_screenwidth()
-    screenHeigth = window.winfo_screenheight()
-
     # Resolução da Aplicação
     appWidth = screenWidth
     appHeigth = screenHeigth
 
     window.geometry("%dx%d" % (appWidth, appHeigth))
     window.state("zoomed")
-
-    menuCima=Menu(window)
-    window.config(menuCima)
-
-    fileMenu=Menu(menuCima)
-    menuCima.add_cascade(Label="file",menu=fileMenu)
+    window.configure(bg="grey")
+    topBar.place(x=0,y=0)
+    
+    
+    btnInicio.place(x=340,y=25)
+    btnCategorias.place(x=500,y=25)
+    btnVideos.place(x=730,y=25)
+    btnReceita.place(x=900,y=25)
 
 
     #Interface não utilizada
@@ -182,11 +180,10 @@ def janelaApp():
 
 #endregion
 
-
 #region Criar Conta
 def guardarConta(resultado):
     fBaseDados=open("./ficheiros/basedados.txt","a",encoding="utf-8")
-    fBaseDados.write(resultado + "\n")
+    fBaseDados.write(resultado)
     fBaseDados.close()
     janelaLogin()
 
@@ -218,7 +215,7 @@ def criarConta():
     passe=entPass.get()
     cpasse=entCpass.get()
 
-    resultado=nome + ";" + email + ";" + passe + "user"
+    resultado="\n" + nome + ";" + email + ";" + passe + ";" + "user" 
 
     verificarConta(nome,email,passe,cpasse,resultado)
 
@@ -246,11 +243,13 @@ def login():
         if campos[0]==nome and campos[2]==passe and campos[3]=="admin":
            messagebox.showinfo("Bem vindo ADMINISTRADOR",f"Olá {nome}! Está autenticado como ADMIN")
            janelaApp()
+           return campos[0]
            
 
         elif campos[0]==nome and campos[2]==passe and campos[3]=="user":
             messagebox.showinfo("Bem vindo",f"Olá {nome}, o seu login foi efetuado com sucesso!")
             janelaApp()
+            return campos[0]
             
         
         #SE OS DADOS ESTIVEREM ERRADOS, RETORNA UM ERRO
@@ -261,13 +260,14 @@ def login():
 
 #region Convidado
 def convidado():
-    fBaseDados=open("ficheiros/basedados.txt","r",encoding="utf-8")
+    fBaseDados=open("./ficheiros/basedados.txt","r",encoding="utf-8")
     linha=fBaseDados.readline()
     campos=linha.split(";")
 
     if campos[0]=="conv":
         messagebox.showinfo("Bem vindo",f"Olá {campos[0]}, o seu login foi efetuado com sucesso!")
         janelaApp()
+        
 
 
 #endregion
@@ -282,7 +282,7 @@ imgIcone = PhotoImage(file=".//img//icone.png")
 ctnImg.create_image(100, 78, image=imgIcone)
 
 # Label Bem Vindo
-lblBemVindo = Label(window, text="Bem Vindo :)", fg="black",relief="raised", font="Playfair", bd=-2, bg="white")
+lblBemVindo = Label(window, text="Bem Vindo :)", fg="black",relief="raised", font=("Playfair",20), bd=-2, bg="white")
 
 # Botão Criar Conta
 btnCriar = Button(window, text="Criar Conta", fg="white",bg="#62C370", width=10, height=1,command=janelaCriarConta)
@@ -329,8 +329,21 @@ btnEntrarApp=Button(window, text="Entrar", fg="black",bg="#99DDC8", width=10, he
 #endregion
 
 #region Interface Janela App
-#Frame parte de cima
-frameCima=LabelFrame(window,width=200,height=10,text="abc")
+topBar=PanedWindow(window,width=screenWidth,height=90,bd= -1,bg="white")
+
+#Menu Top Bar
+
+#Botão Voltar ao inicio da app
+btnInicio=Button(topBar,text="Início",fg="black",relief="raised", font=("Playfair",20), bd=-2, bg="white",command=janelaApp)
+
+#Categorias
+btnCategorias=Button(topBar,text="Categorias",fg="black",relief="raised", font=("Playfair",20), bd=-2, bg="white")
+
+#Videos
+btnVideos=Button(topBar,text="Videos",fg="black",relief="raised", font=("Playfair",20), bd=-2, bg="white")
+
+#Faça a sua receita
+btnReceita=Button(topBar,text="Faça a sua receita",fg="black",relief="raised", font=("Playfair",20), bd=-2, bg="white")
 #endregion
 
 janelaInicial()
