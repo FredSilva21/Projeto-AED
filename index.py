@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 
 
+
 window = Tk()
 window.title("ToDo Eat")
 window.iconbitmap("./assets/icone.ico")
@@ -109,7 +110,7 @@ def janelaInicial():
     # Obter resolução do portátil
     screenWidth = window.winfo_screenwidth()
     screenHeigth = window.winfo_screenheight()
-
+    
     # Resolução da Aplicação
     appWidth = 600
     appHeigth = 400
@@ -144,10 +145,57 @@ def janelaInicial():
     btnVoltar.place_forget()
     btnEntrarApp.place_forget()
     topBar.place_forget()
+    destaquesBar.place_forget()
 #endregion
 
 #region Janela App
 def janelaApp():
+    # Resolução da Aplicação
+    appWidth = screenWidth
+    appHeigth = screenHeigth
+
+    window.geometry("%dx%d" % (appWidth, appHeigth))
+    window.state("zoomed")
+    window.configure(bg="white")
+    topBar.place(x=0,y=0)
+    destaquesBar.place(x=0,y=100)
+    
+    btnInicio.place(x=340,y=25)
+    btnCategorias.place(x=500,y=25)
+    btnVideos.place(x=730,y=25)
+    btnReceita.place(x=900,y=25)
+    btnSair.place(x=1210,y=25)
+
+    lblDestaques.place(x=10,y=10)
+    btnPaoRecheado.place(x=100,y=80)
+    btnSupremoCamem.place(x=460,y=80)
+    btnPeruNatal.place(x=820,y=80)
+    btnBifesPeru.place(x=1180,y=80)
+
+    lblPaoRecheado.place(x=170,y=290)
+    lblSupremoCamem.place(x=490,y=290)
+
+    lblPeruNatal.place(x=900,y=290)
+    lblBifesPeru.place(x=1250,y=290)
+
+    #Interface não utilizada
+    ctnImg.place_forget()
+    lblBemVindo.place_forget()
+    btnCriar.place_forget()
+    btnEntrar.place_forget()
+    btnConvid.place_forget()
+    lblUtilizador.place_forget()
+    entUtilizador.place_forget()
+    lblPass.place_forget()
+    entPass.place_forget()
+    btnEntrarApp.place_forget()
+    btnCriar.place_forget()
+    btnVoltar.place_forget()
+
+#endregion
+
+#region Janela App Convidado
+def janelaAppConvidado():
     # Resolução da Aplicação
     appWidth = screenWidth
     appHeigth = screenHeigth
@@ -177,7 +225,6 @@ def janelaApp():
     btnEntrarApp.place_forget()
     btnCriar.place_forget()
     btnVoltar.place_forget()
-
 #endregion
 
 #region Criar Conta
@@ -272,6 +319,11 @@ def convidado():
 
 #endregion
 
+#region Terminar sessão
+def terminarSessao():
+    messagebox.showinfo("Sessão Terminada","Sessão Terminada! Volte sempre! :)")
+    janelaInicial()
+#endregion
 #region Interface Window
 
 # Canvas para imagem
@@ -322,28 +374,64 @@ entCpass = Entry(window, fg="black", width=25,show="*")
 
 # Botão Criar Conta do Utilizador
 btnCriarConta = Button(window, text="Criar Conta", fg="white",bg="#62C370", width=10, height=1,command=criarConta)
-btnConvidUtil=Button(window, text="Convidado", fg="black",bg="#CBDFBD", width=10, height=1)
+btnConvidUtil=Button(window, text="Convidado", fg="black",bg="#CBDFBD", width=10, height=1,command=convidado)
 btnVoltar=Button(window, text="Voltar", fg="black",bg="#767B91", width=10, height=1,command=janelaInicial)
 btnEntrarApp=Button(window, text="Entrar", fg="black",bg="#99DDC8", width=10, height=1, command=login)
 
 #endregion
 
 #region Interface Janela App
-topBar=PanedWindow(window,width=screenWidth,height=90,bd= -1,bg="white")
+topBar=PanedWindow(window,width=screenWidth,height=90,bd= -1,bg="#00FFFF")
 
 #Menu Top Bar
 
 #Botão Voltar ao inicio da app
-btnInicio=Button(topBar,text="Início",fg="black",relief="raised", font=("Playfair",20), bd=-2, bg="white",command=janelaApp)
+btnInicio=Button(topBar,text="Início",fg="black",relief="raised", font=("Playfair",20), bd=-2, bg="#00FFFF",command=janelaApp)
 
 #Categorias
-btnCategorias=Button(topBar,text="Categorias",fg="black",relief="raised", font=("Playfair",20), bd=-2, bg="white")
+btnCategorias=Button(topBar,text="Categorias",fg="black",relief="raised", font=("Playfair",20), bd=-2, bg="#00FFFF")
 
 #Videos
-btnVideos=Button(topBar,text="Videos",fg="black",relief="raised", font=("Playfair",20), bd=-2, bg="white")
+btnVideos=Button(topBar,text="Videos",fg="black",relief="raised", font=("Playfair",20), bd=-2, bg="#00FFFF")
 
 #Faça a sua receita
-btnReceita=Button(topBar,text="Faça a sua receita",fg="black",relief="raised", font=("Playfair",20), bd=-2, bg="white")
+btnReceita=Button(topBar,text="Faça a sua receita",fg="black",relief="raised", font=("Playfair",20), bd=-2, bg="#00FFFF")
+
+#Sair
+btnSair=Button(topBar,text="Sair",fg="black",relief="raised", font=("Playfair",20), bd=-2, bg="#00FFFF",command=terminarSessao)
+
+#Menu Destaques
+
+#Barra de destaques 
+destaquesBar=PanedWindow(window,width=screenWidth,height=350,bd= -1,bg="grey")
+
+#Label destaques
+lblDestaques=Label(destaquesBar, text="Destaques:", fg="black",relief="raised", font=("Playfair",20), bd=-2, bg="grey")
+
+#Imagens Entradas
+imgPaoRecheado=PhotoImage(file="./img/entradas/paorecheado.png")
+imgSupremoCamem=PhotoImage(file="./img/entradas/supremodecamembert.png")
+
+#Imagens Carnes
+imgPeruNatal=PhotoImage(file="./img/carnes/perunatal.png")
+imgBifesPeru=PhotoImage(file="./img/carnes/bifesperu.png")
+
+#Botões Entradas
+btnPaoRecheado=Button(destaquesBar,width=300,height=200,bd=-2, image=imgPaoRecheado,bg="grey")
+btnSupremoCamem=Button(destaquesBar,width=300,height=200,bd=-2, image=imgSupremoCamem,bg="grey")
+
+#Botoões Carnes
+btnPeruNatal=Button(destaquesBar,width=300,height=200,bd=-2, image=imgPeruNatal,bg="grey")
+btnBifesPeru=Button(destaquesBar,width=300,height=200,bd=-2, image=imgBifesPeru,bg="grey")
+
+#Labels de Entradas
+lblPaoRecheado=Label(destaquesBar, text="Pão Recheado", fg="black",relief="raised", font=("Playfair",16), bd=-2, bg="grey")
+lblSupremoCamem=Label(destaquesBar, text="Supremo de Camembert", fg="black",relief="raised", font=("Playfair",16), bd=-2, bg="grey")
+
+#Labels de Carnes
+lblPeruNatal=Label(destaquesBar, text="Perú de Natal", fg="black",relief="raised", font=("Playfair",16), bd=-2, bg="grey")
+lblBifesPeru=Label(destaquesBar, text="Bifes de Perú", fg="black",relief="raised", font=("Playfair",16), bd=-2, bg="grey")
+
 #endregion
 
 janelaInicial()
