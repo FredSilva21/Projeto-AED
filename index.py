@@ -103,17 +103,16 @@ def janelaLogin():
 # endregion
 
 # region Window Inicial
-
-
 def janelaInicial():
     # Janela Inicial
-
+    
     # Obter resolução do portátil
     screenWidth = window.winfo_screenwidth()
     screenHeigth = window.winfo_screenheight()
-
+    
+    
     # Resolução da Aplicação
-    appWidth = 600
+    appWidth =600
     appHeigth = 400
 
     # Centrar
@@ -121,6 +120,11 @@ def janelaInicial():
     y = (screenHeigth/2)-(appHeigth/2)
 
     window.geometry(f'{appWidth}x{appHeigth}+{int(x)}+{int(y)}')
+    
+
+    window.configure(bg="white",menu="")
+    print(x)
+    print(y)
     # Insere Imagem com Icone
     ctnImg.place(x=185, y=50)
 
@@ -132,7 +136,7 @@ def janelaInicial():
     btnEntrar.place(x=250, y=280)
     btnConvid.place(x=370, y=280)
 
-    # Remove a interface não utilizada
+    # Remove a interface da janela criar conta e login
     lblUtilizador.place_forget()
     entUtilizador.place_forget()
     lblEmail.place_forget()
@@ -144,6 +148,9 @@ def janelaInicial():
     btnCriarConta.place_forget()
     btnConvidUtil.place_forget()
     btnVoltar.place_forget()
+
+    #Remove a interface da janela app
+    lblMenuPrincipal.place_forget()
     btnEntrarApp.place_forget()
     btnEntradas.place_forget()
     btnSopas.place_forget()
@@ -151,8 +158,6 @@ def janelaInicial():
     btnPeixes.place_forget()
     btnSaladas.place_forget()
     btnVegeta.place_forget()
-
-
 # endregion
 
 # region Janela App
@@ -167,6 +172,9 @@ def janelaApp():
     window.state("zoomed")
     topBar = Menu(window)
     window.configure(bg="white", menu=topBar)
+    window.resizable(False,False)
+    print(appWidth)
+    print(appHeigth)
 
     utilizadoresMenu = Menu(topBar)
     utilizadoresMenu.add_command(label="Utilizador")
@@ -184,9 +192,15 @@ def janelaApp():
     sairMenu = Menu(topBar)
     sairMenu.add_command(label="Sair", command=terminarSessao)
 
+    criarReceita=Menu(topBar)
+    criarReceita.add_cascade(label="Criar Receita")
+    topBar.add_cascade(label="Criar Receita",menu=criarReceita)
+
     topBar.add_cascade(label="Sair", menu=sairMenu)
 
     lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+
+    
 
     btnEntradas.place(x=100, y=180)
     btnSopas.place(x=600, y=180)
@@ -195,7 +209,7 @@ def janelaApp():
     btnSaladas.place(x=600, y=500)
     btnVegeta.place(x=1100, y=500)
 
-    # Interface não utilizada
+    # Remove a interface da janela window e criar conta
     ctnImg.place_forget()
     lblBemVindo.place_forget()
     btnCriar.place_forget()
@@ -208,6 +222,19 @@ def janelaApp():
     btnEntrarApp.place_forget()
     btnCriar.place_forget()
     btnVoltar.place_forget()
+    
+    #Remove a interface das janelas das Entradas
+    btnVoltarApp.place_forget()
+    btnPao.place_forget()
+    btnPizza.place_forget()
+    btnQuiche.place_forget()
+    btnSupremo.place_forget()
+    
+    #Remove a interface da janela das Carnes
+    btnFrancesinha.place_forget()
+    btnPicanha.place_forget()
+    btnBifesPeru.place_forget()
+    btnFrango.place_forget()
 
 # endregion
 
@@ -238,7 +265,7 @@ def janelaAppConvidado():
     btnVoltar.place_forget()
 # endregion
 
-#region Janela Entradas
+# region Janela Entradas
 def janelaEntradas():
     # Resolução da Aplicação
     appWidth = screenWidth
@@ -269,6 +296,8 @@ def janelaEntradas():
 
     lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
 
+    btnVoltarApp.place(x=80,y=70)
+
     btnPao.place(x=300, y=180)
     btnPizza.place(x=900, y=180)
     btnQuiche.place(x=300, y=500)
@@ -295,7 +324,7 @@ def janelaEntradas():
     btnVegeta.place_forget()
 #endregion
 
-#region Janela Carnes
+# region Janela Carnes
 def janelaCarnes():
     # Resolução da Aplicação
     appWidth = screenWidth
@@ -325,6 +354,244 @@ def janelaCarnes():
     topBar.add_cascade(label="Sair", menu=sairMenu)
 
     lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+
+    btnVoltarApp.place(x=80,y=70)
+
+    btnFrancesinha.place(x=300, y=180)
+    btnPicanha.place(x=900, y=180)
+    btnBifesPeru.place(x=300, y=500)
+    btnFrango.place(x=900, y=500)
+
+    # Interface não utilizada
+    ctnImg.place_forget()
+    lblBemVindo.place_forget()
+    btnCriar.place_forget()
+    btnEntrar.place_forget()
+    btnConvid.place_forget()
+    lblUtilizador.place_forget()
+    entUtilizador.place_forget()
+    lblPass.place_forget()
+    entPass.place_forget()
+    btnEntrarApp.place_forget()
+    btnCriar.place_forget()
+    btnVoltar.place_forget()
+    btnEntradas.place_forget()
+    btnSopas.place_forget()
+    btnCarnes.place_forget()
+    btnPeixes.place_forget()
+    btnSaladas.place_forget()
+    btnVegeta.place_forget()
+#endregion
+
+# region Janela Sopas
+def janelaSopas():
+    # Resolução da Aplicação
+    appWidth = screenWidth
+    appHeigth = screenHeigth
+
+    window.geometry("%dx%d" % (appWidth, appHeigth))
+    window.state("zoomed")
+    topBar = Menu(window)
+    window.configure(bg="white", menu=topBar)
+
+    utilizadoresMenu = Menu(topBar)
+    utilizadoresMenu.add_command(label="Utilizador")
+    topBar.add_cascade(label="Minha Conta", menu=utilizadoresMenu)
+
+    ordenarMenu = Menu(topBar)
+    ordenarMenu.add_command(label="Mais Popular")
+    ordenarMenu.add_command(label="Mais Comentada")
+    topBar.add_cascade(label="Ordenar", menu=ordenarMenu)
+
+    favoritosMenu = Menu(topBar)
+    favoritosMenu.add_command(label="Favoritos")
+    topBar.add_cascade(label="Favoritos", menu=favoritosMenu)
+
+    sairMenu = Menu(topBar)
+    sairMenu.add_command(label="Sair", command=terminarSessao)
+
+    topBar.add_cascade(label="Sair", menu=sairMenu)
+
+    lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+
+    btnVoltarApp.place(x=80,y=70)
+
+    btnFrancesinha.place(x=300, y=180)
+    btnPicanha.place(x=900, y=180)
+    btnBifesPeru.place(x=300, y=500)
+    btnFrango.place(x=900, y=500)
+
+    # Interface não utilizada
+    ctnImg.place_forget()
+    lblBemVindo.place_forget()
+    btnCriar.place_forget()
+    btnEntrar.place_forget()
+    btnConvid.place_forget()
+    lblUtilizador.place_forget()
+    entUtilizador.place_forget()
+    lblPass.place_forget()
+    entPass.place_forget()
+    btnEntrarApp.place_forget()
+    btnCriar.place_forget()
+    btnVoltar.place_forget()
+    btnEntradas.place_forget()
+    btnSopas.place_forget()
+    btnCarnes.place_forget()
+    btnPeixes.place_forget()
+    btnSaladas.place_forget()
+    btnVegeta.place_forget()
+#endregion
+
+# region Janela Peixes
+def janelaPeixes():
+    # Resolução da Aplicação
+    appWidth = screenWidth
+    appHeigth = screenHeigth
+
+    window.geometry("%dx%d" % (appWidth, appHeigth))
+    window.state("zoomed")
+    topBar = Menu(window)
+    window.configure(bg="white", menu=topBar)
+
+    utilizadoresMenu = Menu(topBar)
+    utilizadoresMenu.add_command(label="Utilizador")
+    topBar.add_cascade(label="Minha Conta", menu=utilizadoresMenu)
+
+    ordenarMenu = Menu(topBar)
+    ordenarMenu.add_command(label="Mais Popular")
+    ordenarMenu.add_command(label="Mais Comentada")
+    topBar.add_cascade(label="Ordenar", menu=ordenarMenu)
+
+    favoritosMenu = Menu(topBar)
+    favoritosMenu.add_command(label="Favoritos")
+    topBar.add_cascade(label="Favoritos", menu=favoritosMenu)
+
+    sairMenu = Menu(topBar)
+    sairMenu.add_command(label="Sair", command=terminarSessao)
+
+    topBar.add_cascade(label="Sair", menu=sairMenu)
+
+    lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+
+    btnVoltarApp.place(x=80,y=70)
+
+    btnFrancesinha.place(x=300, y=180)
+    btnPicanha.place(x=900, y=180)
+    btnBifesPeru.place(x=300, y=500)
+    btnFrango.place(x=900, y=500)
+
+    # Interface não utilizada
+    ctnImg.place_forget()
+    lblBemVindo.place_forget()
+    btnCriar.place_forget()
+    btnEntrar.place_forget()
+    btnConvid.place_forget()
+    lblUtilizador.place_forget()
+    entUtilizador.place_forget()
+    lblPass.place_forget()
+    entPass.place_forget()
+    btnEntrarApp.place_forget()
+    btnCriar.place_forget()
+    btnVoltar.place_forget()
+    btnEntradas.place_forget()
+    btnSopas.place_forget()
+    btnCarnes.place_forget()
+    btnPeixes.place_forget()
+    btnSaladas.place_forget()
+    btnVegeta.place_forget()
+#endregion
+
+# region Janela Saladas
+def janelaSaladas():
+    # Resolução da Aplicação
+    appWidth = screenWidth
+    appHeigth = screenHeigth
+
+    window.geometry("%dx%d" % (appWidth, appHeigth))
+    window.state("zoomed")
+    topBar = Menu(window)
+    window.configure(bg="white", menu=topBar)
+
+    utilizadoresMenu = Menu(topBar)
+    utilizadoresMenu.add_command(label="Utilizador")
+    topBar.add_cascade(label="Minha Conta", menu=utilizadoresMenu)
+
+    ordenarMenu = Menu(topBar)
+    ordenarMenu.add_command(label="Mais Popular")
+    ordenarMenu.add_command(label="Mais Comentada")
+    topBar.add_cascade(label="Ordenar", menu=ordenarMenu)
+
+    favoritosMenu = Menu(topBar)
+    favoritosMenu.add_command(label="Favoritos")
+    topBar.add_cascade(label="Favoritos", menu=favoritosMenu)
+
+    sairMenu = Menu(topBar)
+    sairMenu.add_command(label="Sair", command=terminarSessao)
+
+    topBar.add_cascade(label="Sair", menu=sairMenu)
+
+    lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+
+    btnVoltarApp.place(x=80,y=70)
+
+    btnFrancesinha.place(x=300, y=180)
+    btnPicanha.place(x=900, y=180)
+    btnBifesPeru.place(x=300, y=500)
+    btnFrango.place(x=900, y=500)
+
+    # Interface não utilizada
+    ctnImg.place_forget()
+    lblBemVindo.place_forget()
+    btnCriar.place_forget()
+    btnEntrar.place_forget()
+    btnConvid.place_forget()
+    lblUtilizador.place_forget()
+    entUtilizador.place_forget()
+    lblPass.place_forget()
+    entPass.place_forget()
+    btnEntrarApp.place_forget()
+    btnCriar.place_forget()
+    btnVoltar.place_forget()
+    btnEntradas.place_forget()
+    btnSopas.place_forget()
+    btnCarnes.place_forget()
+    btnPeixes.place_forget()
+    btnSaladas.place_forget()
+    btnVegeta.place_forget()
+#endregion
+
+# region Janela Vegetariana
+def janelaVegeta():
+    # Resolução da Aplicação
+    appWidth = screenWidth
+    appHeigth = screenHeigth
+
+    window.geometry("%dx%d" % (appWidth, appHeigth))
+    window.state("zoomed")
+    topBar = Menu(window)
+    window.configure(bg="white", menu=topBar)
+
+    utilizadoresMenu = Menu(topBar)
+    utilizadoresMenu.add_command(label="Utilizador")
+    topBar.add_cascade(label="Minha Conta", menu=utilizadoresMenu)
+
+    ordenarMenu = Menu(topBar)
+    ordenarMenu.add_command(label="Mais Popular")
+    ordenarMenu.add_command(label="Mais Comentada")
+    topBar.add_cascade(label="Ordenar", menu=ordenarMenu)
+
+    favoritosMenu = Menu(topBar)
+    favoritosMenu.add_command(label="Favoritos")
+    topBar.add_cascade(label="Favoritos", menu=favoritosMenu)
+
+    sairMenu = Menu(topBar)
+    sairMenu.add_command(label="Sair", command=terminarSessao)
+
+    topBar.add_cascade(label="Sair", menu=sairMenu)
+
+    lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+
+    btnVoltarApp.place(x=80,y=70)
 
     btnFrancesinha.place(x=300, y=180)
     btnPicanha.place(x=900, y=180)
@@ -539,8 +806,9 @@ btnEntrarApp = Button(window, text="Entrar", fg="black",
 lblMenuPrincipal = Label(window, text="MENU PRINCIPAL", fg="black",
                          bg="white", font=("Playfair Bold", 20), width=30, height=1)
 
-# Botão para criar receita
-btnCriarReceita = Button(window, text="Faça a sua receita")
+#Botão Voltar
+btnVoltarApp=Button(window, text="Voltar", fg="black",
+                   bg="#767B91", width=15, height=3, command=janelaApp)
 
 # Barra Menu Utilizador
 
