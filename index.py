@@ -428,7 +428,7 @@ def janelaSopas():
 
     btnVoltarApp.place(x=80,y=70)
 
-    btn.place(x=300, y=180)
+    btnFrancesinha.place(x=300, y=180)
     btnPicanha.place(x=900, y=180)
     btnBifesPeru.place(x=300, y=500)
     btnFrango.place(x=900, y=500)
