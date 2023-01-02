@@ -236,6 +236,18 @@ def janelaApp():
     btnBifesPeru.place_forget()
     btnFrango.place_forget()
 
+    #Remove a interface da janela dos peixes
+    btnbacalhau.place_forget()
+    btnCamarao.place_forget()
+    btnFeijoada.place_forget()
+    btnPolvo.place_forget()
+
+    #Remove a interface da janela das Saladas
+    btnSbacalhau.place_forget()
+    btnSbolonhesa.place_forget()
+    btnSbulgur.place_forget()
+    btnSdelicias.place_forget()
+
 # endregion
 
 # region Janela App Convidado
@@ -416,7 +428,7 @@ def janelaSopas():
 
     btnVoltarApp.place(x=80,y=70)
 
-    btnFrancesinha.place(x=300, y=180)
+    btn.place(x=300, y=180)
     btnPicanha.place(x=900, y=180)
     btnBifesPeru.place(x=300, y=500)
     btnFrango.place(x=900, y=500)
@@ -475,10 +487,10 @@ def janelaPeixes():
 
     btnVoltarApp.place(x=80,y=70)
 
-    btnFrancesinha.place(x=300, y=180)
-    btnPicanha.place(x=900, y=180)
-    btnBifesPeru.place(x=300, y=500)
-    btnFrango.place(x=900, y=500)
+    btnbacalhau.place(x=300, y=180)
+    btnCamarao.place(x=900, y=180)
+    btnFeijoada.place(x=300, y=500)
+    btnPolvo.place(x=900, y=500)
 
     # Interface não utilizada
     ctnImg.place_forget()
@@ -534,10 +546,10 @@ def janelaSaladas():
 
     btnVoltarApp.place(x=80,y=70)
 
-    btnFrancesinha.place(x=300, y=180)
-    btnPicanha.place(x=900, y=180)
-    btnBifesPeru.place(x=300, y=500)
-    btnFrango.place(x=900, y=500)
+    btnSbacalhau.place(x=300, y=180)
+    btnSbolonhesa.place(x=900, y=180)
+    btnSbulgur.place(x=300, y=500)
+    btnSdelicias.place(x=900, y=500)
 
     # Interface não utilizada
     ctnImg.place_forget()
@@ -708,6 +720,42 @@ def login():
             entPass.delete(0, "end")
 # endregion
 
+def criar_janela_receita():
+  # Cria a janela principal
+  # Cria os rótulos
+  titulo_receita =Label(window, text="Título da Receita")
+  titulo_receita.pack()
+
+  ingredientes =Label(window, text="Ingredientes:")
+  ingredientes.pack()
+
+  ingrediente_1 =Label(window, text="Ingrediente 1")
+  ingrediente_1.pack()
+
+  ingrediente_2 =Label(window, text="Ingrediente 2")
+  ingrediente_2.pack()
+
+  # etc.
+
+  instrucoes =Label(window, text="Instruções de Preparo:")
+  instrucoes.pack()
+
+  # Cria a área de texto para as instruções de preparo
+  instrucoes_texto =Text(window)
+  instrucoes_texto.pack()
+
+  # Adiciona os dados da receita aos componentes
+  titulo_receita["text"] = "Bolo de Chocolate"
+  ingrediente_1["text"] = "2 xícaras de açúcar"
+  ingrediente_2["text"] = "1 xícara de farinha de trigo"
+  # etc.
+
+  instrucoes_texto.insert(END, "1. Pré-aqueça o forno a 180°C.\n")
+  instrucoes_texto.insert(END, "2. Em uma tigela, misture o açúcar, a farinha de trigo, o cacau em pó e o fermento.\n")
+  instrucoes_texto.insert(END, "3. Adicione os ovos, o óleo e o leite e misture até formar uma massa homogênea.\n")
+  # etc.
+
+
 # region Convidado
 
 
@@ -825,6 +873,9 @@ imgPao = PhotoImage(file="./img/entradas/paorecheado.png")
 imgSupremo = PhotoImage(file="./img/entradas/supremodecamembert.png")
 imgPizza = PhotoImage(file="./img/entradas/pizzadenatal.png")
 imgQuiche=PhotoImage(file="./img/entradas/quichequeijo.png")
+imgRissois=PhotoImage(file="./img/entradas/rissois.png")
+imgTapas=PhotoImage(file="./img/entradas/tapas.png")
+
 # Imagens Carnes
 imgFrancesinha=PhotoImage(file="./img/carnes/francesinha.png")
 imgBifesPeru = PhotoImage(file="./img/carnes/bifesperu.png")
@@ -835,21 +886,37 @@ imgEmpadao=PhotoImage(file="./img/carnes/empadao.png")
 
 #Imagens Peixes
 imgBacalhau=PhotoImage(file="./img/peixes/bacalhau.png")
+imgCamarao=PhotoImage(file="./img/peixes/camarao.png")
+imgFeijoada=PhotoImage(file="./img/peixes/feijoada.png")
+imgGaroupa=PhotoImage(file="./img/peixes/garoupa.png")
+imgPolvo=PhotoImage(file="./img/peixes/polvo.png")
+imgSalmao=PhotoImage(file="./img/peixes/salmao.png")
+
+#Botões Saladas
+imgSbacalhau=PhotoImage(file="./img/saladas/saladaBacalhau.png")
+imgSbolonhesa=PhotoImage(file="./img/saladas/saladaBolonhesa.png")
+imgSbulgur=PhotoImage(file="./img/saladas/saladaBulgur.png")
+imgSdelicias=PhotoImage(file="./img/saladas/saladaDelicias.png")
+imgSfrango=PhotoImage(file="./img/saladas/saladaFrango.png")
+imgSsalsichas=PhotoImage(file="./img/saladas/saladaSalsicha.png")
+
+
 
 # Botões com as categorias
 btnEntradas = Button(window, width=350, height=250, image=imgEntradas,command=janelaEntradas)
-btnSopas = Button(window, width=350, height=250, image=imgSopas)
+btnSopas = Button(window, width=350, height=250, image=imgSopas,command=janelaSopas)
 btnCarnes = Button(window, width=350, height=250, image=imgCarnes,command=janelaCarnes)
-btnPeixes = Button(window, width=350, height=250, image=imgPeixes)
-btnSaladas = Button(window, width=350, height=250, image=imgSaladas)
-btnVegeta = Button(window, width=350, height=250, image=imgVegeta)
+btnPeixes = Button(window, width=350, height=250, image=imgPeixes,command=janelaPeixes)
+btnSaladas = Button(window, width=350, height=250, image=imgSaladas,command=janelaSaladas)
+btnVegeta = Button(window, width=350, height=250, image=imgVegeta,command=janelaVegeta)
 
 #Botões Entradas
 btnPao = Button(window, width=350, height=250, image=imgPao)
 btnPizza = Button(window, width=350, height=250, image=imgPizza)
 btnQuiche = Button(window, width=350, height=250, image=imgQuiche)
 btnSupremo = Button(window, width=350, height=250, image=imgSupremo)
-
+btnRissois = Button(window, width=350, height=250, image=imgRissois)
+btnTapas = Button(window, width=350, height=250, image=imgTapas)
 
 #Botões Carnes
 btnFrancesinha = Button(window, width=350, height=250, image=imgFrancesinha)
@@ -859,6 +926,21 @@ btnCaril = Button(window, width=350, height=250, image=imgCaril)
 btnFrango = Button(window, width=350, height=250, image=imgFrango)
 btnEmpadao = Button(window, width=350, height=250, image=imgEmpadao)
 
+#Botões Peixes
+btnbacalhau = Button(window, width=350, height=250, image=imgBacalhau)
+btnCamarao = Button(window, width=350, height=250, image=imgCamarao)
+btnFeijoada = Button(window, width=350, height=250, image=imgFeijoada)
+btnGaroupa = Button(window, width=350, height=250, image=imgGaroupa)
+btnPolvo = Button(window, width=350, height=250, image=imgPolvo)
+btnSalmao = Button(window, width=350, height=250, image=imgSalmao)
+
+#Botões Saladas
+btnSbacalhau=Button(window, width=350, height=250, image=imgSbacalhau)
+btnSbolonhesa=Button(window, width=350, height=250, image=imgSbolonhesa)
+btnSbulgur=Button(window, width=350, height=250, image=imgSbulgur)
+btnSdelicias=Button(window, width=350, height=250, image=imgSdelicias)
+btnSfrango=Button(window, width=350, height=250, image=imgSfrango)
+btnSsalsichas=Button(window, width=350, height=250, image=imgSsalsichas)
 # endregion
 
 
