@@ -11,102 +11,6 @@ window.configure(bg="white")
 screenWidth = window.winfo_screenwidth()
 screenHeigth = window.winfo_screenheight()
 
-# region Janela Admin
-
-def janelaAppAdmin():
-    # Resolução da Aplicação
-    appWidth = screenWidth
-    appHeigth = screenHeigth
-
-    window.geometry("%dx%d" % (appWidth, appHeigth))
-    window.state("zoomed")
-    topBarAdmin = Menu(window)
-    window.configure(bg="white", menu=topBarAdmin)
-    window.resizable(False,False)
-    print(appWidth)
-    print(appHeigth)
-
-    adminMenu = Menu(topBarAdmin)
-    adminMenu.add_command(label="Utilizador")
-    topBarAdmin.add_cascade(label="Minha Conta", menu=adminMenu)
-
-    adicionarCategoriaMenu = Menu(topBarAdmin)
-    adicionarCategoriaMenu.add_command(label="Adicionar Categoria")
-    topBarAdmin.add_cascade(label="Adicionar Categoria", menu=adicionarCategoriaMenu)
-
-    removerCategoriaMenu = Menu(topBarAdmin)
-    removerCategoriaMenu.add_command(label="Remover Categoria")
-    topBarAdmin.add_cascade(label="Remover Categoria", menu=removerCategoriaMenu)
-
-    ordenarMenu = Menu(topBarAdmin)
-    ordenarMenu.add_command(label="Mais Popular")
-    ordenarMenu.add_command(label="Mais Comentada")
-    topBarAdmin.add_cascade(label="Ordenar", menu=ordenarMenu)
-
-    favoritosMenu = Menu(topBarAdmin)
-    favoritosMenu.add_command(label="Favoritos")
-    topBarAdmin.add_cascade(label="Favoritos", menu=favoritosMenu)
-
-    sairMenu = Menu(topBarAdmin)
-    sairMenu.add_command(label="Sair", command=terminarSessao)
-
-    criarReceita=Menu(topBarAdmin)
-    criarReceita.add_cascade(label="Criar Receita")
-    topBarAdmin.add_cascade(label="Criar Receita",menu=criarReceita)
-
-    topBarAdmin.add_cascade(label="Sair", menu=sairMenu)
-
-    lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
-
-    
-
-    btnEntradas.place(x=100, y=180)
-    btnSopas.place(x=600, y=180)
-    btnCarnes.place(x=1100, y=180)
-    btnPeixes.place(x=100, y=500)
-    btnSaladas.place(x=600, y=500)
-    btnVegeta.place(x=1100, y=500)
-
-    # Remove a interface da janela window e criar conta
-    ctnImg.place_forget()
-    lblBemVindo.place_forget()
-    btnCriar.place_forget()
-    btnEntrar.place_forget()
-    btnConvid.place_forget()
-    lblUtilizador.place_forget()
-    entUtilizador.place_forget()
-    lblPass.place_forget()
-    entPass.place_forget()
-    btnEntrarApp.place_forget()
-    btnCriar.place_forget()
-    btnVoltar.place_forget()
-    
-    #Remove a interface das janelas das Entradas
-    btnVoltarApp.place_forget()
-    btnPao.place_forget()
-    btnPizza.place_forget()
-    btnQuiche.place_forget()
-    btnSupremo.place_forget()
-    
-    #Remove a interface da janela das Carnes
-    btnFrancesinha.place_forget()
-    btnPicanha.place_forget()
-    btnBifesPeru.place_forget()
-    btnFrango.place_forget()
-
-    #Remove a interface da janela dos peixes
-    btnbacalhau.place_forget()
-    btnCamarao.place_forget()
-    btnFeijoada.place_forget()
-    btnPolvo.place_forget()
-
-    #Remove a interface da janela das Saladas
-    btnSbacalhau.place_forget()
-    btnSbolonhesa.place_forget()
-    btnSbulgur.place_forget()
-    btnSdelicias.place_forget()
-
-    # endregion
 
 # region Janela Login e Criar Conta
 def janelaCriarConta():
@@ -145,14 +49,15 @@ def janelaCriarConta():
     # INSERE BOTÕES CRIAR E ENTRAR CONTA
     btnCriarConta.place(x=120, y=200)
     btnConvidUtil.place(x=240, y=200)
-    btnVoltar.place(x=360, y=200)
+    btnEntrar.place(x=360, y=200)
+    
 
     # Interfaces não utilizadas na janela
     ctnImg.place_forget()
     lblBemVindo.place_forget()
     btnCriar.place_forget()
-    btnEntrar.place_forget()
     btnConvid.place_forget()
+    btnEntrarApp.place_forget()
 
 
 def janelaLogin():
@@ -296,8 +201,6 @@ def janelaApp():
 
     lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
 
-    
-
     btnEntradas.place(x=100, y=180)
     btnSopas.place(x=600, y=180)
     btnCarnes.place(x=1100, y=180)
@@ -356,15 +259,58 @@ def janelaApp():
 
 
 def janelaAppConvidado():
-    # Resolução da Aplicação
+   # Resolução da Aplicação
     appWidth = screenWidth
     appHeigth = screenHeigth
 
     window.geometry("%dx%d" % (appWidth, appHeigth))
     window.state("zoomed")
-    window.configure(bg="grey")
+    topBar = Menu(window)
+    window.configure(bg="white", menu=topBar)
+    
+    print(appWidth)
+    print(appHeigth)
 
-    # Interface não utilizada
+    utilizadoresMenu = Menu(topBar)
+    utilizadoresMenu.add_command(label="Utilizador",command=mensageConv)
+    topBar.add_cascade(label="Minha Conta", menu=utilizadoresMenu)
+
+    ordenarMenu = Menu(topBar)
+    ordenarMenu.add_command(label="Mais Popular",command=mensageConv)
+    ordenarMenu.add_command(label="Mais Comentada",command=mensageConv)
+    topBar.add_cascade(label="Ordenar", menu=ordenarMenu)
+
+    favoritosMenu = Menu(topBar)
+    favoritosMenu.add_command(label="Favoritos",command=mensageConv)
+    topBar.add_cascade(label="Favoritos", menu=favoritosMenu)
+
+    sairMenu = Menu(topBar)
+    sairMenu.add_command(label="Sair", command=terminarSessao)
+
+    criarReceita=Menu(topBar)
+    criarReceita.add_cascade(label="Criar Receita",command=mensageConv)
+    topBar.add_cascade(label="Criar Receita",menu=criarReceita)
+
+    topBar.add_cascade(label="Sair", menu=sairMenu)
+
+    lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+
+
+    #Restringe algumas categorias
+    btnCarnes.configure(command=mensageConv)
+    btnSopas.configure(command=mensageConv)
+    btnPeixes.configure(command=mensageConv)
+    btnVegeta.configure(command=mensageConv)
+    btnSaladas.configure(command=mensageConv)
+
+    btnEntradas.place(x=100, y=180)
+    btnSopas.place(x=600, y=180)
+    btnCarnes.place(x=1100, y=180)
+    btnPeixes.place(x=100, y=500)
+    btnSaladas.place(x=600, y=500)
+    btnVegeta.place(x=1100, y=500)
+
+    # Remove a interface da janela window e criar conta
     ctnImg.place_forget()
     lblBemVindo.place_forget()
     btnCriar.place_forget()
@@ -377,6 +323,37 @@ def janelaAppConvidado():
     btnEntrarApp.place_forget()
     btnCriar.place_forget()
     btnVoltar.place_forget()
+    
+    #Remove a interface das janelas das Entradas
+    btnVoltarApp.place_forget()
+    btnPao.place_forget()
+    btnPizza.place_forget()
+    btnQuiche.place_forget()
+    btnSupremo.place_forget()
+    
+    #Remove a interface da janela das Carnes
+    btnFrancesinha.place_forget()
+    btnPicanha.place_forget()
+    btnBifesPeru.place_forget()
+    btnFrango.place_forget()
+
+    #Remove a interface da janela dos peixes
+    btnbacalhau.place_forget()
+    btnCamarao.place_forget()
+    btnFeijoada.place_forget()
+    btnPolvo.place_forget()
+
+    #Remove a interface da janela das Saladas
+    btnSbacalhau.place_forget()
+    btnSbolonhesa.place_forget()
+    btnSbulgur.place_forget()
+    btnSdelicias.place_forget()
+
+    #Remove a interface da janela das Vegetarianas
+    btnCanelone.place_forget()
+    btnCogumelos.place_forget()
+    btnFolhadinhos.place_forget()
+    btnOvos.place_forget()
 # endregion
 
 # region Janela Entradas
@@ -733,6 +710,102 @@ def janelaVegeta():
     btnVegeta.place_forget()
 #endregion
 
+# region Janela Utilizador
+
+
+def janelaApp():
+    # Resolução da Aplicação
+    appWidth = screenWidth
+    appHeigth = screenHeigth
+
+    window.geometry("%dx%d" % (appWidth, appHeigth))
+    window.state("zoomed")
+    topBar = Menu(window)
+    window.configure(bg="white", menu=topBar)
+    
+    print(appWidth)
+    print(appHeigth)
+
+    utilizadoresMenu = Menu(topBar)
+    utilizadoresMenu.add_command(label="Utilizador")
+    topBar.add_cascade(label="Minha Conta", menu=utilizadoresMenu)
+
+    ordenarMenu = Menu(topBar)
+    ordenarMenu.add_command(label="Mais Popular")
+    ordenarMenu.add_command(label="Mais Comentada")
+    topBar.add_cascade(label="Ordenar", menu=ordenarMenu)
+
+    favoritosMenu = Menu(topBar)
+    favoritosMenu.add_command(label="Favoritos")
+    topBar.add_cascade(label="Favoritos", menu=favoritosMenu)
+
+    sairMenu = Menu(topBar)
+    sairMenu.add_command(label="Sair", command=terminarSessao)
+
+    criarReceita=Menu(topBar)
+    criarReceita.add_cascade(label="Criar Receita")
+    topBar.add_cascade(label="Criar Receita",menu=criarReceita)
+
+    topBar.add_cascade(label="Sair", menu=sairMenu)
+
+    lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+
+    
+
+    btnEntradas.place(x=100, y=180)
+    btnSopas.place(x=600, y=180)
+    btnCarnes.place(x=1100, y=180)
+    btnPeixes.place(x=100, y=500)
+    btnSaladas.place(x=600, y=500)
+    btnVegeta.place(x=1100, y=500)
+
+    # Remove a interface da janela window e criar conta
+    ctnImg.place_forget()
+    lblBemVindo.place_forget()
+    btnCriar.place_forget()
+    btnEntrar.place_forget()
+    btnConvid.place_forget()
+    lblUtilizador.place_forget()
+    entUtilizador.place_forget()
+    lblPass.place_forget()
+    entPass.place_forget()
+    btnEntrarApp.place_forget()
+    btnCriar.place_forget()
+    btnVoltar.place_forget()
+    
+    #Remove a interface das janelas das Entradas
+    btnVoltarApp.place_forget()
+    btnPao.place_forget()
+    btnPizza.place_forget()
+    btnQuiche.place_forget()
+    btnSupremo.place_forget()
+    
+    #Remove a interface da janela das Carnes
+    btnFrancesinha.place_forget()
+    btnPicanha.place_forget()
+    btnBifesPeru.place_forget()
+    btnFrango.place_forget()
+
+    #Remove a interface da janela dos peixes
+    btnbacalhau.place_forget()
+    btnCamarao.place_forget()
+    btnFeijoada.place_forget()
+    btnPolvo.place_forget()
+
+    #Remove a interface da janela das Saladas
+    btnSbacalhau.place_forget()
+    btnSbolonhesa.place_forget()
+    btnSbulgur.place_forget()
+    btnSdelicias.place_forget()
+
+    #Remove a interface da janela das Vegetarianas
+    btnCanelone.place_forget()
+    btnCogumelos.place_forget()
+    btnFolhadinhos.place_forget()
+    btnOvos.place_forget()
+
+# endregion
+
 # region Criar Conta
 
 
@@ -806,7 +879,7 @@ def login():
         if campos[0] == nome and campos[2] == passe and campos[3] == "admin":
             messagebox.showinfo("Bem vindo ADMINISTRADOR",
                                 f"Olá {nome}! Está autenticado como ADMIN")
-            janelaAppAdmin()
+            janelaApp()
             return campos[0]
 
         elif campos[0] == nome and campos[2] == passe and campos[3] == "user":
@@ -857,7 +930,6 @@ def criar_janela_receita():
   instrucoes_texto.insert(END, "3. Adicione os ovos, o óleo e o leite e misture até formar uma massa homogênea.\n")
   # etc.
 
-
 # region Convidado
 
 
@@ -869,9 +941,10 @@ def convidado():
     if campos[0] == "conv":
         messagebox.showinfo(
             "Bem vindo", f"Olá {campos[0]}, o seu login foi efetuado com sucesso!")
-        janelaApp()
+        janelaAppConvidado()
 
-
+def mensageConv():
+    messagebox.showinfo("Sem Acesso!","Convidados não tem acesso a esta parte da aplicação,por favor crie uma conta!")   
 # endregion
 
 # region Terminar Sessão
@@ -947,6 +1020,9 @@ btnVoltar = Button(window, text="Voltar", fg="black",
                    bg="#767B91", width=10, height=1, command=janelaInicial)
 btnEntrarApp = Button(window, text="Entrar", fg="black",
                       bg="#99DDC8", width=10, height=1, command=login)
+
+btnJanelaLogin=Button(window, text="Entrar", fg="black",
+                      bg="#99DDC8", width=10, height=1, command=janelaLogin)
 
 # endregion
 
