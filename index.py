@@ -879,7 +879,7 @@ def login():
         if campos[0] == nome and campos[2] == passe and campos[3] == "admin":
             messagebox.showinfo("Bem vindo ADMINISTRADOR",
                                 f"Olá {nome}! Está autenticado como ADMIN")
-            janelaApp()
+            janelaAppAdmin()
             return campos[0]
 
         elif campos[0] == nome and campos[2] == passe and campos[3] == "user":
@@ -950,13 +950,15 @@ def janelaAppAdmin():
     adminMenu.add_command(label="Utilizador")
     topBarAdmin.add_cascade(label="Minha Conta", menu=adminMenu)
 
-    adicionarCategoriaMenu = Menu(topBarAdmin)
-    adicionarCategoriaMenu.add_command(label="Adicionar Categoria")
-    topBarAdmin.add_cascade(label="Adicionar Categoria", menu=adicionarCategoriaMenu)
+    gerirCategoriasMenu = Menu(topBarAdmin)
+    gerirCategoriasMenu.add_command(label="Adicionar Categorias")
+    gerirCategoriasMenu.add_command(label="Remover Categorias")
+    topBarAdmin.add_cascade(label="Gerir Categorias", menu=gerirCategoriasMenu)
 
-    removerCategoriaMenu = Menu(topBarAdmin)
-    removerCategoriaMenu.add_command(label="Remover Categoria")
-    topBarAdmin.add_cascade(label="Remover Categoria", menu=removerCategoriaMenu)
+    gerirUtilizadoresMenu = Menu(topBarAdmin)
+    gerirUtilizadoresMenu.add_command(label="Adicionar Utilizador")
+    gerirUtilizadoresMenu.add_command(label="Remover Utilizador")
+    topBarAdmin.add_cascade(label="Gerir Utilizadores", menu=gerirUtilizadoresMenu)
 
     ordenarMenu = Menu(topBarAdmin)
     ordenarMenu.add_command(label="Mais Popular")
