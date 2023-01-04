@@ -11,6 +11,102 @@ window.configure(bg="white")
 screenWidth = window.winfo_screenwidth()
 screenHeigth = window.winfo_screenheight()
 
+# region Janela Admin
+
+def janelaAppAdmin():
+    # Resolução da Aplicação
+    appWidth = screenWidth
+    appHeigth = screenHeigth
+
+    window.geometry("%dx%d" % (appWidth, appHeigth))
+    window.state("zoomed")
+    topBarAdmin = Menu(window)
+    window.configure(bg="white", menu=topBarAdmin)
+    window.resizable(False,False)
+    print(appWidth)
+    print(appHeigth)
+
+    adminMenu = Menu(topBarAdmin)
+    adminMenu.add_command(label="Utilizador")
+    topBarAdmin.add_cascade(label="Minha Conta", menu=adminMenu)
+
+    adicionarCategoriaMenu = Menu(topBarAdmin)
+    adicionarCategoriaMenu.add_command(label="Adicionar Categoria")
+    topBarAdmin.add_cascade(label="Adicionar Categoria", menu=adicionarCategoriaMenu)
+
+    removerCategoriaMenu = Menu(topBarAdmin)
+    removerCategoriaMenu.add_command(label="Remover Categoria")
+    topBarAdmin.add_cascade(label="Remover Categoria", menu=removerCategoriaMenu)
+
+    ordenarMenu = Menu(topBarAdmin)
+    ordenarMenu.add_command(label="Mais Popular")
+    ordenarMenu.add_command(label="Mais Comentada")
+    topBarAdmin.add_cascade(label="Ordenar", menu=ordenarMenu)
+
+    favoritosMenu = Menu(topBarAdmin)
+    favoritosMenu.add_command(label="Favoritos")
+    topBarAdmin.add_cascade(label="Favoritos", menu=favoritosMenu)
+
+    sairMenu = Menu(topBarAdmin)
+    sairMenu.add_command(label="Sair", command=terminarSessao)
+
+    criarReceita=Menu(topBarAdmin)
+    criarReceita.add_cascade(label="Criar Receita")
+    topBarAdmin.add_cascade(label="Criar Receita",menu=criarReceita)
+
+    topBarAdmin.add_cascade(label="Sair", menu=sairMenu)
+
+    lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+
+    
+
+    btnEntradas.place(x=100, y=180)
+    btnSopas.place(x=600, y=180)
+    btnCarnes.place(x=1100, y=180)
+    btnPeixes.place(x=100, y=500)
+    btnSaladas.place(x=600, y=500)
+    btnVegeta.place(x=1100, y=500)
+
+    # Remove a interface da janela window e criar conta
+    ctnImg.place_forget()
+    lblBemVindo.place_forget()
+    btnCriar.place_forget()
+    btnEntrar.place_forget()
+    btnConvid.place_forget()
+    lblUtilizador.place_forget()
+    entUtilizador.place_forget()
+    lblPass.place_forget()
+    entPass.place_forget()
+    btnEntrarApp.place_forget()
+    btnCriar.place_forget()
+    btnVoltar.place_forget()
+    
+    #Remove a interface das janelas das Entradas
+    btnVoltarApp.place_forget()
+    btnPao.place_forget()
+    btnPizza.place_forget()
+    btnQuiche.place_forget()
+    btnSupremo.place_forget()
+    
+    #Remove a interface da janela das Carnes
+    btnFrancesinha.place_forget()
+    btnPicanha.place_forget()
+    btnBifesPeru.place_forget()
+    btnFrango.place_forget()
+
+    #Remove a interface da janela dos peixes
+    btnbacalhau.place_forget()
+    btnCamarao.place_forget()
+    btnFeijoada.place_forget()
+    btnPolvo.place_forget()
+
+    #Remove a interface da janela das Saladas
+    btnSbacalhau.place_forget()
+    btnSbolonhesa.place_forget()
+    btnSbulgur.place_forget()
+    btnSdelicias.place_forget()
+
+    # endregion
 
 # region Janela Login e Criar Conta
 def janelaCriarConta():
@@ -704,7 +800,7 @@ def login():
         if campos[0] == nome and campos[2] == passe and campos[3] == "admin":
             messagebox.showinfo("Bem vindo ADMINISTRADOR",
                                 f"Olá {nome}! Está autenticado como ADMIN")
-            janelaApp()
+            janelaAppAdmin()
             return campos[0]
 
         elif campos[0] == nome and campos[2] == passe and campos[3] == "user":
