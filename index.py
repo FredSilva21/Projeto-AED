@@ -268,7 +268,7 @@ def janelaApp():
     window.state("zoomed")
     topBar = Menu(window)
     window.configure(bg="white", menu=topBar)
-    window.resizable(False,False)
+    
     print(appWidth)
     print(appHeigth)
 
@@ -343,6 +343,12 @@ def janelaApp():
     btnSbolonhesa.place_forget()
     btnSbulgur.place_forget()
     btnSdelicias.place_forget()
+
+    #Remove a interface da janela das Vegetarianas
+    btnCanelone.place_forget()
+    btnCogumelos.place_forget()
+    btnFolhadinhos.place_forget()
+    btnOvos.place_forget()
 
 # endregion
 
@@ -701,10 +707,10 @@ def janelaVegeta():
 
     btnVoltarApp.place(x=80,y=70)
 
-    btnFrancesinha.place(x=300, y=180)
-    btnPicanha.place(x=900, y=180)
-    btnBifesPeru.place(x=300, y=500)
-    btnFrango.place(x=900, y=500)
+    btnCanelone.place(x=300, y=180)
+    btnCogumelos.place(x=900, y=180)
+    btnFolhadinhos.place(x=300, y=500)
+    btnOvos.place(x=900, y=500)
 
     # Interface não utilizada
     ctnImg.place_forget()
@@ -988,7 +994,7 @@ imgGaroupa=PhotoImage(file="./img/peixes/garoupa.png")
 imgPolvo=PhotoImage(file="./img/peixes/polvo.png")
 imgSalmao=PhotoImage(file="./img/peixes/salmao.png")
 
-#Botões Saladas
+#Imagens Saladas
 imgSbacalhau=PhotoImage(file="./img/saladas/saladaBacalhau.png")
 imgSbolonhesa=PhotoImage(file="./img/saladas/saladaBolonhesa.png")
 imgSbulgur=PhotoImage(file="./img/saladas/saladaBulgur.png")
@@ -996,7 +1002,13 @@ imgSdelicias=PhotoImage(file="./img/saladas/saladaDelicias.png")
 imgSfrango=PhotoImage(file="./img/saladas/saladaFrango.png")
 imgSsalsichas=PhotoImage(file="./img/saladas/saladaSalsicha.png")
 
-
+#Imagens Vegetarianas
+imgCanelone=PhotoImage(file="./img/vegetarianas/canelone.png")
+imgCogumelos=PhotoImage(file="./img/vegetarianas/cogumelos.png")
+imgCrepe=PhotoImage(file="./img/vegetarianas/crepe.png")
+imgFolhadinhos=PhotoImage(file="./img/vegetarianas/folhadinhos.png")
+imgMigas=PhotoImage(file="./img/vegetarianas/migas.png")
+imgOvos=PhotoImage(file="./img/vegetarianas/ovos.png")
 
 # Botões com as categorias
 btnEntradas = Button(window, width=350, height=250, image=imgEntradas,command=janelaEntradas)
@@ -1037,6 +1049,14 @@ btnSbulgur=Button(window, width=350, height=250, image=imgSbulgur)
 btnSdelicias=Button(window, width=350, height=250, image=imgSdelicias)
 btnSfrango=Button(window, width=350, height=250, image=imgSfrango)
 btnSsalsichas=Button(window, width=350, height=250, image=imgSsalsichas)
+
+#Botões Vegetarianas
+btnCanelone=Button(window, width=350, height=250, image=imgCanelone)
+btnCogumelos=Button(window, width=350, height=250, image=imgCogumelos)
+btnCrepe=Button(window, width=350, height=250, image=imgCrepe)
+btnFolhadinhos=Button(window, width=350, height=250, image=imgFolhadinhos)
+btnMigas=Button(window, width=350, height=250, image=imgFolhadinhos)
+btnOvos=Button(window, width=350, height=250, image=imgOvos)
 # endregion
 
 
