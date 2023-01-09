@@ -1186,9 +1186,12 @@ def janelaConta():
 
     lblMinhaConta.place(x=appWidth/2, y=80, anchor=CENTER)
 
-    ctnFotoPerfil.place(x=50,y=100)
+    lblNomeUtilizador.place(x=appWidth/4, y=150)
 
-    
+    ctnFotoPerfil.place(x=50,y=100)
+    btnEscolherFoto.place(x=50,y=360)
+    btnGuardarAlteracoes.place(x=appWidth/3, y=360)
+
     #Remove interface janela App
     btnEntradas.place_forget()
     btnSopas.place_forget()
@@ -1699,9 +1702,23 @@ btnCaldoVerde=Button(window, width=350, height=250, image=imgCaldoVerde)
 lblMinhaConta=Label(window, text="MINHA CONTA", fg="black",
                          bg="white", font=("Playfair Bold", 20), width=30, height=1)
 
+lblNomeUtilizador=Label(window, text="Nome de utilizador:", fg="black",
+                            bg="white", font=("Playfair Bold", 15), width=30, height=1)
+
 # Canvas para imagem
 ctnFotoPerfil = Canvas(window, width=250, height=250,
                 bd=0, relief="sunken", bg="white")
+
+# Botão para escolher imagem
+btnEscolherFoto = Button(window, text="Escolher foto", fg="black",
+                            bg="white", font=("Playfair Bold", 15), width=22, height=1)
+
+# Botão para guardar alterações
+btnGuardarAlteracoes = Button(window, text="Guardar alterações", fg="black",
+                            bg="white", font=("Playfair Bold", 15), width=20, height=1)
+
+lblFavoritos=Label(window, text="FAVORITOS", fg="black",
+                            bg="white", font=("Playfair Bold", 20), width=30, height=1)
 
 imgFotoPerfil=PhotoImage(file="img//fotoperfil.png")
 
