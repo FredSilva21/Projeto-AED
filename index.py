@@ -160,6 +160,10 @@ def janelaInicial():
     btnPeixes.place_forget()
     btnSaladas.place_forget()
     btnVegeta.place_forget()
+
+    #Remove a interface da janela utilizador
+    lblMinhaConta.place_forget()
+    ctnFotoPerfil.place_forget()
 # endregion
 
 # region Janela App
@@ -179,7 +183,7 @@ def janelaApp():
     print(appHeigth)
 
     utilizadoresMenu = Menu(topBar)
-    utilizadoresMenu.add_command(label="Utilizador")
+    utilizadoresMenu.add_command(label="Utilizador",command=janelaConta)
     topBar.add_cascade(label="Minha Conta", menu=utilizadoresMenu)
 
     ordenarMenu = Menu(topBar)
@@ -259,6 +263,11 @@ def janelaApp():
     btnSopaPedra.place_forget()
     btnSopaConquilha.place_forget()
     btnSopaPeixe.place_forget()
+
+    #Remove a interface da janela utilizador
+    lblMinhaConta.place_forget()
+    ctnFotoPerfil.place_forget()
+
 
 # endregion
 
@@ -729,6 +738,16 @@ def janelaPao():
     # Cria a janela principal
     janela = tk.Tk()
     janela.title("Receita")
+    
+    # Resolução da Janela
+    appWidth = 1000
+    appHeigth = 800
+
+    # Centrar
+    x = (screenWidth/2)-(appWidth/2)
+    y = (screenHeigth/2)-(appHeigth/2)
+
+    janela.geometry(f'{appWidth}x{appHeigth}+{int(x)}+{int(y)}')
 
     # Cria os rótulos
     titulo_receita = tk.Label(janela, text="Título da Receita")
@@ -760,7 +779,7 @@ def janelaPao():
 
     # Adiciona os dados da receita aos componentes
     titulo_receita["text"] = "Pão Recheado com Queijo e Chouriço"
-
+    imgPao
     instrucoes_texto.insert(
         tk.END, "1. Em uma tigela, misture a farinha de trigo e o sal. Adicione a água morna e misture até formar uma massa homogênea.\n")
     instrucoes_texto.insert(
@@ -1130,7 +1149,7 @@ def janelaTapas():
 # region Janela Utilizador
 
 
-def janelaApp():
+def janelaConta():
     # Resolução da Aplicação
     appWidth = screenWidth
     appHeigth = screenHeigth
@@ -1165,16 +1184,19 @@ def janelaApp():
 
     topBar.add_cascade(label="Sair", menu=sairMenu)
 
-    lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+    lblMinhaConta.place(x=appWidth/2, y=80, anchor=CENTER)
+
+    ctnFotoPerfil.place(x=50,y=100)
 
     
-
-    btnEntradas.place(x=100, y=180)
-    btnSopas.place(x=600, y=180)
-    btnCarnes.place(x=1100, y=180)
-    btnPeixes.place(x=100, y=500)
-    btnSaladas.place(x=600, y=500)
-    btnVegeta.place(x=1100, y=500)
+    #Remove interface janela App
+    btnEntradas.place_forget()
+    btnSopas.place_forget()
+    btnCarnes.place_forget()
+    btnPeixes.place_forget()
+    btnSaladas.place_forget()
+    btnVegeta.place_forget()
+    lblMenuPrincipal.place_forget()
 
     # Remove a interface da janela window e criar conta
     ctnImg.place_forget()
@@ -1673,7 +1695,18 @@ btnCaldoVerde=Button(window, width=350, height=250, image=imgCaldoVerde)
 #endregion
 # endregion
 
+#region Interface Conta Utilizador
+lblMinhaConta=Label(window, text="MINHA CONTA", fg="black",
+                         bg="white", font=("Playfair Bold", 20), width=30, height=1)
 
+# Canvas para imagem
+ctnFotoPerfil = Canvas(window, width=250, height=250,
+                bd=0, relief="sunken", bg="white")
+
+imgFotoPerfil=PhotoImage(file="img//fotoperfil.png")
+
+ctnFotoPerfil.create_image(250,250,image=imgFotoPerfil)
+#endregion
 janelaInicial()
 
 window.mainloop()
