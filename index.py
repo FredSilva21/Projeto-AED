@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+from tkinter import filedialog
 import tkinter as tk
 
 
@@ -338,7 +339,7 @@ def janelaAppAdmin():
 
     gerirCategoriasMenu = Menu(topBarAdmin)
     topBarAdmin.add_cascade(label="Gerir Categorias", menu=gerirCategoriasMenu)
-    gerirCategoriasMenu.add_command(command=escolha_categorias)
+    gerirCategoriasMenu.add_command(label="Gerir Categorias", command=escolha_categorias)
 
     gerirUtilizadoresMenu = Menu(topBarAdmin)
     gerirUtilizadoresMenu.add_command(label="Adicionar Utilizador")
@@ -2167,6 +2168,10 @@ lblNomeUtilizador=Label(window, text="Nome de utilizador:", fg="black",
 # Canvas para imagem
 ctnFotoPerfil = Canvas(window, width=250, height=250,
                 bd=0, relief="sunken", bg="white")
+global image1
+global image_id
+image1 = PhotoImage(file="img//fotoperfil.png")
+image_id = ctnFotoPerfil.create_image(0, 0, anchor=NW, image=image1)
 
 # Botão para escolher imagem
 btnEscolherFoto = Button(window, text="Escolher foto", fg="black",
