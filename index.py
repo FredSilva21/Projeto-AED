@@ -1,7 +1,9 @@
 from tkinter import *
 from tkinter import messagebox
 import tkinter as tk
-
+from tkVideoPlayer import TkinterVideo 
+from users import *
+from receita import *
 
 
 window = Tk()
@@ -246,7 +248,7 @@ def janelaApp():
 
     criarReceita=Menu(topBar)
     criarReceita.add_cascade(label="Criar Receita")
-    topBar.add_cascade(label="Criar Receita",menu=criarReceita)
+    topBar.add_cascade(label="Criar Receita",menu=criarReceita(window))
 
     topBar.add_cascade(label="Sair", menu=sairMenu)
 
@@ -1767,111 +1769,6 @@ def escolha_categorias():
 
 #endregion
 
-# region Criar Conta
-
-
-def guardarConta(resultado):
-    fBaseDados = open("./ficheiros/basedados.txt", "a", encoding="utf-8")
-    fBaseDados.write(resultado)
-    fBaseDados.close()
-    janelaLogin()
-
-
-def verificarConta(nome, email, passe, cpasse, resultado):
-    fBaseDados = open("./ficheiros/basedados.txt", "r", encoding="utf-8")
-    campos = []
-    if nome == "" or email == "" or passe == "" or cpasse == "":
-        messagebox.showerror(
-            "Erro", "Por favor forneça todos os dados corretamente.")
-
-    if nome != "" and passe != "":
-
-        linhas = fBaseDados.readlines()
-        for lin in linhas:
-            campos = lin.split(";")
-        #SE JA EXISTIR UMA CONTA COM O MESMO NOME
-        if nome == campos[0]:
-            messagebox.showerror(
-                "Erro", "Já existe uma conta com esse nome, por favor use outro nome.")
-        #SE JA EXISTIR UMA CONTA COM O MESMO EMAIL
-        elif email==campos[2]:
-            messagebox.showerror(
-                "Erro", "Já existe uma conta com esse email, por favor use outro email.")
-        #SE JA EXISTIR UMA CONTA COM O MESMO NOME E EMAIL
-        elif nome==campos[0] and email==campos[2]:
-            messagebox.showerror(
-                "Erro", "Já existe uma conta com esses dados, por favor efetue login.")
-        # SE A PALAVRA-PASSE FOR CONFIRMADA CORRETAMENTE CRIA A CONTA
-        else:
-            if passe == cpasse:
-                guardarConta(resultado)
-            else:
-                messagebox.showerror(
-                    "Erro", "As duas passwords não coincidem.")
-
-
-def criarConta():
-    nome = entUtilizador.get()
-    email = entEmail.get()
-    passe = entPass.get()
-    cpasse = entCpass.get()
-
-    resultado = "\n" + nome + ";" + email + ";" + passe + ";" + "user"
-
-    verificarConta(nome, email, passe, cpasse, resultado)
-
-# endregion
-
-# region Login
-
-
-def login():
-    nome = entUtilizador.get()
-    passe = entPass.get()
-
-    # ABRE O FICHEIRO basedados.txt E PARA LEITURA
-    fBaseDados = open("ficheiros/basedados.txt", "r", encoding="utf-8")
-    linhas = fBaseDados.readlines()
-    campos = []
-
-    for lin in linhas:
-        campos = lin.split(";")
-        
-    campos1=campos[3].split("\n")
-
-   
-
-    # CASO OS CAMPOS "UTILIZADOR" OU "PALAVRA-PASSE" ESTEJAM VAZIOS, RETORNA UM ERRO
-    if nome == "" or passe == "":
-        messagebox.showerror(
-            "Erro", "Por favor forneça os seus dados de acesso.")
-    
-    
-    # CASO OS DADOS DE ACESSO ESTEJAM CORRETOS, EFETUA LOGIN
-    if nome != "" and passe != "":
-        if campos[0] == nome and campos[2] == passe and campos1[0] == "admin":
-            messagebox.showinfo("Bem vindo ADMINISTRADOR",
-                                f"Olá {nome}! Está autenticado como ADMIN")
-            entUtilizador.delete(0,"end")
-            entPass.delete(0,"end")
-            janelaAppAdmin()
-            return campos[0]
-
-        elif campos[0] == nome and campos[2] == passe and campos[3] == "user":
-            messagebox.showinfo(
-                "Bem vindo", f"Olá {nome}, o seu login foi efetuado com sucesso!")
-            entUtilizador.delete(0,"end")
-            entPass.delete(0,"end")
-            janelaApp()
-            return campos[0]
-
-        # SE OS DADOS ESTIVEREM ERRADOS, RETORNA UM ERRO
-        else:
-            messagebox.showerror("Tentativa de Login sem sucesso",
-                                 "Utilizador ou palavra-passe incorreta. Por favor tente novamente ou crie conta.")
-            entPass.delete(0, "end")
-# endregion
-
 #region GESTÃO DE CATEGORIAS
 
 #CRIAÇÃO DOS CHECK BUTTONS COMO VARIÁVEIS
@@ -1888,65 +1785,6 @@ chkSalad.set(1)
 chkVeget = IntVar()  #Vegetarianas
 chkVeget.set(1) 
 #endregion
-
-
-def criar_janela_receita():
-  # Cria a janela principal
-  # Cria os rótulos
-  titulo_receita =Label(window, text="Título da Receita")
-  titulo_receita.pack()
-
-  ingredientes =Label(window, text="Ingredientes:")
-  ingredientes.pack()
-
-  ingrediente_1 =Label(window, text="Ingrediente 1")
-  ingrediente_1.pack()
-
-  ingrediente_2 =Label(window, text="Ingrediente 2")
-  ingrediente_2.pack()
-
-  # etc.
-
-  instrucoes =Label(window, text="Instruções de Preparo:")
-  instrucoes.pack()
-
-  # Cria a área de texto para as instruções de preparo
-  instrucoes_texto =Text(window)
-  instrucoes_texto.pack()
-
-  # Adiciona os dados da receita aos componentes
-  titulo_receita["text"] = "Bolo de Chocolate"
-  ingrediente_1["text"] = "2 xícaras de açúcar"
-  ingrediente_2["text"] = "1 xícara de farinha de trigo"
-  # etc.
-
-  instrucoes_texto.insert(END, "1. Pré-aqueça o forno a 180°C.\n")
-  instrucoes_texto.insert(
-    END, "2. Em uma tigela, misture o açúcar, a farinha de trigo, o cacau em pó e o fermento.\n")
-  instrucoes_texto.insert(
-    END, "3. Adicione os ovos, o óleo e o leite e misture até formar uma massa homogênea.\n")
-  # etc.
-
-
-
-
-
-# region Convidado
-
-
-def convidado():
-    fBaseDados = open("./ficheiros/basedados.txt", "r", encoding="utf-8")
-    linha = fBaseDados.readline()
-    campos = linha.split(";")
-
-    if campos[0] == "conv":
-        messagebox.showinfo(
-            "Bem vindo", f"Olá {campos[0]}, o seu login foi efetuado com sucesso!")
-        janelaAppConvidado()
-
-def mensageConv():
-    messagebox.showinfo("Sem Acesso!","Convidados não tem acesso a esta parte da aplicação,por favor crie uma conta!")   
-# endregion
 
 # region Terminar Sessão
 def terminarSessao():
@@ -1979,7 +1817,7 @@ btnEntrar = Button(window, text="Entrar", fg="black",
 
 # Botão Entrar como Convidado
 btnConvid = Button(window, text="Convidado", fg="black",
-                   bg="#CBDFBD", width=10, height=1, command=convidado)
+                   bg="#CBDFBD", width=10, height=1, command=lambda:convidado(janelaAppConvidado))
 
 # endregion
 
@@ -2014,13 +1852,13 @@ entCpass = Entry(window, fg="black", width=25, show="*")
 
 # Botão Criar Conta do Utilizador
 btnCriarConta = Button(window, text="Criar Conta", fg="white",
-                       bg="#62C370", width=10, height=1, command=criarConta)
+                       bg="#62C370", width=10, height=1, command=lambda:criarConta(entUtilizador.get(),entEmail.get(),entPass.get(),entCpass.get(),janelaLogin))
 btnConvidUtil = Button(window, text="Convidado", fg="black",
-                       bg="#CBDFBD", width=10, height=1, command=convidado)
+                       bg="#CBDFBD", width=10, height=1, command=lambda:convidado(janelaAppConvidado))
 btnVoltar = Button(window, text="Voltar", fg="black",
                    bg="#767B91", width=10, height=1, command=janelaInicial)
 btnEntrarApp = Button(window, text="Entrar", fg="black",
-                      bg="#99DDC8", width=10, height=1, command=login)
+                      bg="#99DDC8", width=10, height=1, command=lambda:login(entUtilizador.get(),entPass.get(),janelaAppAdmin,janelaApp))
 
 btnJanelaLogin=Button(window, text="Entrar", fg="black",
                       bg="#99DDC8", width=10, height=1, command=janelaLogin)
