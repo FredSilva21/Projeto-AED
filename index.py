@@ -314,6 +314,10 @@ def janelaApp():
     #Remove a interface da janela utilizador
     lblMinhaConta.place_forget()
     ctnFotoPerfil.place_forget()
+    btnVoltarPaginaInicial.place_forget()
+    btnGuardarAlteracoes.place_forget()
+    lblNomeUtilizador.place_forget()
+    btnEscolherFoto.place_forget()
 
 
 # endregion
@@ -1668,7 +1672,8 @@ def janelaConta():
 
     ctnFotoPerfil.place(x=50,y=100)
     btnEscolherFoto.place(x=50,y=360)
-    btnGuardarAlteracoes.place(x=appWidth/3, y=360)
+    btnGuardarAlteracoes.place(x=50, y=420)
+    btnVoltarPaginaInicial.place(x=1200, y=60)
 
     #Remove interface janela App
     btnEntradas.place_forget()
@@ -1950,9 +1955,22 @@ def mensageConv():
 # endregion
 
 # region Terminar Sessão
+
 def terminarSessao():
     messagebox.showinfo("Sessão terminada", "Sessão terminada,volte sempre!")
     janelaInicial()
+# endregion
+
+# region Minha Conta
+
+def escolherFoto():
+    global image1
+    image1 = filedialog.askopenfilename(initialdir="/", title="Select file",
+                                        filetypes=(("png files", "*.png"), ("all files", "*.*")))
+
+    image1 = PhotoImage(file = image1)
+    ctnImg.itemconfig(image_id, image=image1)
+
 # endregion
 
 # region Interface Window
@@ -2168,25 +2186,24 @@ lblNomeUtilizador=Label(window, text="Nome de utilizador:", fg="black",
 # Canvas para imagem
 ctnFotoPerfil = Canvas(window, width=250, height=250,
                 bd=0, relief="sunken", bg="white")
-global image1
-global image_id
+
 image1 = PhotoImage(file="img//fotoperfil.png")
 image_id = ctnFotoPerfil.create_image(0, 0, anchor=NW, image=image1)
 
 # Botão para escolher imagem
 btnEscolherFoto = Button(window, text="Escolher foto", fg="black",
-                            bg="white", font=("Playfair Bold", 15), width=22, height=1)
+                            bg="white", font=("Playfair Bold", 15), width=22, height=1, command=escolherFoto)
 
 # Botão para guardar alterações
 btnGuardarAlteracoes = Button(window, text="Guardar alterações", fg="black",
-                            bg="white", font=("Playfair Bold", 15), width=20, height=1)
+                            bg="white", font=("Playfair Bold", 15), width=22, height=1)
+
+btnVoltarPaginaInicial=Button(window, text="Voltar", fg="black",
+                            bg="white", font=("Playfair Bold", 15), width=20, height=1, command=janelaApp)
 
 lblFavoritos=Label(window, text="FAVORITOS", fg="black",
                             bg="white", font=("Playfair Bold", 20), width=30, height=1)
 
-imgFotoPerfil=PhotoImage(file="img//fotoperfil.png")
-
-ctnFotoPerfil.create_image(250,250,image=imgFotoPerfil)
 #endregion
 janelaInicial()
 
