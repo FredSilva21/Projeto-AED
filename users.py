@@ -28,6 +28,7 @@ def verificarConta(nome, email, passe, cpasse, resultado,janelaLogin):
         if nome == campos[0]:
             messagebox.showerror(
                 "Erro", "Já existe uma conta com esse nome, por favor use outro nome.")
+                
         #SE JA EXISTIR UMA CONTA COM O MESMO EMAIL
         elif email==campos[2]:
             messagebox.showerror(
@@ -63,8 +64,7 @@ def login(nome,passe,janelaAppAdmin,janelaApp):
 
     for lin in linhas:
         campos = lin.split(";")
-        
-    campos1=campos[3].split("\n")
+        campos1 = campos[3].split("\n")
 
    
 
@@ -79,8 +79,8 @@ def login(nome,passe,janelaAppAdmin,janelaApp):
         if campos[0] == nome and campos[2] == passe and campos1[0] == "admin":
             messagebox.showinfo("Bem vindo ADMINISTRADOR",
                                 f"Olá {nome}! Está autenticado como ADMIN")
-            nome.delete(0,"end")
-            passe.delete(0,"end")
+            nome=""
+            passe=""
             janelaAppAdmin()
             return campos[0]
 
@@ -96,7 +96,7 @@ def login(nome,passe,janelaAppAdmin,janelaApp):
         else:
             messagebox.showerror("Tentativa de Login sem sucesso",
                                  "Utilizador ou palavra-passe incorreta. Por favor tente novamente ou crie conta.")
-            passe.delete(0, "end")
+            passe=""
 # endregion
 
 #region Convidado

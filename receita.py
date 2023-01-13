@@ -4,38 +4,45 @@ import tkinter as tk
 from tkVideoPlayer import TkinterVideo 
 
 def criar_janela_receita(window):
-  # Cria a janela principal
-  # Cria os rótulos
-  titulo_receita =Label(window, text="Título da Receita")
-  titulo_receita.pack()
+    JanCriarReceita = Toplevel(window)
+    JanCriarReceita.title("Adicionar Receita")
 
-  ingredientes =Label(window, text="Ingredientes:")
-  ingredientes.pack()
+    w = 800
+    h = 400
+    ws = JanCriarReceita.winfo_screenwidth()
+    hs = JanCriarReceita.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    JanCriarReceita.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
-  ingrediente_1 =Label(window, text="Ingrediente 1")
-  ingrediente_1.pack()
+    #Nome da Receita
+    lblNomeReceita = Label(JanCriarReceita, text="Nome da Receita", width=20, height=2)
+    lblNomeReceita.place(x=70, y=50)
 
-  ingrediente_2 =Label(window, text="Ingrediente 2")
-  ingrediente_2.pack()
+    #Caixa de texto para o nome da receita
+    txtNomeReceita = Entry(JanCriarReceita, width=20)
+    txtNomeReceita.place(x=70, y=100)
 
-  # etc.
+    #Botão de adicionar
+    btnAdicionar = Button(JanCriarReceita, text="Adicionar", width=10, height=2)
+    btnAdicionar.place(x=70, y=150)
 
-  instrucoes =Label(window, text="Instruções de Preparo:")
-  instrucoes.pack()
+    #Botão de cancelar
+    btnCancelar = Button(JanCriarReceita, text="Cancelar", width=10, height=2)
+    btnCancelar.place(x=250, y=150)
 
-  # Cria a área de texto para as instruções de preparo
-  instrucoes_texto =Text(window)
-  instrucoes_texto.pack()
+    #Botão de adicionar
+    btnAdicionar = Button(JanCriarReceita, text="Adicionar", width=10, height=2)
+    btnAdicionar.place(x=70, y=150)
 
-  # Adiciona os dados da receita aos componentes
-  titulo_receita["text"] = "Bolo de Chocolate"
-  ingrediente_1["text"] = "2 xícaras de açúcar"
-  ingrediente_2["text"] = "1 xícara de farinha de trigo"
-  # etc.
+    #Botão de cancelar
+    btnCancelar = Button(JanCriarReceita, text="Cancelar", width=10, height=2)
+    btnCancelar.place(x=250, y=150)
 
-  instrucoes_texto.insert(END, "1. Pré-aqueça o forno a 180°C.\n")
-  instrucoes_texto.insert(
-    END, "2. Em uma tigela, misture o açúcar, a farinha de trigo, o cacau em pó e o fermento.\n")
-  instrucoes_texto.insert(
-    END, "3. Adicione os ovos, o óleo e o leite e misture até formar uma massa homogênea.\n")
-  # etc.
+    #Botão de adicionar
+    btnAdicionar = Button(JanCriarReceita, text="Adicionar", width=10, height=2)
+    btnAdicionar.place(x=70, y=150)
+
+    #Botão de cancelar
+    btnCancelar = Button(JanCriarReceita, text="Cancelar", width=10, height=2)
+    btnCancelar.place(x=250, y=150)

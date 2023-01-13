@@ -5,6 +5,7 @@ import tkinter as tk
 from tkVideoPlayer import TkinterVideo 
 from users import *
 from receita import *
+from admin import *
 
 
 window = Tk()
@@ -248,8 +249,8 @@ def janelaApp():
     sairMenu.add_command(label="Sair", command=terminarSessao)
 
     criarReceita=Menu(topBar)
-    criarReceita.add_cascade(label="Criar Receita")
-    topBar.add_cascade(label="Criar Receita",menu=criarReceita(window))
+    criarReceita.add_cascade(label="Criar Receita",command=lambda:criar_janela_receita)
+    topBar.add_cascade(label="Criar Receita",menu=criarReceita)
 
     topBar.add_cascade(label="Sair", menu=sairMenu)
 
@@ -348,8 +349,8 @@ def janelaAppAdmin():
     gerirCategoriasMenu.add_command(label="Gerir Categorias", command=escolha_categorias)
 
     gerirUtilizadoresMenu = Menu(topBarAdmin)
-    gerirUtilizadoresMenu.add_command(label="Adicionar Utilizador")
-    gerirUtilizadoresMenu.add_command(label="Remover Utilizador")
+    gerirUtilizadoresMenu.add_command(label="Adicionar Utilizador",command=lambda:janelaAddUtilizador(window))
+    gerirUtilizadoresMenu.add_command(label="Remover Utilizador",command=lambda:janelaRemUtilizador(window))
     topBarAdmin.add_cascade(label="Gerir Utilizadores", menu=gerirUtilizadoresMenu)
 
     ordenarMenu = Menu(topBarAdmin)
