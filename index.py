@@ -19,6 +19,9 @@ screenWidth = window.winfo_screenwidth()
 screenHeigth = window.winfo_screenheight()
 
 
+
+
+
 # region Janela Login e Criar Conta
 def janelaCriarConta():
     # Janela Inicial
@@ -346,7 +349,8 @@ def janelaAppAdmin():
 
     gerirCategoriasMenu = Menu(topBarAdmin)
     topBarAdmin.add_cascade(label="Gerir Categorias", menu=gerirCategoriasMenu)
-    gerirCategoriasMenu.add_command(label="Gerir Categorias", command=escolha_categorias)
+    gerirCategoriasMenu.add_command(label="Adicionar Categoria", command=lambda:janelaAddCategoria(window,categorias))
+    gerirCategoriasMenu.add_command(label="Remover Categoria", command=lambda:janelaRemCategoria(window,categorias))
 
     gerirUtilizadoresMenu = Menu(topBarAdmin)
     gerirUtilizadoresMenu.add_command(label="Adicionar Utilizador",command=lambda:janelaAddUtilizador(window))
@@ -1897,14 +1901,18 @@ btnVoltarApp=Button(window, text="Voltar", fg="black",
 
 # Barra Menu Utilizador
 
+categorias=[["Entradas","./img/categorias/catEntradas.png"],["Sopas","./img/categorias/catSopas.png"],["Carnes","./img/categorias/catCarnes.png"],["Peixes","./img/categorias/catPeixes.png"],["Saladas","./img/categorias/catSaladas.png"],["Vegetarianas","./img/categorias/catVegeta.png"]]
+
+
 #region Imagens para os botões
 #Imagens Categorias
-imgCarnes=PhotoImage(file="./img/categorias/catCarnes.png")
-imgEntradas=PhotoImage(file="./img/categorias/catEntradas.png")
-imgSopas=PhotoImage(file="./img/categorias/catSopas.png")
-imgPeixes=PhotoImage(file="./img/categorias/catPeixes.png")
-imgSaladas=PhotoImage(file="./img/categorias/catSaladas.png")
-imgVegeta=PhotoImage(file="./img/categorias/catVegeta.png")
+
+imgEntradas=PhotoImage(file=categorias[0][1])
+imgSopas=PhotoImage(file=categorias[1][1])
+imgCarnes=PhotoImage(file=categorias[2][1])
+imgPeixes=PhotoImage(file=categorias[3][1])
+imgSaladas=PhotoImage(file=categorias[4][1])
+imgVegeta=PhotoImage(file=categorias[5][1])
 
 # Imagens Entradas
 imgPao = PhotoImage(file="./img/entradas/paorecheado.png")
@@ -2044,6 +2052,7 @@ lblFavoritos=Label(window, text="FAVORITOS", fg="black",
                             bg="white", font=("Playfair Bold", 20), width=30, height=1)
 
 #endregion
+
 janelaInicial()
 
 window.mainloop()

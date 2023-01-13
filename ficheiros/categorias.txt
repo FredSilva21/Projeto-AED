@@ -1,0 +1,6 @@
+Entradas;../img/categorias/catEntradas.png
+Sopas;../img/categorias/catSopas.png"
+Carnes;../img/categorias/catCarnes.png
+Peixes;../img/categorias/catPeixes.png
+Saladas;../img/categorias/catSaladas.png
+Vegetarianas;../img/categorias/catVegeta.png

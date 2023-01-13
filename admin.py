@@ -1,8 +1,10 @@
 from tkinter import *
 from tkinter import messagebox
 import tkinter as tk
+from tkinter import filedialog
 from tkVideoPlayer import TkinterVideo
 from tkinter import ttk
+import os
 
 
 
@@ -182,7 +184,6 @@ def janelaRemUtilizador(window):
 def inserirTree(tree):
     fBaseDados = open("./ficheiros/basedados.txt", "r", encoding="utf-8")
     for linha in fBaseDados:
-        linha = linha.strip()
         dados = linha.split(";")
         tree.insert("", END, values=(dados[0],dados[1],dados[2],dados[3]))
     fBaseDados.close()
@@ -196,7 +197,7 @@ def remover(tree):
 def guardarFicheiro(tree):
     fBaseDados = open("./ficheiros/basedados.txt", "w", encoding="utf-8")
     for child in tree.get_children():
-        fBaseDados.write(str(tree.item(child)["values"][0]+";"+tree.item(child)["values"][1]+";"+tree.item(child)["values"][2]+";"+tree.item(child)["values"][3]+"\n"))
+        fBaseDados.write(tree.item(child)["values"][0]+";"+tree.item(child)["values"][1]+";"+tree.item(child)["values"][2]+";"+tree.item(child)["values"][3]+"\n")
     fBaseDados.close()
     messagebox.showinfo("Sucesso", "Ficheiro guardado com sucesso.")
 
@@ -204,13 +205,34 @@ def guardarFicheiro(tree):
 
 # Adicionar Categoria
 
+#Inserir na listbox
+def inserirLista(lstbox,categorias):
+    for i in range(len(categorias)):
+        lstbox.insert(END, categorias[i])
+    
 
-def janelaAddCategoria(window):
+#selecionar imagem
+def selecionarImagem(imagem):
+    file=filedialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("png files","*.png"),("gif files","*.gif"),("all files","*.*")))
+    imagem.set(file)
+    
+
+def adicionarCategoria(lstbox,categoria):
+    if categoria.get() == "":
+        messagebox.showerror("Erro", "Por favor insira uma categoria.")
+    else:
+
+        lstbox.insert(END, categoria.get())
+        categoria.set("")
+        messagebox.showinfo("Sucesso", "Categoria adicionada com sucesso.")
+    
+
+def janelaAddCategoria(window,categorias):
     JanCriarCategoria = Toplevel(window)
     JanCriarCategoria.title("Adicionar Categoria")
 
-    w = 450
-    h = 230
+    w = 550
+    h = 330
     ws = JanCriarCategoria.winfo_screenwidth()
     hs = JanCriarCategoria.winfo_screenheight()
     x = (ws/2) - (w/2)
@@ -219,17 +241,46 @@ def janelaAddCategoria(window):
 
     # Lista de categorias
     listbox = Listbox(JanCriarCategoria, width=30, height=10)
-    listbox.place(x=70, y=50)
+    listbox.place(x=350, y=50)
+
+    #Label de categoria
+    lblCategoria = Label(JanCriarCategoria, text="Categoria:")
+    lblCategoria.place(x=10, y=20)
+
+    cat=StringVar()
+    # Entrada de texto
+    txtCategoria = Entry(JanCriarCategoria, width=30, textvariable=cat)
+    txtCategoria.place(x=70, y=20)
+
+    imagem=StringVar()
+    # Entrada de texto
+    txtImagem = Entry(JanCriarCategoria, width=30, textvariable=imagem)
+    txtImagem.place(x=70, y=120)
+
+    #Botão de selecionar imagem
+    btnSelecionarImagem = Button(JanCriarCategoria, text="Selecionar Imagem", width=10, height=2,command=lambda:selecionarImagem(imagem))
+    btnSelecionarImagem.place(x=70, y=170)
 
     # Botão de adicionar
     btnAdicionar = Button(
-        JanCriarCategoria, text="Adicionar", width=10, height=2)
+        JanCriarCategoria, text="Adicionar Categoria", width=10, height=2,command=lambda:adicionarCategoria(listbox,categorias,imagem.get(),cat.get()))
     btnAdicionar.place(x=70, y=150)
 
+    inserirLista(listbox,categorias)
+
+
+
 # Remover Categoria
+def removerCategoria(listbox,categorias):
+    if listbox.curselection():
+        categorias.pop(listbox.curselection()[0])
+        listbox.delete(listbox.curselection()[0])
+        messagebox.showinfo("Sucesso", "Categoria removida com sucesso.")
+    else:
+        messagebox.showinfo("Erro", "Selecione uma categoria.")
 
 
-def janelaRemoverCategoria(window):
+def janelaRemCategoria(window,categorias):
     JanRemoverCategoria = Toplevel(window)
     JanRemoverCategoria.title("Remover Categoria")
 
@@ -247,7 +298,9 @@ def janelaRemoverCategoria(window):
 
     # Botão de remover
     btnRemover = Button(JanRemoverCategoria,
-                        text="Remover", width=10, height=2)
+                        text="Remover Categoria", width=10, height=2,command=lambda:removerCategoria(listbox,categorias))
     btnRemover.place(x=70, y=150)
+
+
 
 
