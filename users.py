@@ -4,6 +4,7 @@ from tkinter import messagebox
 import tkinter as tk
 from tkVideoPlayer import TkinterVideo 
 
+
 #region Criar Conta
 def guardarConta(resultado,janelaLogin):
     fBaseDados = open("./ficheiros/basedados.txt", "a", encoding="utf-8")
