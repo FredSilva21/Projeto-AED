@@ -2576,52 +2576,61 @@ def janelaCriarReceita():
     #Centrar
     janelaReceita.geometry('%dx%d+%d+%d' % (x, y, (ws/2)-(x/2), (hs/2)-(y/2)))
 
-    # Create the labels
-    lblTitulo=Label(janelaReceita, text="Título da Receita")
+    # Label e entry titulo
+    lblTitulo=Label(janelaReceita, text="Título:")
     lblTitulo.place(x=10, y=10)
 
     entTitulo = Entry(janelaReceita, width=30)
-    entTitulo.place(x=40, y=10)
+    entTitulo.place(x=60, y=10)
 
-
-    lblInstrucoes=Label(janelaReceita, text="Instruções de Preparo")
-    lblInstrucoes.place(x=10, y=120)
-
-    lblIngredientes=Label(janelaReceita, text="Ingredientes")
-    lblIngredientes.place(x=10, y=30)
-
-    lblFoto=Label(janelaReceita, text="Foto")
-    lblFoto.place(x=10, y=250)
-
-    # Create the entry boxes
+    # Label e textarea ingredientes
+    lblIngredientes=Label(janelaReceita, text="Ingredientes:")
+    lblIngredientes.place(x=10, y=80)
     
-    txtIngredientes=Text(janelaReceita, height=5, width=30)
-    txtIngredientes.place(x=10, y=50)
+    txtIngredientes = Text(janelaReceita, width=30, height=5)
+    txtIngredientes.place(x=80, y=80)
 
-    txtInstrucoes=Text(janelaReceita, height=5, width=30)
-    txtInstrucoes.place(x=10, y=140)
+    # Label e textarea instruções
+    lblInstrucoes=Label(janelaReceita, text="Instruções:")
+    lblInstrucoes.place(x=10, y=200)
 
+    txtInstrucoes = Text(janelaReceita, width=30, height=5)
+    txtInstrucoes.place(x=80, y=200)
 
+    # Label e entry foto
+    lblFoto=Label(janelaReceita, text="Foto:")
+    lblFoto.place(x=10, y=300)
 
+    imagem=StringVar()
+    entFoto = Entry(janelaReceita, width=30,textvariable=imagem)
+    entFoto.place(x=80, y=300)
 
+    # Botão para Guardar a direita
+    btnGuardar = Button(janelaReceita, text="Guardar", width=20,height=7, command=lambda:guardarFicheiro(entTitulo.get(), txtIngredientes.get("1.0",END), txtInstrucoes.get("1.0",END), entFoto.get()))
+    btnGuardar.place(x=400, y=10)
+    # Botão para adicionar foto
 
-   
+    
+    btnFoto = Button(janelaReceita, text="Adicionar Foto", width=10, command=lambda:adicionarFoto(imagem))
+    btnFoto.place(x=400, y=150)
 
-def save_recipe():
+    # Botão para Fechar a direita
+    btnFechar = Button(janelaReceita, text="Fechar", width=10, command=janelaReceita.destroy)
+    btnFechar.place(x=500, y=300)
+
+def guardarFicheiro(entTitulo, txtIngredientes, txtInstrucoes, entFoto):
     # Get the values from the entry boxes
-    title = entry_title.get()
-    ingredients = entry_ingredients.get()
-    instructions = entry_instructions.get()
-    photo = entry_photo.get()
+    
 
     fReceitas=open("./ficheiros/receitas.txt", "a",encoding="utf-8")
-    fReceitas.write(title + ";" + ingredients + ";" + instructions + ";" + photo + "\n")
+    fReceitas.write(entTitulo + ";" + txtIngredientes + ";" + txtInstrucoes + ";" + entFoto + "\n")
     fReceitas.close()
     window.destroy()
 
-def add_photo():
-    
+def adicionarFoto(imagem):
     #abrir um filelog para selecionar a foto
-    filename = filedialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("jpeg files","*.jpg"),("all files","*.*"), ("png files","*.png")))
-    entry_photo.insert(0, filename)
+    file=filedialog.askopenfilename(initialdir = "./img/categorias",title = "Select file",filetypes = (("png files","*.png"),("gif files","*.gif"),("all files","*.*")))
+    imagem.set(file)
+
+    
 
