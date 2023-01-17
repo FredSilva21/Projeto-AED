@@ -1052,6 +1052,7 @@ chkVeget = IntVar()  #Vegetarianas
 chkVeget.set(1) 
 #endregion
 
+
 # region Terminar Sessão
 
 def terminarSessao():
@@ -1307,6 +1308,7 @@ lblFavoritos=Label(window, text="FAVORITOS", fg="black",
                             bg="white", font=("Playfair Bold", 20), width=30, height=1)
 
 #endregion
+
 
 janelaInicial()
 
