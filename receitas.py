@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 import tkinter as tk
 from tkVideoPlayer import TkinterVideo 
+from tkinter import filedialog
 
 
 #region JANELAS RECEITAS
@@ -1371,7 +1372,7 @@ def janelaSbolonhesa():
                              height=2, bg="#ff0000", command=janela.destroy)
     botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
 
-def janelaSBulgur():
+def janelaSbulgur():
     # Cria a janela principal
     janela = tk.Tk()
     janela.title("Receita")
@@ -2559,44 +2560,52 @@ def janelaSopaCaldoVerde():
 
 # endregion
 
-def create_recipe_window():
+def janelaCriarReceita():
     global entry_title, entry_ingredients, entry_instructions, entry_photo, window
     # Create the main window
-    window = tk.Tk()
-    window.title("Create a New Recipe")
+    janelaReceita = tk.Tk()
+    janelaReceita.title("Criar Receita")
+
+    x=600
+    y=400
+
+    # Get the screen width and height
+    ws = janelaReceita.winfo_screenwidth() # width of the screen
+    hs = janelaReceita.winfo_screenheight() # height of the screen
+
+    #Centrar
+    janelaReceita.geometry('%dx%d+%d+%d' % (x, y, (ws/2)-(x/2), (hs/2)-(y/2)))
 
     # Create the labels
-    lbl_title = tk.Label(window, text="Recipe Title:")
-    lbl_ingredients = tk.Label(window, text="Ingredients:")
-    lbl_instructions = tk.Label(window, text="Instructions:")
-    lbl_photo = tk.Label(window, text="Photo:")
+    lblTitulo=Label(janelaReceita, text="Título da Receita")
+    lblTitulo.place(x=10, y=10)
+
+    entTitulo = Entry(janelaReceita, width=30)
+    entTitulo.place(x=40, y=10)
+
+
+    lblInstrucoes=Label(janelaReceita, text="Instruções de Preparo")
+    lblInstrucoes.place(x=10, y=120)
+
+    lblIngredientes=Label(janelaReceita, text="Ingredientes")
+    lblIngredientes.place(x=10, y=30)
+
+    lblFoto=Label(janelaReceita, text="Foto")
+    lblFoto.place(x=10, y=250)
 
     # Create the entry boxes
-    entry_title = tk.Entry(window)
-    entry_ingredients = tk.Entry(window)
-    entry_instructions = tk.Entry(window)
-    entry_photo = tk.Entry(window)
+    
+    txtIngredientes=Text(janelaReceita, height=5, width=30)
+    txtIngredientes.place(x=10, y=50)
 
-    # Create the buttons
-    btn_save = tk.Button(window, text="Save", command=save_recipe)
-    btn_cancel = tk.Button(window, text="Cancel", command=window.destroy)
-    btn_add = tk.Button(window, text="Add", command=add_photo)
+    txtInstrucoes=Text(janelaReceita, height=5, width=30)
+    txtInstrucoes.place(x=10, y=140)
 
-    # Place the labels, entry boxes, and buttons
-    lbl_title.grid(row=0, column=0)
-    entry_title.grid(row=0, column=1)
-    lbl_ingredients.grid(row=1, column=0)
-    entry_ingredients.grid(row=1, column=1)
-    lbl_instructions.grid(row=2, column=0)
-    entry_instructions.grid(row=2, column=1)
-    lbl_photo.grid(row=3, column=0)
-    entry_photo.grid(row=3, column=1)
-    btn_save.grid(row=4, column=0)
-    btn_cancel.grid(row=4, column=1)
-    btn_add.grid(row=3, column=2)
 
-    # Render the window
-    window.mainloop()
+
+
+
+   
 
 def save_recipe():
     # Get the values from the entry boxes
@@ -2605,54 +2614,14 @@ def save_recipe():
     instructions = entry_instructions.get()
     photo = entry_photo.get()
 
+    fReceitas=open("./ficheiros/receitas.txt", "a",encoding="utf-8")
+    fReceitas.write(title + ";" + ingredients + ";" + instructions + ";" + photo + "\n")
+    fReceitas.close()
     window.destroy()
 
 def add_photo():
-    from tkinter import filedialog
+    
     #abrir um filelog para selecionar a foto
     filename = filedialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("jpeg files","*.jpg"),("all files","*.*"), ("png files","*.png")))
     entry_photo.insert(0, filename)
 
-def criar_janela_receita(window):
-    JanCriarReceita = Toplevel(window)
-    JanCriarReceita.title("Adicionar Receita")
-
-    w = 800
-    h = 400
-    ws = JanCriarReceita.winfo_screenwidth()
-    hs = JanCriarReceita.winfo_screenheight()
-    x = (ws/2) - (w/2)
-    y = (hs/2) - (h/2)
-    JanCriarReceita.geometry('%dx%d+%d+%d' % (w, h, x, y))
-
-    #Nome da Receita
-    lblNomeReceita = Label(JanCriarReceita, text="Nome da Receita", width=20, height=2)
-    lblNomeReceita.place(x=70, y=50)
-
-    #Caixa de texto para o nome da receita
-    txtNomeReceita = Entry(JanCriarReceita, width=20)
-    txtNomeReceita.place(x=70, y=100)
-
-    #Botão de adicionar
-    btnAdicionar = Button(JanCriarReceita, text="Adicionar", width=10, height=2)
-    btnAdicionar.place(x=70, y=150)
-
-    #Botão de cancelar
-    btnCancelar = Button(JanCriarReceita, text="Cancelar", width=10, height=2)
-    btnCancelar.place(x=250, y=150)
-
-    #Botão de adicionar
-    btnAdicionar = Button(JanCriarReceita, text="Adicionar", width=10, height=2)
-    btnAdicionar.place(x=70, y=150)
-
-    #Botão de cancelar
-    btnCancelar = Button(JanCriarReceita, text="Cancelar", width=10, height=2)
-    btnCancelar.place(x=250, y=150)
-
-    #Botão de adicionar
-    btnAdicionar = Button(JanCriarReceita, text="Adicionar", width=10, height=2)
-    btnAdicionar.place(x=70, y=150)
-
-    #Botão de cancelar
-    btnCancelar = Button(JanCriarReceita, text="Cancelar", width=10, height=2)
-    btnCancelar.place(x=250, y=150)

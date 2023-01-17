@@ -229,14 +229,13 @@ def janelaApp():
     # Resolução da Aplicação
     appWidth = screenWidth
     appHeigth = screenHeigth
-
+    
     window.geometry("%dx%d" % (appWidth, appHeigth))
     window.state("zoomed")
     topBar = Menu(window)
     window.configure(bg="white", menu=topBar)
     
-    print(appWidth)
-    print(appHeigth)
+    
 
     utilizadoresMenu = Menu(topBar)
     utilizadoresMenu.add_command(label="Utilizador",command=janelaConta)
@@ -255,7 +254,7 @@ def janelaApp():
     sairMenu.add_command(label="Sair", command=terminarSessao)
 
     criarReceita=Menu(topBar)
-    criarReceita.add_cascade(label="Criar Receita",command=lambda:criar_janela_receita)
+    criarReceita.add_cascade(label="Criar Receita",command=janelaCriarReceita)
     topBar.add_cascade(label="Criar Receita",menu=criarReceita)
 
     topBar.add_cascade(label="Sair", menu=sairMenu)
@@ -1238,44 +1237,44 @@ btnRissois = Button(window, width=350, height=250, image=imgRissois,command=jane
 btnTapas = Button(window, width=350, height=250, image=imgTapas,command=janelaTapas)
 
 #Botões Carnes
-btnFrancesinha = Button(window, width=350, height=250, image=imgFrancesinha)
-btnBifesPeru = Button(window, width=350, height=250, image=imgBifesPeru)
-btnPicanha = Button(window, width=350, height=250, image=imgPicanha)
-btnCaril = Button(window, width=350, height=250, image=imgCaril)
-btnFrango = Button(window, width=350, height=250, image=imgFrango)
-btnEmpadao = Button(window, width=350, height=250, image=imgEmpadao)
+btnFrancesinha = Button(window, width=350, height=250, image=imgFrancesinha,command=janelaFrancesinha)
+btnBifesPeru = Button(window, width=350, height=250, image=imgBifesPeru,command=janelaBifesPeru)
+btnPicanha = Button(window, width=350, height=250, image=imgPicanha,command=janelaPicanha)
+btnCaril = Button(window, width=350, height=250, image=imgCaril,command=janelaCaril)
+btnFrango = Button(window, width=350, height=250, image=imgFrango,command=janelaFrango)
+btnEmpadao = Button(window, width=350, height=250, image=imgEmpadao,command=janelaEmpadaoCarne)
 
 #Botões Peixes
-btnbacalhau = Button(window, width=350, height=250, image=imgBacalhau)
-btnCamarao = Button(window, width=350, height=250, image=imgCamarao)
-btnFeijoada = Button(window, width=350, height=250, image=imgFeijoada)
-btnGaroupa = Button(window, width=350, height=250, image=imgGaroupa)
-btnPolvo = Button(window, width=350, height=250, image=imgPolvo)
-btnSalmao = Button(window, width=350, height=250, image=imgSalmao)
+btnbacalhau = Button(window, width=350, height=250, image=imgBacalhau,command=janelaBacalhau)
+btnCamarao = Button(window, width=350, height=250, image=imgCamarao,command=janelaCamarao)
+btnFeijoada = Button(window, width=350, height=250, image=imgFeijoada,command=janelaFeijoadaPeixe)
+btnGaroupa = Button(window, width=350, height=250, image=imgGaroupa,command=janelaGaropa)
+btnPolvo = Button(window, width=350, height=250, image=imgPolvo,command=janelaPolvo)
+btnSalmao = Button(window, width=350, height=250, image=imgSalmao,command=janelaSalmao)
 
 #Botões Saladas
-btnSbacalhau=Button(window, width=350, height=250, image=imgSbacalhau)
-btnSbolonhesa=Button(window, width=350, height=250, image=imgSbolonhesa)
-btnSbulgur=Button(window, width=350, height=250, image=imgSbulgur)
-btnSdelicias=Button(window, width=350, height=250, image=imgSdelicias)
-btnSfrango=Button(window, width=350, height=250, image=imgSfrango)
-btnSsalsichas=Button(window, width=350, height=250, image=imgSsalsichas)
+btnSbacalhau=Button(window, width=350, height=250, image=imgSbacalhau,command=janelaSbacalhau)
+btnSbolonhesa=Button(window, width=350, height=250, image=imgSbolonhesa,command=janelaSbolonhesa)
+btnSbulgur=Button(window, width=350, height=250, image=imgSbulgur,command=janelaSbulgur)
+btnSdelicias=Button(window, width=350, height=250, image=imgSdelicias,command=janelaSdelicias)
+btnSfrango=Button(window, width=350, height=250, image=imgSfrango,command=janelaSfrango)
+btnSsalsichas=Button(window, width=350, height=250, image=imgSsalsichas,command=janelaSsalsichas)
 
 #Botões Vegetarianas
-btnCanelone=Button(window, width=350, height=250, image=imgCanelone)
-btnCogumelos=Button(window, width=350, height=250, image=imgCogumelos)
-btnCrepe=Button(window, width=350, height=250, image=imgCrepe)
-btnFolhadinhos=Button(window, width=350, height=250, image=imgFolhadinhos)
-btnMigas=Button(window, width=350, height=250, image=imgFolhadinhos)
-btnOvos=Button(window, width=350, height=250, image=imgOvos)
+btnCanelone=Button(window, width=350, height=250, image=imgCanelone,command=janelaCaneloneVegetariano)
+btnCogumelos=Button(window, width=350, height=250, image=imgCogumelos,command=janelaCogumelos)
+btnCrepe=Button(window, width=350, height=250, image=imgCrepe,command=janelaCrepeVegetariano)
+btnFolhadinhos=Button(window, width=350, height=250, image=imgFolhadinhos,command=janelaFolhadoVegetariano)
+btnMigas=Button(window, width=350, height=250, image=imgMigas,command=janelaMigasVegetariano)
+btnOvos=Button(window, width=350, height=250, image=imgOvos,command=janelaOvosVegetarianos)
 
 #Botões Sopas
-btnSopaCenoura=Button(window, width=350, height=250, image=imgSopaCenoura)
-btnSopaPedra=Button(window, width=350, height=250, image=imgSopaPedra)
-btnSopaConquilha=Button(window, width=350, height=250, image=imgSopaConquilha)
-btnSopaPeixe=Button(window, width=350, height=250, image=imgSopaPeixe)
-btnSopaJuliana=Button(window, width=350, height=250, image=imgSopaJuliana)
-btnCaldoVerde=Button(window, width=350, height=250, image=imgCaldoVerde)
+btnSopaCenoura=Button(window, width=350, height=250, image=imgSopaCenoura,command=janelaSopaCenoura)
+btnSopaPedra=Button(window, width=350, height=250, image=imgSopaPedra,command=janelaSopaPedra)
+btnSopaConquilha=Button(window, width=350, height=250, image=imgSopaConquilha,command=janelaSopaConquilha)
+btnSopaPeixe=Button(window, width=350, height=250, image=imgSopaPeixe,command=janelaSopaPeixe)
+btnSopaJuliana=Button(window, width=350, height=250, image=imgSopaJuliana,command=janelaSopaJuliana)
+btnCaldoVerde=Button(window, width=350, height=250, image=imgCaldoVerde,command=janelaSopaCaldoVerde)
 #endregion
 #endregion
 

@@ -2,3 +2,4 @@
 admin;admin;admin;admin
 ze;ze;ze;admin
 123;123;123;admin
+teste;1234;123;user
