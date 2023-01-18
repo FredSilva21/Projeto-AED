@@ -83,7 +83,7 @@ def janelaPao(entUtilizador):
     
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4",command=lambda:janelaComentario(titulo_receita["text"]))
+        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4",command=lambda:janelaComentarios(titulo_receita["text"]))
     botao_comentario.place(x=200, y=500)
 
     # Cria o botão para fechar a janela
@@ -2613,12 +2613,13 @@ def adicionarFoto(imagem):
 
 #region Favoritos
 def guardarComentarios(titulo, txtComentarios):
-    fGostos = open("ficheiros\\gostos.txt", "a",encoding="utf-8")
-    fGostos.write( label['text'] + ";" + cntFav + ";" + cntCom + "\n")
-    fGostos.close()
+    # Get the values from the entry boxes
+    fComentarios=open("./ficheiros/comentarios.txt", "a",encoding="utf-8")
+    fComentarios.write(titulo + ";" + txtComentarios + "\n")
+    fComentarios.close()
 
 botao_favorito_pao = tk.Button(
-    janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00", command=gosto_pao())
+    janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
 
 def janelaComentarios(titulo):
     janela=tk.Tk()
@@ -2644,10 +2645,22 @@ def janelaComentarios(titulo):
     btnGuardar = Button(janela, text="Guardar", width=20,height=7, command=lambda:guardarComentarios(titulo, txtComentarios.get("1.0",END)))
     btnGuardar.place(x=10, y=100)
 
+def comentario():
+    txt_comentario.place(x=10, y=10, anchor=CENTER)
+    btn_comentar.place_forget()
+    botao_favorito_pao.place_forget()
+    btn_ver.place_forget()
+    btn_submeter.place(x=10, y=50, anchor=CENTER)
+
+def submeter_comentario():
+
+    comentario = txt_comentario.get("1.0",END)
 
 
-
-
+txt_comentario = Text(janela, width=30, height=5)
+btn_comentar = Button(janela, text="Adicionar Comentário", width=20, height=2, bg="#ffff00", command=comentario)
+btn_submeter = Button(janela, text="Submeter", width=20, height=2, bg="#ffff00", command=lambda:guardarComentarios(txt_comentario.get("1.0",END)))
+btn_ver = Button(janela, text="Ver Comentários", width=20, height=2, bg="#ffff00", command=lambda:janelaComentarios())
 
 
 #endregion
