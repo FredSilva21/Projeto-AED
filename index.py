@@ -1051,22 +1051,6 @@ chkVeget = IntVar()  #Vegetarianas
 chkVeget.set(1) 
 #endregion
 
-#region Gestão de Gostos
-
-def gosto_pao():
-    f = open("ficheiros\\gostos.txt", "a")
-    f.write("Pão" + "\n")
-
-    f = open("ficheiros\\gostos.txt", "r")
-    encontrar = f.read()
-    num = encontrar.count("Pão")
-
-    messagebox.showinfo("Gosto", "Gostos: " + str(num))
-
-
-# endregion
-
-
 # region Terminar Sessão
 
 def terminarSessao():

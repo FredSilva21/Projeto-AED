@@ -4,11 +4,10 @@ import tkinter as tk
 from tkVideoPlayer import TkinterVideo 
 from tkinter import filedialog
 
-from index import *
-
+janela = tk.Tk()
 
 #region JANELAS RECEITAS
-def janelaPao():
+def janelaPao(entUtilizador):
     # Cria a janela principal
     janela = tk.Tk()
     janela.title("Receita")
@@ -80,13 +79,11 @@ def janelaPao():
         tk.END, "5. Retire o pão recheado do forno e deixe esfriar antes de servir.\n")
 
     # Cria o botão para marcar a receita como favorita
-    botao_favorito_pao = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00", command=lambda: gosto_pao())
     botao_favorito_pao.place(x=10, y=500)
     
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
+        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4",command=lambda:janelaComentario(titulo_receita["text"]))
     botao_comentario.place(x=200, y=500)
 
     # Cria o botão para fechar a janela
@@ -2614,4 +2611,43 @@ def adicionarFoto(imagem):
     file=filedialog.askopenfilename(initialdir = "./img/categorias",title = "Select file",filetypes = (("png files","*.png"),("gif files","*.gif"),("all files","*.*")))
     imagem.set(file)
 
+#region Favoritos
+def guardarComentarios(titulo, txtComentarios):
+    fGostos = open("ficheiros\\gostos.txt", "a",encoding="utf-8")
+    fGostos.write( label['text'] + ";" + cntFav + ";" + cntCom + "\n")
+    fGostos.close()
+
+botao_favorito_pao = tk.Button(
+    janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00", command=gosto_pao())
+
+def janelaComentarios(titulo):
+    janela=tk.Tk()
+    janela.title("Comentários")
+    x=600
+    y=400
     
+    # Get the screen width and height
+    ws = janela.winfo_screenwidth() # width of the screen
+    hs = janela.winfo_screenheight() # height of the screen
+
+    #Centrar
+    janela.geometry('%dx%d+%d+%d' % (x, y, (ws/2)-(x/2), (hs/2)-(y/2)))
+
+    # Label e textarea comentários
+    lblComentarios=Label(janela, text="Comentários:")
+    lblComentarios.place(x=10, y=10)
+
+    txtComentarios = Text(janela, width=30, height=5)
+    txtComentarios.place(x=80, y=10)
+
+    # Botão para Guardar 
+    btnGuardar = Button(janela, text="Guardar", width=20,height=7, command=lambda:guardarComentarios(titulo, txtComentarios.get("1.0",END)))
+    btnGuardar.place(x=10, y=100)
+
+
+
+
+
+
+
+#endregion
