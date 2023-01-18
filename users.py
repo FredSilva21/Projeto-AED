@@ -66,6 +66,8 @@ def login(nome,passe,janelaAppAdmin,janelaApp):
     for lin in linhas:
         campos = lin.split(";")
         campos1 = campos[3].split("\n")
+        if campos[0]==nome:
+            break
 
    
 
