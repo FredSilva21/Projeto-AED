@@ -4,35 +4,17 @@ import tkinter as tk
 from tkVideoPlayer import TkinterVideo 
 from tkinter import filedialog
 
+from index import *
+
 
 #region JANELAS RECEITAS
-def janelaPao(imgPao):
+def janelaPao():
     # Cria a janela principal
     janela = tk.Tk()
     janela.title("Receita")
 
-    appWidth = 800
-    appHeigth = 600
-
-    screenHeigth = janela.winfo_screenheight()
-    screenWidth = janela.winfo_screenwidth()
-
-    x = (screenWidth/2) - (appWidth/2)
-    y = (screenHeigth/2) - (appHeigth/2)
-
-    janela.geometry(f'{appWidth}x{appHeigth}+{int(x)}+{int(y)}')
-
-    #Titulo da receita
-    titulo_receita = tk.Label(janela, text="Pão Recheado", font=("Playfair Bold", 20))
-    titulo_receita.place(x=250, y=10)
-
-    #Canvas para imagem
-    canvas = tk.Canvas(janela, width=300, height=250)
-    canvas.place(x=200, y=50)
-
-    #Imagem
-    imgPao = PhotoImage(file="./img/entradas/paorecheado.png")
-    canvas.create_image(0, 0, anchor=NW, image=imgPao)
+    titulo_receita = tk.Label(janela, text="Título da Receita:")
+    titulo_receita.pack()
 
     #Ingredientes
     ingredientes = tk.Label(janela, text="Ingredientes:", font=("Playfair Bold", 15))
@@ -98,9 +80,9 @@ def janelaPao(imgPao):
         tk.END, "5. Retire o pão recheado do forno e deixe esfriar antes de servir.\n")
 
     # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.place(x=10, y=500)
+    botao_favorito_pao = tk.Button(
+        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00", command=lambda: gosto_pao())
+    botao_favorito_pao.place(x=10, y=500)
     
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
@@ -118,7 +100,7 @@ def janelaQuiche():
     janela.title("Receita")
 
     # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
+    titulo_receita = tk.Label(janela, text="Título da Receita:")
     titulo_receita.pack()
 
     ingredientes = tk.Label(janela, text="Ingredientes:")
@@ -2633,4 +2615,3 @@ def adicionarFoto(imagem):
     imagem.set(file)
 
     
-
