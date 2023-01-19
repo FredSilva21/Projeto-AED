@@ -194,8 +194,10 @@ def remover(tree):
 #Guardar Ficheiro
 def guardarFicheiro(tree):
     fBaseDados = open("./ficheiros/basedados.txt", "w", encoding="utf-8")
+    
     for child in tree.get_children():
-        fBaseDados.write(str(tree.item(child)["values"][0])+";"+str(tree.item(child)["values"][1])+";"+str(tree.item(child)["values"][2])+";"+(tree.item(child)["values"][3])+"\n")
+        print(tree.item(child)["values"][0])
+        fBaseDados.write(str(tree.item(child)["values"][0])+";"+str(tree.item(child)["values"][1])+";"+str(tree.item(child)["values"][2])+";"+str(tree.item(child)["values"][3]))
     fBaseDados.close()
     messagebox.showinfo("Sucesso", "Ficheiro guardado com sucesso.")
 

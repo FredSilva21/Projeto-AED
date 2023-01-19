@@ -4,16 +4,35 @@ import tkinter as tk
 from tkVideoPlayer import TkinterVideo 
 from tkinter import filedialog
 
-janela = tk.Tk()
 
 #region JANELAS RECEITAS
-def janelaPao(entUtilizador):
+def janelaPao(imgPao):
     # Cria a janela principal
     janela = tk.Tk()
     janela.title("Receita")
 
-    titulo_receita = tk.Label(janela, text="Título da Receita:")
-    titulo_receita.pack()
+    appWidth = 800
+    appHeigth = 600
+
+    screenHeigth = janela.winfo_screenheight()
+    screenWidth = janela.winfo_screenwidth()
+
+    x = (screenWidth/2) - (appWidth/2)
+    y = (screenHeigth/2) - (appHeigth/2)
+
+    janela.geometry(f'{appWidth}x{appHeigth}+{int(x)}+{int(y)}')
+
+    #Titulo da receita
+    titulo_receita = tk.Label(janela, text="Pão Recheado", font=("Playfair Bold", 20))
+    titulo_receita.place(x=250, y=10)
+
+    #Canvas para imagem
+    canvas = tk.Canvas(janela, width=300, height=250)
+    canvas.place(x=200, y=50)
+
+    #Imagem
+    imgPao = PhotoImage(file="./img/entradas/paorecheado.png")
+    canvas.create_image(0, 0, anchor=NW, image=imgPao)
 
     #Ingredientes
     ingredientes = tk.Label(janela, text="Ingredientes:", font=("Playfair Bold", 15))
@@ -79,11 +98,13 @@ def janelaPao(entUtilizador):
         tk.END, "5. Retire o pão recheado do forno e deixe esfriar antes de servir.\n")
 
     # Cria o botão para marcar a receita como favorita
-    botao_favorito_pao.place(x=10, y=500)
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
+    botao_favorito.place(x=10, y=500)
     
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4",command=lambda:janelaComentarios(titulo_receita["text"]))
+        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
     botao_comentario.place(x=200, y=500)
 
     # Cria o botão para fechar a janela
@@ -97,7 +118,7 @@ def janelaQuiche():
     janela.title("Receita")
 
     # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita:")
+    titulo_receita = tk.Label(janela, text="Título da Receita")
     titulo_receita.pack()
 
     ingredientes = tk.Label(janela, text="Ingredientes:")
@@ -2611,56 +2632,5 @@ def adicionarFoto(imagem):
     file=filedialog.askopenfilename(initialdir = "./img/categorias",title = "Select file",filetypes = (("png files","*.png"),("gif files","*.gif"),("all files","*.*")))
     imagem.set(file)
 
-#region Favoritos
-def guardarComentarios(titulo, txtComentarios):
-    # Get the values from the entry boxes
-    fComentarios=open("./ficheiros/comentarios.txt", "a",encoding="utf-8")
-    fComentarios.write(titulo + ";" + txtComentarios + "\n")
-    fComentarios.close()
-
-botao_favorito_pao = tk.Button(
-    janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-
-def janelaComentarios(titulo):
-    janela=tk.Tk()
-    janela.title("Comentários")
-    x=600
-    y=400
     
-    # Get the screen width and height
-    ws = janela.winfo_screenwidth() # width of the screen
-    hs = janela.winfo_screenheight() # height of the screen
 
-    #Centrar
-    janela.geometry('%dx%d+%d+%d' % (x, y, (ws/2)-(x/2), (hs/2)-(y/2)))
-
-    # Label e textarea comentários
-    lblComentarios=Label(janela, text="Comentários:")
-    lblComentarios.place(x=10, y=10)
-
-    txtComentarios = Text(janela, width=30, height=5)
-    txtComentarios.place(x=80, y=10)
-
-    # Botão para Guardar 
-    btnGuardar = Button(janela, text="Guardar", width=20,height=7, command=lambda:guardarComentarios(titulo, txtComentarios.get("1.0",END)))
-    btnGuardar.place(x=10, y=100)
-
-def comentario():
-    txt_comentario.place(x=10, y=10, anchor=CENTER)
-    btn_comentar.place_forget()
-    botao_favorito_pao.place_forget()
-    btn_ver.place_forget()
-    btn_submeter.place(x=10, y=50, anchor=CENTER)
-
-def submeter_comentario():
-
-    comentario = txt_comentario.get("1.0",END)
-
-
-txt_comentario = Text(janela, width=30, height=5)
-btn_comentar = Button(janela, text="Adicionar Comentário", width=20, height=2, bg="#ffff00", command=comentario)
-btn_submeter = Button(janela, text="Submeter", width=20, height=2, bg="#ffff00", command=lambda:guardarComentarios(txt_comentario.get("1.0",END)))
-btn_ver = Button(janela, text="Ver Comentários", width=20, height=2, bg="#ffff00", command=lambda:janelaComentarios())
-
-
-#endregion

@@ -1051,6 +1051,7 @@ chkVeget = IntVar()  #Vegetarianas
 chkVeget.set(1) 
 #endregion
 
+
 # region Terminar Sessão
 
 def terminarSessao():

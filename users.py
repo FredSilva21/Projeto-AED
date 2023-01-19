@@ -68,6 +68,7 @@ def login(nome,passe,janelaAppAdmin,janelaApp):
         campos1 = campos[3].split("\n")
         if campos[0]==nome:
             break
+        
 
    
 
@@ -79,6 +80,7 @@ def login(nome,passe,janelaAppAdmin,janelaApp):
     
     # CASO OS DADOS DE ACESSO ESTEJAM CORRETOS, EFETUA LOGIN
     if nome != "" and passe != "":
+        print(campos)
         if campos[0] == nome and campos[2] == passe and campos1[0] == "admin":
             messagebox.showinfo("Bem vindo ADMINISTRADOR",
                                 f"Olá {nome}! Está autenticado como ADMIN")
