@@ -1,6 +1,5 @@
 123;123;123;user
 admin;admin;admin;admin
 ze;ze;ze;admin
-123;123;123;admin
 1234;1233;123;user
 13455;123456;123;user

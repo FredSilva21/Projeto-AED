@@ -89,7 +89,7 @@ def login(nome,passe,janelaAppAdmin,janelaApp):
             janelaAppAdmin()
             return campos[0]
 
-        elif campos[0] == nome and campos[2] == passe and campos[3] == "user":
+        elif campos[0] == nome and campos[2] == passe and campos1[0] == "user":
             messagebox.showinfo(
                 "Bem vindo", f"Olá {nome}, o seu login foi efetuado com sucesso!")
             nome=""
