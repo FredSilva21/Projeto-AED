@@ -86,6 +86,7 @@ def login(nome,passe,janelaAppAdmin,janelaApp):
                                 f"Olá {nome}! Está autenticado como ADMIN")
             nome=""
             passe=""
+            
             janelaAppAdmin()
             return campos[0]
 

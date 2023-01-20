@@ -1294,7 +1294,7 @@ image_id = ctnFotoPerfil.create_image(0, 0, anchor=NW, image=image1)
 
 # Botão para escolher imagem
 btnEscolherFoto = Button(window, text="Escolher foto", fg="black",
-                            bg="white", font=("Playfair Bold", 15), width=22, height=1, command=escolherFoto)
+                            bg="white", font=("Playfair Bold", 15), width=22, height=1, command=lambda:escolherFoto())
 
 # Botão para guardar alterações
 btnGuardarAlteracoes = Button(window, text="Guardar alterações", fg="black",

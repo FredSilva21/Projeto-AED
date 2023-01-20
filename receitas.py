@@ -6,7 +6,7 @@ from tkinter import filedialog
 
 
 #region JANELAS RECEITAS
-def janelaPao(imgPao):
+def janelaPao():
     # Cria a janela principal
     janela = tk.Tk()
     janela.title("Receita")
@@ -23,16 +23,12 @@ def janelaPao(imgPao):
     janela.geometry(f'{appWidth}x{appHeigth}+{int(x)}+{int(y)}')
 
     #Titulo da receita
-    titulo_receita = tk.Label(janela, text="Pão Recheado", font=("Playfair Bold", 20))
+    titulo_receita = tk.Label(janela, text="Pão Recheado",font=("Playfair Bold", 20))
     titulo_receita.place(x=250, y=10)
 
     #Canvas para imagem
     canvas = tk.Canvas(janela, width=300, height=250)
     canvas.place(x=200, y=50)
-
-    #Imagem
-    imgPao = PhotoImage(file="./img/entradas/paorecheado.png")
-    canvas.create_image(0, 0, anchor=NW, image=imgPao)
 
     #Ingredientes
     ingredientes = tk.Label(janela, text="Ingredientes:", font=("Playfair Bold", 15))
@@ -104,7 +100,7 @@ def janelaPao(imgPao):
     
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
+        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita["text"]))
     botao_comentario.place(x=200, y=500)
 
     # Cria o botão para fechar a janela
@@ -2550,7 +2546,7 @@ def janelaSopaCaldoVerde():
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
+        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4",command=lambda:comentar(titulo_receita["text"]))
     botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
 
     # Cria o botão para fechar a janela
@@ -2631,6 +2627,83 @@ def adicionarFoto(imagem):
     #abrir um filelog para selecionar a foto
     file=filedialog.askopenfilename(initialdir = "./img/categorias",title = "Select file",filetypes = (("png files","*.png"),("gif files","*.gif"),("all files","*.*")))
     imagem.set(file)
+
+#função para comentar
+def comentar(titulo_receita):
+    # Create the main window
+    window = tk.Tk()
+    window.title("Comentar")
+
+    x=600
+    y=400
+
+    # Get the screen width and height
+    ws = window.winfo_screenwidth() # width of the screen
+    hs = window.winfo_screenheight() # height of the screen
+
+    #Centrar
+    window.geometry('%dx%d+%d+%d' % (x, y, (ws/2)-(x/2), (hs/2)-(y/2)))
+
+    # Label e entry comentario
+    lblComentario=Label(window, text="Comentário:")
+    lblComentario.place(x=10, y=10)
+
+    entry_comentario = Entry(window, width=30)
+    entry_comentario.place(x=80, y=10)
+
+    # Botão para Guardar a direita
+    btnGuardar = Button(window, text="Guardar", width=20,height=7, command=lambda:guardarComentario(entry_comentario.get(), titulo_receita))
+    btnGuardar.place(x=400, y=10)
+
+    # Botão para Fechar a direita
+    btnFechar = Button(window, text="Fechar", width=10, command=window.destroy)
+    btnFechar.place(x=500, y=300)
+
+def guardarComentario(comentario, titulo_receita):
+    # Get the values from the entry boxes
+    fComentarios=open("./ficheiros/comentarios.txt", "a",encoding="utf-8")
+    fComentarios.write(titulo_receita + ";" + comentario + "\n")
+    fComentarios.close()
+    window.destroy()
+
+def janelaVerReceita(titulo_receita):
+    global window
+    # Create the main window
+    window = tk.Tk()
+    window.title("Ver Receita")
+
+    x=600
+    y=400
+
+    # Get the screen width and height
+    ws = window.winfo_screenwidth() # width of the screen
+    hs = window.winfo_screenheight() # height of the screen
+
+    #Centrar
+    window.geometry('%dx%d+%d+%d' % (x, y, (ws/2)-(x/2), (hs/2)-(y/2)))
+
+    #Listbox
+    listbox = Listbox(window, width=50, height=10)
+    listbox.place(x=10, y=10)
+
+    inserirListbox(listbox,titulo_receita)
+
+
+def inserirListbox(listbox,titulo_receita):
+    fReceitas=open("./ficheiros/receitas.txt", "r",encoding="utf-8")
+    linhas=fReceitas.readlines()
+    #Procurar comentarios com o titulo da receita
+    for linha in linhas:
+        if titulo_receita in linha:
+            #Adicionar a listbox
+            listbox.insert(END, linha)
+    fReceitas.close()
+
+
+
+
+
+
 
     
 

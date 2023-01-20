@@ -4,7 +4,7 @@ import tkinter as tk
 from tkinter import filedialog
 from tkVideoPlayer import TkinterVideo
 from tkinter import ttk
-import os
+
 
 
 #region adicionar utilizador
@@ -120,6 +120,7 @@ def verificarConta(nome, email, passe, cpasse, resultado):
 def guardarConta(resultado):
     fBaseDados = open("./ficheiros/basedados.txt", "a", encoding="utf-8")
     fBaseDados.write(resultado)
+    messagebox.showinfo("Sucesso", "Conta adicionada com sucesso!")
     fBaseDados.close()
 
 
@@ -217,13 +218,15 @@ def selecionarImagem(imagem):
     imagem.set(file)
     
 
-def adicionarCategoria(lstbox,categoria,img,cat):
+def adicionarCategoria(lstbox,categoria,img,cat,janelaAddCategoria):
     linha=cat + ";" + img 
 
     if cat== "":
         messagebox.showerror("Erro", "Preencha o campo categoria.")
+        janelaAddCategoria.focus_force()
     elif img == "":
         messagebox.showerror("Erro", "Selecione uma imagem.")
+        janelaAddCategoria.focus_force()
     else:
         lstbox.insert(END, linha)
         categoria.append([cat,img])
@@ -306,18 +309,9 @@ def janelaRemCategoria(window,categorias):
 
     # Botão de remover
     btnRemover = Button(JanRemoverCategoria,
-                        text="Remover Categoria", width=10, height=2,command=lambda:removerCategoria(listbox,categorias))
+                        text="Remover Categoria", width=15, height=2,command=lambda:removerCategoria(listbox,categorias))
     btnRemover.place(x=70, y=150)
 
     inserirLista(listbox,categorias)
 
 #endregion
-
-
-#region Alterar Categoria
-
-
-
-#endregion
-
-
