@@ -10,11 +10,18 @@ from PIL import ImageTk, Image
 def janelaPao(entUtilizador):
    #CREATE A WINDOW
     janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
     #SET THE TITLE OF THE WINDOW
     janela.title("Pão Recheado")
-    #SET THE SIZE OF THE WINDOW
-    janela.geometry("800x650")
-    
+
+
+
     #dont let the window resize
     janela.resizable(0,0)
     titulo_receita = "Pão Recheado"
@@ -39,18 +46,18 @@ def janelaPao(entUtilizador):
 
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.place(x=10, y=500)
-    
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
-    botao_comentario.place(x=200, y=500)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
     botao_fechar = tk.Button(
-        janela, text="Fechar", width=20, height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.place(x=390, y=500)
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
 def janelaQuiche():
     # Cria a janela principal
@@ -2657,5 +2664,19 @@ def inserirListbox(listbox,titulo_receita,entUtilizador):
             #Adicionar a listbox
             listbox.insert(END, campos[1] + " : " + campos[2])
     fReceitas.close()
+
+#endregion
+
+#region Gostos
+
+def marcarFavorito(titulo_receita, entUtilizador):
+    fGostos = open("ficheiros\\gostos.txt", "a")
+    fGostos.write(titulo_receita + ";" + entUtilizador + "\n")
+
+    fGostos = open("ficheiros\\gostos.txt", "r")
+    encontrar = fGostos.read()
+    num = encontrar.count(titulo_receita)
+
+    messagebox.showinfo("Gostos", "Gostos: " + str(num))
 
 #endregion
