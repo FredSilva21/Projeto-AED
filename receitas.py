@@ -3,95 +3,39 @@ from tkinter import messagebox
 import tkinter as tk
 from tkVideoPlayer import TkinterVideo 
 from tkinter import filedialog
+from PIL import ImageTk, Image
 
 
 #region JANELAS RECEITAS
-def janelaPao():
-    # Cria a janela principal
+def janelaPao(entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Pão Recheado")
+    #SET THE SIZE OF THE WINDOW
+    janela.geometry("800x650")
+    
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Pão Recheado"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1 lata")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    appWidth = 800
-    appHeigth = 600
 
-    screenHeigth = janela.winfo_screenheight()
-    screenWidth = janela.winfo_screenwidth()
-
-    x = (screenWidth/2) - (appWidth/2)
-    y = (screenHeigth/2) - (appHeigth/2)
-
-    janela.geometry(f'{appWidth}x{appHeigth}+{int(x)}+{int(y)}')
-
-    #Titulo da receita
-    titulo_receita = tk.Label(janela, text="Pão Recheado",font=("Playfair Bold", 20))
-    titulo_receita.place(x=250, y=10)
-
-    #Canvas para imagem
-    canvas = tk.Canvas(janela, width=300, height=250)
-    canvas.place(x=200, y=50)
-
-    #Ingredientes
-    ingredientes = tk.Label(janela, text="Ingredientes:", font=("Playfair Bold", 15))
-    ingredientes.place(x=10, y=300)
-
-    ingrediente_1 = tk.Label(janela, text="2 xícaras de farinha de trigo")
-    ingrediente_1.place(x=10, y=330)
-
-    ingrediente_2 = tk.Label(janela, text="1 xícara de água morna")
-    ingrediente_2.place(x=10, y=350)
-
-    ingrediente_3 = tk.Label(janela, text="200g de quejo ralado")
-    ingrediente_3.place(x=10, y=370)
-
-    ingrediente_4 = tk.Label(janela, text="200g de champignon fatiado")
-    ingrediente_4.place(x=10, y=390)
-
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
-
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
-
-    ingrediente_1 = tk.Label(janela, text="1 pão de forma")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="200ml de leite")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="3 ovos")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="250g de presunto picado")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="200g de queijo ralado")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="Azeite")
-    ingrediente_6.pack()
-
-    # etc.
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Pão Recheado"
-
-    instrucoes_texto.insert(tk.END, "1. Corte o pão de forma ao meio e retire a parte superior.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Em uma tigela, misture o leite, os ovos, o presunto e o queijo ralado.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Despeje a mistura no pão de forma e cubra com a parte superior.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Regue a superfície do pão com azeite e leve ao forno por aproximadamente 15 minutos ou até dourar.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Retire o pão recheado do forno e deixe esfriar antes de servir.\n")
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1 lata")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
@@ -100,7 +44,7 @@ def janelaPao():
     
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita["text"]))
+        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
     botao_comentario.place(x=200, y=500)
 
     # Cria o botão para fechar a janela
@@ -2628,8 +2572,10 @@ def adicionarFoto(imagem):
     file=filedialog.askopenfilename(initialdir = "./img/categorias",title = "Select file",filetypes = (("png files","*.png"),("gif files","*.gif"),("all files","*.*")))
     imagem.set(file)
 
+
+#region Comentarios
 #função para comentar
-def comentar(titulo_receita):
+def comentar(titulo_receita,entUtilizador):
     # Create the main window
     window = tk.Tk()
     window.title("Comentar")
@@ -2648,26 +2594,33 @@ def comentar(titulo_receita):
     lblComentario=Label(window, text="Comentário:")
     lblComentario.place(x=10, y=10)
 
-    entry_comentario = Entry(window, width=30)
+    #Textarea para o comentario
+    entry_comentario = Text(window, width=30, height=5)
     entry_comentario.place(x=80, y=10)
 
     # Botão para Guardar a direita
-    btnGuardar = Button(window, text="Guardar", width=20,height=7, command=lambda:guardarComentario(entry_comentario.get(), titulo_receita))
+    btnGuardar = Button(window, text="Guardar", width=20,height=7, command=lambda:guardarComentario(entry_comentario.get("1.0", "end-1c"), titulo_receita,entUtilizador))
     btnGuardar.place(x=400, y=10)
+
+    #Botão para ver comentarios
+    btnVerComentarios = Button(window, text="Ver Comentários", width=20,height=7, command=lambda:janelaVerComentarios(titulo_receita,entUtilizador))
+    btnVerComentarios.place(x=400, y=150)
 
     # Botão para Fechar a direita
     btnFechar = Button(window, text="Fechar", width=10, command=window.destroy)
     btnFechar.place(x=500, y=300)
 
-def guardarComentario(comentario, titulo_receita):
+#função para guardar comentario
+def guardarComentario(comentario, titulo_receita,entUtilizador):
     # Get the values from the entry boxes
     fComentarios=open("./ficheiros/comentarios.txt", "a",encoding="utf-8")
-    fComentarios.write(titulo_receita + ";" + comentario + "\n")
+    fComentarios.write(titulo_receita + ";" + entUtilizador + ";" + comentario + "\n")
     fComentarios.close()
     window.destroy()
 
-def janelaVerReceita(titulo_receita):
-    global window
+#função para ver comentarios
+def janelaVerComentarios(titulo_receita,entUtilizador):
+    
     # Create the main window
     window = tk.Tk()
     window.title("Ver Receita")
@@ -2686,24 +2639,23 @@ def janelaVerReceita(titulo_receita):
     listbox = Listbox(window, width=50, height=10)
     listbox.place(x=10, y=10)
 
-    inserirListbox(listbox,titulo_receita)
+    #Botão para fechar
+    btnFechar = Button(window, text="Fechar", width=10, command=window.destroy)
+    btnFechar.place(x=500, y=300)
 
+    inserirListbox(listbox,titulo_receita,entUtilizador)
 
-def inserirListbox(listbox,titulo_receita):
-    fReceitas=open("./ficheiros/receitas.txt", "r",encoding="utf-8")
+#Função para inserir na listbox
+def inserirListbox(listbox,titulo_receita,entUtilizador):
+    fReceitas=open("./ficheiros/comentarios.txt", "r",encoding="utf-8")
     linhas=fReceitas.readlines()
     #Procurar comentarios com o titulo da receita
     for linha in linhas:
-        if titulo_receita in linha:
+        campos=linha.split(";")
+        if titulo_receita == campos[0] and entUtilizador == campos[1]:
+            print(campos[1] + " : " + campos[2])
             #Adicionar a listbox
-            listbox.insert(END, linha)
+            listbox.insert(END, campos[1] + " : " + campos[2])
     fReceitas.close()
 
-
-
-
-
-
-
-    
-
+#endregion

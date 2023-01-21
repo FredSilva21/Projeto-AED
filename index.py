@@ -1229,7 +1229,7 @@ btnSaladas = Button(window, width=350, height=250, image=imgSaladas,command=jane
 btnVegeta = Button(window, width=350, height=250, image=imgVegeta,command=janelaVegeta)
 
 #Botões Entradas
-btnPao = Button(window, width=350, height=250, image=imgPao,command=janelaPao)
+btnPao = Button(window, width=350, height=250, image=imgPao,command=lambda:janelaPao(entUtilizador.get()))
 btnPizza = Button(window, width=350, height=250, image=imgPizza,command=janelaPizza)
 btnQuiche = Button(window, width=350, height=250, image=imgQuiche,command=janelaQuiche)
 btnSupremo = Button(window, width=350, height=250, image=imgSupremo,command=janelaSupremo)
