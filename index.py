@@ -327,6 +327,13 @@ def janelaApp():
     lblNomeUtilizador.place_forget()
     btnEscolherFoto.place_forget()
 
+    lblEntradas.place_forget()
+    lblSopas.place_forget()
+    lblCarnes.place_forget()
+    lblPeixes.place_forget()
+    lblSaladas.place_forget()
+    lblVegeta.place_forget()
+
 
 # endregion
 
@@ -550,8 +557,10 @@ def janelaEntradas():
     utilizadoresMenu.add_command(label="Utilizador")
     topBar.add_cascade(label="Minha Conta", menu=utilizadoresMenu)
 
+    
+
     ordenarMenu = Menu(topBar)
-    ordenarMenu.add_command(label="Mais Popular")
+    ordenarMenu.add_command(label="Mais Popular",command=lambda:ordenarCategoriasGostos(catEntradas,catSopas,catCarnes,catPeixes,catSaladas,catVegeta))
     ordenarMenu.add_command(label="Mais Comentada")
     topBar.add_cascade(label="Ordenar", menu=ordenarMenu)
 
@@ -564,7 +573,7 @@ def janelaEntradas():
 
     topBar.add_cascade(label="Sair", menu=sairMenu)
 
-    lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+    lblEntradas.place(x=appWidth/2, y=80, anchor=CENTER)
 
     btnVoltarApp.place(x=80,y=70)
 
@@ -592,6 +601,12 @@ def janelaEntradas():
     btnPeixes.place_forget()
     btnSaladas.place_forget()
     btnVegeta.place_forget()
+    lblMenuPrincipal.place_forget()
+    lblSopas.place_forget()
+    lblCarnes.place_forget()
+    lblPeixes.place_forget()
+    lblSaladas.place_forget()
+    lblVegeta.place_forget()
 #endregion
 
 # region Janela Carnes
@@ -623,7 +638,7 @@ def janelaCarnes():
 
     topBar.add_cascade(label="Sair", menu=sairMenu)
 
-    lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+    lblCarnes.place(x=appWidth/2, y=80, anchor=CENTER)
 
     btnVoltarApp.place(x=80,y=70)
 
@@ -651,6 +666,12 @@ def janelaCarnes():
     btnPeixes.place_forget()
     btnSaladas.place_forget()
     btnVegeta.place_forget()
+    lblMenuPrincipal.place_forget()
+    lblEntradas.place_forget()
+    lblSopas.place_forget()
+    lblPeixes.place_forget()
+    lblSaladas.place_forget()
+    lblVegeta.place_forget()
 #endregion
 
 # region Janela Sopas
@@ -682,7 +703,7 @@ def janelaSopas():
 
     topBar.add_cascade(label="Sair", menu=sairMenu)
 
-    lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+    lblSopas.place(x=appWidth/2, y=80, anchor=CENTER)
 
     btnVoltarApp.place(x=80,y=70)
 
@@ -710,6 +731,12 @@ def janelaSopas():
     btnPeixes.place_forget()
     btnSaladas.place_forget()
     btnVegeta.place_forget()
+    lblMenuPrincipal.place_forget()
+    lblEntradas.place_forget()
+    lblCarnes.place_forget()
+    lblPeixes.place_forget()
+    lblSaladas.place_forget()
+    lblVegeta.place_forget()
 #endregion
 
 # region Janela Peixes
@@ -741,7 +768,7 @@ def janelaPeixes():
 
     topBar.add_cascade(label="Sair", menu=sairMenu)
 
-    lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+    lblPeixes.place(x=appWidth/2, y=80, anchor=CENTER)
 
     btnVoltarApp.place(x=80,y=70)
 
@@ -769,6 +796,12 @@ def janelaPeixes():
     btnPeixes.place_forget()
     btnSaladas.place_forget()
     btnVegeta.place_forget()
+    lblMenuPrincipal.place_forget()
+    lblEntradas.place_forget()
+    lblSopas.place_forget()
+    lblCarnes.place_forget()
+    lblSaladas.place_forget()
+    lblVegeta.place_forget()
 #endregion
 
 # region Janela Saladas
@@ -800,7 +833,7 @@ def janelaSaladas():
 
     topBar.add_cascade(label="Sair", menu=sairMenu)
 
-    lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+    lblSaladas.place(x=appWidth/2, y=80, anchor=CENTER)
 
     btnVoltarApp.place(x=80,y=70)
 
@@ -828,6 +861,12 @@ def janelaSaladas():
     btnPeixes.place_forget()
     btnSaladas.place_forget()
     btnVegeta.place_forget()
+    lblMenuPrincipal.place_forget()
+    lblEntradas.place_forget()
+    lblSopas.place_forget()
+    lblCarnes.place_forget()
+    lblPeixes.place_forget()
+    lblVegeta.place_forget()
 #endregion
 
 # region Janela Vegetariana
@@ -859,7 +898,7 @@ def janelaVegeta():
 
     topBar.add_cascade(label="Sair", menu=sairMenu)
 
-    lblMenuPrincipal.place(x=appWidth/2, y=80, anchor=CENTER)
+    lblVegeta.place(x=appWidth/2, y=80, anchor=CENTER)
 
     btnVoltarApp.place(x=80,y=70)
 
@@ -887,6 +926,12 @@ def janelaVegeta():
     btnPeixes.place_forget()
     btnSaladas.place_forget()
     btnVegeta.place_forget()
+    lblMenuPrincipal.place_forget()
+    lblEntradas.place_forget()
+    lblSopas.place_forget()
+    lblCarnes.place_forget()
+    lblPeixes.place_forget()
+    lblSaladas.place_forget()
 #endregion
 
 # region Janela Utilizador
@@ -1157,7 +1202,7 @@ btnVoltarApp=Button(window, text="Voltar", fg="black",
 # Barra Menu Utilizador
 
 categorias=[["Entradas","./img/categorias/catEntradas.png"],["Sopas","./img/categorias/catSopas.png"],["Carnes","./img/categorias/catCarnes.png"],["Peixes","./img/categorias/catPeixes.png"],["Saladas","./img/categorias/catSaladas.png"],["Vegetarianas","./img/categorias/catVegeta.png"]]
-
+#endregion
 
 #region Imagens para os botões
 #Imagens Categorias
@@ -1219,6 +1264,33 @@ imgSopaPeixe=PhotoImage(file="./img/sopas/sopaPeixe.png")
 imgCaldoVerde=PhotoImage(file="./img/sopas/CaldoVerde.png")
 #endregion
 
+#region Variaveis Categorias
+catEntradas="Entradas"
+catSopas="Sopas"
+catCarnes="Carnes"
+catPeixes="Peixes"
+catSaladas="Saladas"
+catVegeta="Vegetarianas"
+#endregion
+#region Labels Categorias
+lblEntradas=Label(window, text="ENTRADAS", fg="black",
+                         bg="white", font=("Playfair Bold", 20), width=30, height=1)
+
+lblSopas=Label(window, text="SOPAS", fg="black",
+                         bg="white", font=("Playfair Bold", 20), width=30, height=1)
+
+lblCarnes=Label(window, text="CARNES", fg="black",
+                         bg="white", font=("Playfair Bold", 20), width=30, height=1)
+
+lblPeixes=Label(window, text="PEIXES", fg="black",
+                         bg="white", font=("Playfair Bold", 20), width=30, height=1)
+
+lblSaladas=Label(window, text="SALADAS", fg="black",
+                         bg="white", font=("Playfair Bold", 20), width=30, height=1)
+
+lblVegeta=Label(window, text="VEGETARIANAS", fg="black",
+                         bg="white", font=("Playfair Bold", 20), width=30, height=1)
+#endregion
 #region Botões
 # Botões com as categorias
 btnEntradas = Button(window, width=350, height=250, image=imgEntradas,command=janelaEntradas)
@@ -1229,7 +1301,7 @@ btnSaladas = Button(window, width=350, height=250, image=imgSaladas,command=jane
 btnVegeta = Button(window, width=350, height=250, image=imgVegeta,command=janelaVegeta)
 
 #Botões Entradas
-btnPao = Button(window, width=350, height=250, image=imgPao,command=lambda:janelaPao(entUtilizador.get()))
+btnPao = Button(window, width=350, height=250, image=imgPao,command=lambda:janelaPao(catEntradas,entUtilizador.get()))
 btnPizza = Button(window, width=350, height=250, image=imgPizza,command=janelaPizza)
 btnQuiche = Button(window, width=350, height=250, image=imgQuiche,command=janelaQuiche)
 btnSupremo = Button(window, width=350, height=250, image=imgSupremo,command=janelaSupremo)
@@ -1275,7 +1347,6 @@ btnSopaConquilha=Button(window, width=350, height=250, image=imgSopaConquilha,co
 btnSopaPeixe=Button(window, width=350, height=250, image=imgSopaPeixe,command=janelaSopaPeixe)
 btnSopaJuliana=Button(window, width=350, height=250, image=imgSopaJuliana,command=janelaSopaJuliana)
 btnCaldoVerde=Button(window, width=350, height=250, image=imgCaldoVerde,command=janelaSopaCaldoVerde)
-#endregion
 #endregion
 
 #region Interface Conta Utilizador

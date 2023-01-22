@@ -7,7 +7,7 @@ from PIL import ImageTk, Image
 
 
 #region JANELAS RECEITAS
-def janelaPao(entUtilizador):
+def janelaPao(cat,entUtilizador):
    #CREATE A WINDOW
     janela = tk.Tk()
     w = 800
@@ -46,7 +46,7 @@ def janelaPao(entUtilizador):
 
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(titulo_receita,entUtilizador))
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
     botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
@@ -2587,8 +2587,8 @@ def comentar(titulo_receita,entUtilizador):
     window = tk.Tk()
     window.title("Comentar")
 
-    x=600
-    y=400
+    x=500
+    y=300
 
     # Get the screen width and height
     ws = window.winfo_screenwidth() # width of the screen
@@ -2602,20 +2602,19 @@ def comentar(titulo_receita,entUtilizador):
     lblComentario.place(x=10, y=10)
 
     #Textarea para o comentario
-    entry_comentario = Text(window, width=30, height=5)
+    entry_comentario = Text(window, width=40, height=5)
     entry_comentario.place(x=80, y=10)
 
     # Botão para Guardar a direita
-    btnGuardar = Button(window, text="Guardar", width=20,height=7, command=lambda:guardarComentario(entry_comentario.get("1.0", "end-1c"), titulo_receita,entUtilizador))
-    btnGuardar.place(x=400, y=10)
+    btnGuardar = Button(window, text="Guardar", width=20,height=5, command=lambda:guardarComentario(entry_comentario.get("1.0", "end-1c"), titulo_receita,entUtilizador))
+    btnGuardar.place(x=10, y=150)
 
     #Botão para ver comentarios
-    btnVerComentarios = Button(window, text="Ver Comentários", width=20,height=7, command=lambda:janelaVerComentarios(titulo_receita,entUtilizador))
-    btnVerComentarios.place(x=400, y=150)
-
+    btnVerComentarios = Button(window, text="Ver Comentários", width=20,height=5, command=lambda:janelaVerComentarios(titulo_receita,entUtilizador))
+    btnVerComentarios.place(x=110,y=150)
     # Botão para Fechar a direita
-    btnFechar = Button(window, text="Fechar", width=10, command=window.destroy)
-    btnFechar.place(x=500, y=300)
+    btnFechar = Button(window, text="Fechar", width=20, height=5 , command=window.destroy)
+    btnFechar.place(x=210, y=150)
 
 #função para guardar comentario
 def guardarComentario(comentario, titulo_receita,entUtilizador):
@@ -2623,6 +2622,7 @@ def guardarComentario(comentario, titulo_receita,entUtilizador):
     fComentarios=open("./ficheiros/comentarios.txt", "a",encoding="utf-8")
     fComentarios.write(titulo_receita + ";" + entUtilizador + ";" + comentario + "\n")
     fComentarios.close()
+    messagebox.showinfo("Comentário", "Obrigado pelo seu comentário!")
     window.destroy()
 
 #função para ver comentarios
@@ -2642,14 +2642,13 @@ def janelaVerComentarios(titulo_receita,entUtilizador):
     #Centrar
     window.geometry('%dx%d+%d+%d' % (x, y, (ws/2)-(x/2), (hs/2)-(y/2)))
 
-    #Listbox
-    listbox = Listbox(window, width=50, height=10)
+    #Listbox com width e height da janela
+    listbox = Listbox(window, width=90, height=20)
     listbox.place(x=10, y=10)
 
     #Botão para fechar
-    btnFechar = Button(window, text="Fechar", width=10, command=window.destroy)
-    btnFechar.place(x=500, y=300)
-
+    btnFechar = Button(window, text="Fechar", width=15, command=window.destroy)
+    btnFechar.place(x=10, y=350)
     inserirListbox(listbox,titulo_receita,entUtilizador)
 
 #Função para inserir na listbox
@@ -2669,14 +2668,50 @@ def inserirListbox(listbox,titulo_receita,entUtilizador):
 
 #region Gostos
 
-def marcarFavorito(titulo_receita, entUtilizador):
-    fGostos = open("ficheiros\\gostos.txt", "a")
-    fGostos.write(titulo_receita + ";" + entUtilizador + "\n")
+def marcarFavorito(cat,titulo_receita, entUtilizador):
+    fGostos = open("ficheiros\\gostos.txt", "a",encoding="utf-8")
+    fGostos.write(cat + ";" + titulo_receita + ";" + entUtilizador + "\n")
+    fGostos.close()
 
     fGostos = open("ficheiros\\gostos.txt", "r")
-    encontrar = fGostos.read()
-    num = encontrar.count(titulo_receita)
+    linhas = fGostos.readlines()
+    fGostos.close()
 
-    messagebox.showinfo("Gostos", "Gostos: " + str(num))
+    num=0
+
+    #Contar linhas com o mesmo titulo
+    for lin in linhas:
+        campos=lin.split(";")
+        
+        if titulo_receita != campos[1]:
+            pass
+            
+        num=linhas.count(lin)
+            
+
+    messagebox.showinfo("Gostos", "Obtigado pelo gosto,esta receita já conta com " + str(num) + " gostos")
+
+#endregion
+
+#region Ordernar
+#Funçao para ordenar as categorias por gostos
+def ordenarCategoriasGostos(catEntradas,catSopas,catCarnes,catPeixes,catSaladas,catVegeta):
+    fGostos = open("ficheiros\\gostos.txt", "r")
+    linhas = fGostos.readlines()
+    fGostos.close()
+
+    
+   
+    #Contar linhas com a mesma categoria
+    for lin in linhas:
+        campos=lin.split(";")
+
+
+
+
+
+    
+            
+
 
 #endregion
