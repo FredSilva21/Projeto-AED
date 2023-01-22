@@ -2689,7 +2689,7 @@ def marcarFavorito(cat,titulo_receita, entUtilizador):
         num=linhas.count(lin)
             
 
-    messagebox.showinfo("Gostos", "Obtigado pelo gosto,esta receita já conta com " + str(num) + " gostos")
+    messagebox.showinfo("Gostos", "Obrigado pelo gosto,esta receita já conta com " + str(num) + " gostos")
 
 #endregion
 
