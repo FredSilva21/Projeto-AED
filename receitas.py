@@ -1894,6 +1894,10 @@ def comentar(titulo_receita,entUtilizador):
 
 #função para guardar comentario
 def guardarComentario(comentario, titulo_receita,entUtilizador):
+    if entUtilizador == "":
+        messagebox.showerror("Erro", "Tem de estar logado para comentar!")
+        return
+    
     # Get the values from the entry boxes
     fComentarios=open("./ficheiros/comentarios.txt", "a",encoding="utf-8")
     fComentarios.write(titulo_receita + ";" + entUtilizador + ";" + comentario + "\n")
@@ -1929,6 +1933,7 @@ def janelaVerComentarios(titulo_receita):
 
 #Função para inserir na listbox
 def inserirListbox(listbox,titulo_receita):
+
     fReceitas=open("./ficheiros/comentarios.txt", "r",encoding="utf-8")
     linhas=fReceitas.readlines()
     #Procurar comentarios com o titulo da receita
@@ -1945,6 +1950,10 @@ def inserirListbox(listbox,titulo_receita):
 #region Gostos
 
 def marcarFavorito(cat,titulo_receita, entUtilizador):
+    
+    if entUtilizador == "":
+        messagebox.showerror("Erro", "Tem de estar logado para marcar como favorito")
+    
     fGostos = open("ficheiros\\gostos.txt", "a",encoding="utf-8")
     fGostos.write(cat + ";" + titulo_receita + ";" + entUtilizador + "\n")
     fGostos.close()

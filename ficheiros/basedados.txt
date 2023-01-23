@@ -1,2 +1,4 @@
 admin;admin;admin;admin
 123;123;123;user
+abc;abc;123;user
+teste;teste;123;user
