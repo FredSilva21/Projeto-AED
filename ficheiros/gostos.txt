@@ -1,7 +1,6 @@
 Entradas;Pão Recheado;123
 Entradas;Pão Recheado;123
-Entradas;Pão Recheado;123
-Entradas;Pão Recheado;123
-Entradas;Pão Recheado;123
-Entradas;Pão Recheado;123
-Entradas;Pão Recheado;123
+Sopas;Sopa de Cebola;123
+Sopas;Sopa de Cebola;123
+Sopas;Sopa de Cebola;123
+Sopas;Sopa de Cebola;123

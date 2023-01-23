@@ -4,7 +4,7 @@ import tkinter as tk
 from tkVideoPlayer import TkinterVideo 
 from tkinter import filedialog
 from PIL import ImageTk, Image
-
+import os
 
 #region JANELAS RECEITAS
 def janelaPao(cat,entUtilizador):
@@ -19,9 +19,7 @@ def janelaPao(cat,entUtilizador):
     janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
     #SET THE TITLE OF THE WINDOW
     janela.title("Pão Recheado")
-
-
-
+    
     #dont let the window resize
     janela.resizable(0,0)
     titulo_receita = "Pão Recheado"
@@ -29,7 +27,7 @@ def janelaPao(cat,entUtilizador):
     text_box_ingredientes = tk.Text(janela, width=50, height=12)
     text_box_ingredientes.place(x=190, y=50)
     #ADD TEXT TO THE TEXT BOX CENTRALIZED
-    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1 lata")
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1 pão de forma\n1/2 xícara de queijo ralado\n1/2 xícara de presunto fatiado")
     text_box_ingredientes.tag_configure("center", justify='center')
     text_box_ingredientes.tag_add("center", 1.0, "end")
     text_box_ingredientes.config(state=DISABLED)
@@ -39,7 +37,7 @@ def janelaPao(cat,entUtilizador):
     text_box_intruçoes = tk.Text(janela, width=50, height=20)
     text_box_intruçoes.place(x=190, y=220)
     #ADD TEXT TO THE TEXT BOX CENTRALIZED
-    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1 lata")
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Pré-aqueça o forno a 180°C.\n2. Corte o pão de forma ao meio, formando dois discos.\n3. Coloque o presunto e o queijo na parte inferior do pão.\n4. Coloque a parte superior do pão e pressione as bordas para fechá-lo.\n5. Coloque o pão numa assadeira untada com azeite.\n6. Leve ao forno por cerca de 15 minutos.\n7. Sirva quente.")
     text_box_intruçoes.tag_configure("center", justify='center')
     text_box_intruçoes.tag_add("center", 1.0, "end")
     text_box_intruçoes.config(state=DISABLED)
@@ -59,2453 +57,1745 @@ def janelaPao(cat,entUtilizador):
         janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
     botao_fechar.place(x=470, y=550)
 
-def janelaQuiche():
-    # Cria a janela principal
+def janelaQuiche(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Quiche")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Quiche"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n2 xícaras de farinha\n1/2 xícara de manteiga\n1/4 xícara de água fria\n1/4 de colher de sal\n3 ovos\n3/4 xícara de leite\n1/2 xícara de creme de leite\n2 xícaras de queijo cheddar ralado\n1/4 de xícara de cebola picada\n1/4 de xícara de bacon cozido e picado")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Pré-aqueça o forno a 375 graus\n2. Misture a farinha, sal e manteiga\n3. Adicione água fria até que a mistura fique homogênea\n4. Abra a massa e coloque-a em um pirex de 9 polegadas\n5. Aqueça o bacon e a cebola por 3 minutos\n6. Misture o ovo, o leite, o creme de leite, o queijo, o bacon e a cebola\n7. Despeje a mistura no pirex\n8. Asse por 40 minutos ou até que esteja dourado")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="1 massa de tarte pré-assada")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1 xícara de leite")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="3 ovos")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="200g de queijo ralado")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="1 cebola pequena picada")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1 tomate picado")
-    ingrediente_6.pack()
-
-    # etc.
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Quiche"
-
-    instrucoes_texto.insert(tk.END, "1. Pré-aqueça o forno a 180°C.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Em uma tigela, misture o leite, os ovos e o queijo ralado. Adicione a cebola e o tomate picados e misture novamente.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Despeje a mistura na massa de tarte pré-assada e leve ao forno por cerca de 40 minutos ou até dourar.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Retire a quiche do forno e deixe esfriar antes de servir.\n")
-    
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
     botao_fechar = tk.Button(
-        janela, text="Fechar", width=20, height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaPizza():
-    # Cria a janela principal
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
-
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
-
-    ingrediente_1 = tk.Label(janela, text="1 xícara de farinha de trigo")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1/2 xícara de água morna")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="1/2 xícara de molho de tomate")
-    ingrediente_3.pack()
-    ingrediente_4 = tk.Label(janela, text="1/2 xícara de queijo ralado")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(
-        janela, text="Ingredientes a gosto para rechear (ex.: presunto, pepperoni, cogumelos, etc.)")
-    ingrediente_5.pack()
-
-    # etc.
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Mini Pizzas"
-
-    instrucoes_texto.insert(tk.END, "1. Pré-aqueça o forno a 220°C.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Em uma tigela, misture a farinha de trigo e a água morna até formar uma massa homogênea.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Abra a massa em um superfície lisa e enfarinhada e corte em círculos de aproximadamente 10 cm de diâmetro.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Disponha os círculos de massa em uma assadeira untada e leve ao forno por cerca de 5 minutos ou até dourar levemente.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Retire a assadeira do forno e espalhe o molho de tomate sobre os círculos de massa. Adicione o recheio de sua preferência e polvilhe o queijo ralado por cima.\n")
-    instrucoes_texto.insert(
-        tk.END, "6. Leve a assadeira de volta ao forno por mais 10 minutos ou até que as mini pizzas estejam douradas e o queijo derretido.\n")
-    instrucoes_texto.insert(
-        tk.END, "7. Retire a assadeira do forno e sirva as mini pizzas quentes.\n")
-
-    # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para adicionar um comentário
-    botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaSupremo():
-    # Cria a janela principal
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
-
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
-
-    ingrediente_1 = tk.Label(janela, text="1 camembert grande")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="2 xícaras de farinha de rosca")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="1 ovo batido")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1 xícara de azeite")
-    ingrediente_4.pack()
-
-    # etc.
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Suprême de Camembert"
-
-    instrucoes_texto.insert(tk.END, "1. Pré-aqueça o forno a 180°C.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Em uma tigela, misture a farinha de rosca com o ovo batido até formar uma massa homogênea.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Corte o camembert em fatias de aproximadamente 1 cm de espessura.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Passe cada fatia de camembert na massa de farinha de rosca, cobrindo-a completamente.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Aqueça o azeite em uma panela e frite as fatias de camembert até dourar. Retire-as da panela e coloque-as em uma assadeira.\n")
-    instrucoes_texto.insert(
-        tk.END, "6. Leve a assadeira ao forno por cerca de 5 minutos ou até que o camembert esteja derretido por dentro.\n")
-    instrucoes_texto.insert(
-        tk.END, "7. Retire a assadeira do forno e sirva o suprême de camembert quente, acompanhado de pão ou batatas fritas.\n")
-
-    # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para adicionar um comentário
-    botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaRissois():
-    # Cria a janela principal
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
-
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
-
-    ingrediente_1 = tk.Label(janela, text="1 xícara de água")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1/2 xícara de farinha de trigo")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="1/2 xícara de leite")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1/2 xícara de óleo")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(
-        janela, text="1/2 xícara de recheio de sua preferência (ex.: frango desfiado, carne moída, queijo, etc.)")
-    ingrediente_5.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Rissois"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Em uma panela, misture a água, a farinha de trigo, o leite e o óleo até formar uma massa homogênea. Deixe esfriar.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Depois de fria, adicione o recheio de sua preferência à massa e misture bem.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Disponha uma folha de massa folhada sobre a superfície de trabalho e corte círculos de aproximadamente 10 cm de diâmetro.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Disponha uma porção de massa com o recheio no centro de cada círculo de massa folhada.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Pincele os bordos da massa folhada com água e dobre-a ao meio, formando um meio círculo. Pressione os bordos para fechar bem.\n")
-    instrucoes_texto.insert(
-        tk.END, "6. Aqueça o óleo em uma panela e frite os rissois até dourar. Retire-os da panela e coloque-os em uma assadeira para escorrer o excesso de óleo.\n")
-    instrucoes_texto.insert(
-        tk.END, "7. Sirva os rissois quentes, acompanhados de molho de sua preferência.\n")
-    # etc.
-    # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para adicionar um comentário
-    botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaTapas():
-    # Cria a janela principal
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
-
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
-
-    ingrediente_1 = tk.Label(janela, text="1 pão italiano")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="100 g de queijo gorgonzola")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="200 g de carne moída")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1 cebola pequena")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="2 dentes de alho")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1 tomate pequeno")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="Azeite de oliva")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_8.pack()
-
-    # etc.
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Tapas de Carne e Queijo Gorgonzola"
-
-    instrucoes_texto.insert(tk.END, "1. Pré-aqueça o forno a 180°C.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Corte o pão italiano em fatias de aproximadamente 1 cm de espessura. Disponha as fatias em uma assadeira.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Em uma frigideira, aqueça um fio de azeite de oliva e refogue a cebola e o alho picados até ficarem macios. Adicione a carne moída e frite até dourar. Tempere com sal e pimenta-do-reino a gosto.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Disponha a carne refogada sobre as fatias de pão italiano e cubra com fatias finas de queijo gorgonzola. Corte o tomate em rodelas finas e coloque uma rodela sobre cada tapa.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Leve a assadeira ao forno por cerca de 10 minutos ou até que o queijo esteja derretido e gratinado.\n")
-    instrucoes_texto.insert(
-        tk.END, "6. Retire a assadeira do forno e sirva as tapas quentes.\n")
-    # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para adicionar um comentário
-    botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaFrancesinha():
-    # Cria a janela principal
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
-
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
-
-    ingrediente_1 = tk.Label(janela, text="Pão de forma")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="Linguiça")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="Presunto")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="Queijo")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="Molho de tomate")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="Ovo")
-    ingrediente_6.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Francesinha"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Corte o pão de forma ao meio e coloque a linguiça e o presunto fatiados.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Coloque o queijo por cima e leve ao forno até derreter.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Coloque o ovo por cima da mistura e regue com o molho de tomate.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Sirva quente.\n")
-    # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para adicionar um comentário
-    botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaBifesPeru():
-    # Cria a janela principal
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
-
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
-
-    ingrediente_1 = tk.Label(janela, text="4 bifes de peru")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="1 colher de sopa de azeite")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="2 dentes de alho picados")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="1 xícara de caldo de frango")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="2 colheres de sopa de catchup")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="2 colheres de sopa de vinagre")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="2 colheres de sopa de açúcar")
-    ingrediente_8.pack()
-
-    ingrediente_9 = tk.Label(janela, text="1 colher de chá de mostarda")
-    ingrediente_9.pack()
-
-    ingrediente_10 = tk.Label(janela, text="1 colher de chá de orégano")
-    ingrediente_10.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Bifes de Peru ao Molho de Catchup"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Tempere os bifes de peru com sal e pimenta-do-reino a gosto.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Em uma panela, aqueça o azeite e frite os bifes de peru até dourar dos dois lados.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Adicione o alho picado e refogue por mais alguns minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Adicione o caldo de frango, o catchup, o vinagre, o açúcar, a mostarda e o orégano. Misture bem.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Deixe cozinhar em fogo baixo por cerca de 20 minutos, ou até que o molho esteja espesso e os bifes de peru estejam macios.\n")
-
-    # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para adicionar um comentário
-    botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaPicanha():
-    # Cria a janela principal
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
-
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
-
-    ingrediente_1 = tk.Label(janela, text="1kg de picanha")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="2 dentes de alho picados")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1 colher de chá de azeite")
-    ingrediente_4.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Picanha Grelhada"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Tempere a picanha com sal e pimenta-do-reino a gosto e o alho picado.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Em uma grelha ou frigideira quente, aqueça o azeite e grelhe a picanha dos dois lados até atingir o ponto desejado.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Sirva a picanha ainda quente, cortada em fatias finas.\n")
-    titulo_receita["text"] = "Picanha Grelhada"
-
-    # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para adicionar um comentário
-    botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaCaril():
-    # Cria a janela principal
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
-
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
-
-    ingrediente_1 = tk.Label(janela, text="1kg de frango cortado em pedaços")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="2 colheres de sopa de azeite")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="1 cebola picada")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="2 dentes de alho picados")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="1 pimentão vermelho picado")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1 pimentão verde picado")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="2 colheres de sopa de caril em pó")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="1 xícara de caldo de frango")
-    ingrediente_8.pack()
-
-    ingrediente_9 = tk.Label(janela, text="1 xícara de leite de coco")
-    ingrediente_9.pack()
-
-    ingrediente_10 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_10.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Caril de Frango"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Em uma panela, aqueça o azeite e refogue a cebola, o alho e os pimentões até ficarem macios.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Adicione o frango e refogue até dourar.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Adicione o caril em pó e misture bem. Adicione o caldo de frango, o leite de coco, o sal e a pimenta-do-reino.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Deixe cozinhar em fogo baixo por cerca de 20 minutos, ou até o frango ficar macio e o molho engrossar. Sirva quente.\n")
-
-    # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para adicionar um comentário
-    botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaFrango():
-    # Cria a janela principal
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
-
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
-
-    ingrediente_1 = tk.Label(janela, text="1 frango inteiro")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="2 dentes de alho picados")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1 limão espremido")
-    ingrediente_4.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Frango Assado"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Preaqueça o forno a 180°C.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Tempere o frango com o sal, a pimenta-do-reino, o alho e o limão espremido.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Coloca o frango em uma assadeira e leve ao forno por cerca de 1 hora e 30 minutos, ou até que o frango esteja assado e dourado.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Retire o frango do forno e deixe descansar por alguns minutos antes de servir. Corte em pedaços e sirva ainda quente.\n")
-
-    # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para adicionar um comentário
-    botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaEmpadaoCarne():
-    # Cria a janela principal
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
-
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
-
-    ingrediente_1 = tk.Label(janela, text="1 kg de carne moída")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1 cebola, picada")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="1 pimentão verde picado")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="2 dentes de alho picados")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="1 xícara de caldo de carne")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1 xícara de molho de tomate")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="Sal e pimenta a gosto")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="1 pacote de massa para empadão")
-    ingrediente_8.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Empadao de Carne"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Em uma panela grande, frite a carne moída em fogo médio-alto até que esteja cozida. Escorra o excesso de gordura.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Adicione a cebola, pimentão e alho picado à panela. Refogue até que os vegetais estejam macios.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Adicione o caldo de carne, molho de tomate, e uma pitada de sal e pimenta. Cozinhe por 10 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Deixe ferver e deixe cozinhar por 10 minutos.\n")
-    instrucoes_texto.insert(tk.END, "5. Pré-aqueça o forno a 190°C.\n")
-    instrucoes_texto.insert(
-        tk.END, "6. Abra a massa para empadão em uma espessura de 0,5 cm e corte círculos com a ajuda de um cortador ou uma tampa de panela grande.\n")
-    instrucoes_texto.insert(
-        tk.END, "7. Coloque uma colher de carne no centro de cada círculo de massa.\n")
-    instrucoes_texto.insert(
-        tk.END, "8. Dobre a massa ao meio, formando um meio-luar, pressione as bordas para fechar.\n")
-    instrucoes_texto.insert(
-        tk.END, "9. Disponha os empadões em uma assadeira e leve ao forno por cerca de 25-30 minutos, ou até que esteja dourado e crocante.\n")
-    instrucoes_texto.insert(tk.END, "10. Sirva quente.\n")
-
-    # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para adicionar um comentário
-    botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaBacalhau():
-    # Create the main window
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Create labels
-    recipe_title = tk.Label(janela, text="Título da Receita")
-    recipe_title.pack()
-
-    ingredients = tk.Label(janela, text="Ingredientes:")
-    ingredients.pack()
-
-    ingredient_1 = tk.Label(
-        janela, text="1 libra de bacalhau dessalgado, deixado de molho durante a noite e escorrido")
-    ingredient_1.pack()
-
-    ingredient_2 = tk.Label(
-        janela, text="4 batatas, descascadas e cortadas em pedaços")
-    ingredient_2.pack()
-
-    ingredient_3 = tk.Label(janela, text="1 cebola picada")
-    ingredient_3.pack()
-
-    ingredient_4 = tk.Label(janela, text="2 dentes de alho picados")
-    ingredient_4.pack()
-
-    ingredient_5 = tk.Label(janela, text="1 xícara de leite")
-    ingredient_5.pack()
-
-    ingredient_6 = tk.Label(janela, text="1/2 xícara de creme de leite")
-    ingredient_6.pack()
-
-    ingredient_7 = tk.Label(janela, text="1/4 xícara de azeite")
-    ingredient_7.pack()
-
-    ingredient_8 = tk.Label(janela, text="Sal e pimenta a gosto")
-    ingredient_8.pack()
-
-    preparation_instructions = tk.Label(janela, text="Instruções de Preparo:")
-    preparation_instructions.pack()
-
-    # Create the text area for the preparation instructions
-    instructions_text = tk.Text(janela)
-    instructions_text.pack()
-
-    # Add recipe data to the components
-    recipe_title["text"] = "Bacalhau"
-
-    instructions_text.insert(tk.END, "1. Em uma panela grande, cubra o bacalhau com água. Leve ao fogo alto e deixe ferver, em seguida, reduza o fogo e deixe cozinhar por 10-15 minutos, ou até que o bacalhau esteja macio. Escorra e desfie o bacalhau com um garfo.\n")
-    instructions_text.insert(
-        tk.END, "2. Em outra panela, cozinhe as batatas em água com sal até que estejam macias. Escorra e amasse as batatas.\n")
-    instructions_text.insert(
-        tk.END, "3. Em uma frigideira grande, refogue a cebola e alho no azeite até que estejam macios.\n")
-    instructions_text.insert(
-        tk.END, "4. Adicione o bacalhau desfiado, batatas amassadas, leite, creme de leite e um pitada de sal e pimenta. Cozinhe por alguns minutos, até que a mistura esteja quente.\n")
-    instructions_text.insert(tk.END, "5. Pré-aqueça o forno a 180°C.\n")
-    instructions_text.insert(
-        tk.END, "6. Transfira a mistura de bacalhau para uma assadeira. Leve ao forno pré-aquecido por 20-25 minutos, ou até que esteja dourado e levemente bolhante.\n")
-    instructions_text.insert(tk.END, "7. Sirva quente.\n")
-
-    # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para adicionar um comentário
-    botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaCamarao():
-    # Create the main window
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Create labels
-    recipe_title = tk.Label(janela, text="Título da Receita")
-    recipe_title.pack()
-
-    ingredients = tk.Label(janela, text="Ingredientes:")
-    ingredients.pack()
-
-    ingredient_1 = tk.Label(janela, text="1 kg de camarão limpo e sem casca")
-    ingredient_1.pack()
-
-    ingredient_2 = tk.Label(
-        janela, text="3 colheres de sopa de azeite de oliva")
-    ingredient_2.pack()
-
-    ingredient_3 = tk.Label(janela, text="2 dentes de alho picados")
-    ingredient_3.pack()
-
-    ingredient_4 = tk.Label(janela, text="1/4 xícara de suco de limão")
-    ingredient_4.pack()
-
-    ingredient_5 = tk.Label(janela, text="1/4 xícara de vinho branco")
-    ingredient_5.pack()
-
-    ingredient_6 = tk.Label(
-        janela, text="1/4 xícara de caldo de frango ou água")
-    ingredient_6.pack()
-
-    ingredient_7 = tk.Label(janela, text="1/4 xícara de coentro picado")
-    ingredient_7.pack()
-
-    ingredient_8 = tk.Label(janela, text="Sal e pimenta do reino a gosto")
-    ingredient_8.pack()
-
-    preparation_instructions = tk.Label(janela, text="Instruções de Preparo:")
-    preparation_instructions.pack()
-
-def janelaFeijoadaPeixe():
-    # Cria a janela principal
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
-
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
-
-    ingrediente_1 = tk.Label(janela, text="2 kg de peixe (corvina, pescada ou outro de sua preferência)")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="2 kg de feijão preto")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="3 cebolas grandes")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="3 dentes de alho")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="2 tabletes de caldo de camarão")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1/2 xícara de azeite")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="1/2 xícara de óleo")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="1 xícara de farinha de mandioca")
-    ingrediente_8.pack()
-
-    ingrediente_9 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_9.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Feijoada de Peixe"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Lave bem o peixe e corte em pedaços.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Coloque o feijão de molho por pelo menos 12 horas.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Escorra o feijão e cozinhe-o em água fervente com cebola e alho até ficar macio.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Em uma panela, refogue a cebola e o alho com o azeite e o óleo.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Adicione o peixe, tempere com sal e pimenta-do-reino e refogue por cerca de 5 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "6. Acrescente o caldo de camarão e a farinha de mandioca dissolvida em água.\n")
-    instrucoes_texto.insert(
-        tk.END, "7. Misture bem, cubra a panela e deixe cozinhando por cerca de 15 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "8. Por último, adicione o feijão ao peixe e deixe ferver por mais 10 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "9. Sirva a feijoada ainda quente e acompanhada de arroz branco.\n")
-    # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para adicionar um comentário
-    botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaGaropa():
-    # Cria a janela principal
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
-
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
-
-    ingrediente_1 = tk.Label(janela, text="2 filés de peixe garopa")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1 cebola picada")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="2 dentes de alho picados")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1/2 xícara de suco de limão")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_5.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Peixe Garopa Assado"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Tempere os filés de peixe com sal e pimenta-do-reino.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Coloque o peixe em um refratário com a cebola e o alho. Regue com o suco de limão.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Leve ao forno pré-aquecido a 200°C por aproximadamente 15 minutos, ou até que os filés estejam assados e dourados.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Retire do forno e sirva ainda quente.\n")
-    # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para adicionar um comentário
-    botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaPolvo():
-    # Cria a janela principal
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
-
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
-
-    ingrediente_1 = tk.Label(janela, text="1 polvo médio")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="3 dentes de alho")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="2 colheres (sopa) de azeite")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_4.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Polvo Assado"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Lave e limpe bem o polvo.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Coloque o polvo em uma assadeira e tempere com o sal, a pimenta-do-reino, o alho e o azeite.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Leve ao forno preaquecido a 200°C por cerca de 40 minutos, virando o polvo ao meio do tempo.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Retire do forno e sirva quente.\n")
-    # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para adicionar um comentário
-    botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaSalmao():
-    # Cria a janela principal
-    janela = tk.Tk()
-    janela.title("Receita")
-
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
-
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
-
-    ingrediente_1 = tk.Label(janela, text="2 filés de salmão")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="2 colheres de sopa de azeite")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="2 dentes de alho picados")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="Limão espremido a gosto")
-    ingrediente_5.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Salmão Assado"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Pré-aqueça o forno a 200°C.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Tempere os filés de salmão com sal e pimenta-do-reino.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Em uma assadeira, coloque os filés de salmão e regue-os com azeite.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Adicione o alho e o limão e leve ao forno por cerca de 15 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Retire do forno e sirva quente com salada ou acompanhamentos de sua preferência.\n")
-    # Cria o botão para marcar a receita como favorita
-    botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para adicionar um comentário
-    botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
-
-    # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
-
-def janelaSbacalhau():
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
     
-    # Cria a janela principal
+def janelaPizza(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Mini Pizzas")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Mini Pizzas"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1/2 xícara de leite morno\n1/2 xícara de água morna\n2 colheres de sopa de açúcar\n2 colheres de sopa de óleo\n1 colher de chá de sal\n3 xícaras de farinha de trigo\n1 colher de sopa de fermento em pó\n1/2 xícara de molho de tomate\n1/2 xícara de queijo ralado\n1/4 xícara de cebola picada\n1/4 xícara de azeitonas verdes picadas")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Pré-aqueça o forno a 350 graus\n2. Misture o leite, a água, o açúcar, o óleo e o sal\n3. Adicione a farinha e o fermento e misture\n4. Abra a massa e corte em discos\n5. Coloque os discos em assadeiras de 12 polegadas\n6. Cubra com molho, queijo, cebola e azeitonas\n7. Asse por 20 minutos ou até que esteja levemente dourado")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="300 g de bacalhau desfiado")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="2 tomates maduros cortados em cubos")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="2 cebolas roxas cortadas em rodelas")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1/2 xícara (chá) de azeite")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="1/2 xícara (chá) de vinagre de vinho tinto")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1 colher (sopa) de alcaparras")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="1 colher (sopa) de salsinha picada")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="Sal a gosto")
-    ingrediente_8.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Salada de Bacalhau"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Em uma tigela, misture o bacalhau desfiado com os tomates, a cebola e o azeite.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Acrescente o vinagre, as alcaparras e a salsinha.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Tempere com sal a gosto e misture bem.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Leve à geladeira por pelo menos 2 horas antes de servir.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaSbolonhesa():
-    # Cria a janela principal
+def janelaSupremo(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Suprême de Camembert")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Suprême de Camembert"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1 embalagem de massa folhada\n2 ovos\n2 colheres de sopa de creme de leite\n200 gramas de camembert\n2 colheres de sopa de manteiga\n1/2 xícara de leite\n1/2 xícara de cebola picada\n1/2 xícara de bacon picado")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Pré-aqueça o forno a 375 graus\n2. Desembrulhe a massa folhada e coloque-a em uma assadeira\n3. Cubra com o camembert e as cebolas\n4. Misture os ovos, o leite, o creme de leite e o bacon\n5. Despeje sobre o camembert\n6. Coloque os pedaços de manteiga por cima\n7. Asse por 30 minutos ou até que esteja dourado")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="500g de macarrão tipo parafuso")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1/2 lata de molho de tomate")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="1 lata de ervilhas")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1 cebola picada")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="1/2 lata de milho")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1/2 lata de azeitona preta")
-    ingrediente_6.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Salada de Bolonhesa"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Cozinhe o macarrão em uma panela com água fervente até que fique al dente.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Enquanto o macarrão cozinha, prepare a salada. Em uma tigela, misture o molho de tomate, a cebola, as ervilhas, o milho e a azeitona.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Escorra o macarrão quando estiver pronto, e adicione na tigela com os outros ingredientes. Misture bem.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Sirva a salada ainda quente ou à temperatura ambiente.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaSbulgur():
-    # Cria a janela principal
+def janelaRissois(cat,entUtilizador):
+    #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Rissois")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Rissois"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n250 g de massa de pastelaria\n250 g de carne de frango\n1 cebola\n1 dente de alho\n1 colher (sopa) de azeite\nSal e pimenta a gosto\n1 colher (chá) de mostarda\n1/2 limão\n1 colher (sopa) de salsa picada\n1/2 colher (sopa) de vinho branco\n100 g de presunto\n100 g de queijo ralado\nÓleo para fritar")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Desfie o frango e tempere-o com sal, pimenta, mostarda, limão, salsa e vinho branco.\n2. Corte o presunto em cubinhos e adicione-os à mistura.\n3. Corte a cebola e o alho em pedaços pequenos e refogue-os no azeite.\n4. Junte o frango desfiado à cebola e alho e deixe cozinhar por alguns minutos.\n5. Aqueça o óleo para fritar.\n6. Corte a massa de pastelaria em discos.\n7. Coloque os discos de massa num tabuleiro e coloque um pouco de recheio no centro de cada disco.\n8. Cubra com outro disco de massa e aperte bem as bordas com um garfo para fechar.\n9. Frite os rissois em óleo quente até que fiquem dourados.\n10. Escorra em papel absorvente e sirva com o queijo ralado.")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="1 xícara (chá) de bulgur")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1 e 1/2 xícara (chá) de água")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="2 tomates em cubos")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1 cebola roxa cortada em cubinhos")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="1/2 xícara (chá)de pepino em cubos")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1/4 xícara (chá) de azeite")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="2 colheres (sopa) de suco de limão")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="1 colher (sopa) de manjericão picado")
-    ingrediente_8.pack()
-
-    ingrediente_9 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_9.pack()
-
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Salada Bulgur"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Em uma panela, coloque o bulgur com a água, tampe a panela e deixe por 15 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Em uma tigela, coloque o bulgur, os tomates, a cebola, o pepino, o azeite, o suco de limão, o manjericão, sal e pimenta-do-reino.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Misture bem e leve à geladeira por 1 hora. Sirva em seguida.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaSdelicias():
-    # Cria a janela principal
+def janelaTapas(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Tapas")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Tapas"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1/2 xícara de azeite de oliva\n1/4 de xícara de limão\n1 cebola picada\n2 dentes de alho picados\n1/4 de xícara de pimentão vermelho picado\n2 tomates maduros picados\n1 colher de chá de orégano\n1/4 de colher de chá de alho em pó\n1/4 de colher de chá de sal\n1/8 de colher de chá de pimenta preta")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Aqueça o azeite em uma panela média\n2. Adicione a cebola, alho e pimentão e cozinhe por 5 minutos\n3. Adicione os tomates, orégano, alho em pó, sal e pimenta e cozinhe por mais 3 minutos\n4. Retire do fogo e adicione o suco de limão\n5. Despeje em tigelinhas individuais\n6. Sirva quente ou à temperatura ambiente")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="1 xícara de azeitonas verdes picadas")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1 xícara de milho verde")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="2 cenouras raladas")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1/2 xícara de cebola em cubos")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="1/2 xícara de azeite")
-    ingrediente_5.pack()
- 
-    ingrediente_6 = tk.Label(janela, text="1/2 xícara de vinagre de maçã")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="1/4 xícara de salsinha picada")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_8.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Salada de Delícias"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Em uma tigela grande, misture o milho, as azeitonas, a cenoura, a cebola e a salsinha.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Em uma tigela pequena, misture o azeite, o vinagre, o sal e a pimenta-do-reino.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Despeje a mistura de azeite sobre a salada e misture bem.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Sirva a salada ainda quente ou refrigerada.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaSfrango():
-    # Cria a janela principal
+def janelaFrancesinha(cat,entUtilizador):
+    #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Francesinha")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Francesinha"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1/2 xícara de manteiga\n2 colheres de sopa de farinha\n2 xícaras de leite\n1/2 colher de chá de sal\n1/4 colher de chá de noz-moscada\n2 xícaras de carne moída\n1 xícara de queijo cheddar ralado\n1/4 xícara de cebola picada\n1/4 xícara de tomate picado\n1/4 xícara de presunto picado\n1/4 xícara de azeitona picada")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Pré-aqueça o forno a 375 graus\n2. Derreta a manteiga em uma panela\n3. Adicione a farinha e mexa por 2 minutos\n4. Adicione o leite e mexa até engrossar\n5. Tempere com sal e noz-moscada\n6. Em uma tigela, misture a carne, o queijo, a cebola, o tomate, o presunto e a azeitona\n7. Coloque a mistura em um pirex de 9 polegadas\n8. Cubra com a mistura de manteiga\n9. Asse por 40 minutos ou até que esteja dourado")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="200g de frango cozido e desfiado")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1 pimentão verde cortado em cubos")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="1 cebola roxa cortada em cubos")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="100g de milho cozido")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="100g de ervilha cozida")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1/2 xícara de azeite")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="1/2 xícara de vinagre de maçã")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_8.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Salada de Frango"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Em uma tigela, misture o frango, o pimentão, a cebola, o milho e a ervilha.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Em outra tigela, misture o azeite, o vinagre, o sal e a pimenta-do-reino.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Junte o líquido à tigela com os ingredientes sólidos e misture bem.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Coloque a salada na geladeira por algumas horas antes de servir.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaSsalsichas():
-    # Cria a janela principal
+def janelaBifesPeru(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Bife de Peru")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Bife de Peru"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n2 bifes de peru\n1/4 xícara de vinagre de maçã\n1 colher de sopa de azeite\n1 colher de sopa de mel\n1 colher de chá de mostarda\n1/2 colher de chá de sal\n1/4 colher de chá de pimenta\n1/4 xícara de cebola finamente picada\n1 dente de alho picado")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Coloque os bifes de peru em uma tigela\n2. Misture o vinagre de maçã, o azeite, o mel, a mostarda, o sal e a pimenta\n3. Coloque a mistura sobre os bifes\n4. Adicione a cebola e o alho a mistura\n5. Deixe marinar por 20 minutos\n6. Pré-aqueça uma frigideira em fogo médio-alto\n7. Coloque os bifes na frigideira e deixe-os dourar dos dois lados\n8. Cozinhe os bifes por 10 minutos ou até que estejam cozidos")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="1kg de salsichas cozidas")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1 xícara (chá) de azeitonas verdes")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="1 maço de alface crespa")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1 cebola roxa")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="2 tomates maduros")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1 xícara (chá) de azeite")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="1/2 xícara (chá) de vinagre balsâmico")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="2 colheres (sopa) de mostarda")
-    ingrediente_8.pack()
-
-    ingrediente_9 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_9.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Salada de Salsichas"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Corte as salsichas cozidas em rodelas e coloque-as em uma tigela. \n")
-    instrucoes_texto.insert(
-        tk.END, "2. Corte a alface, a cebola e os tomates em pedaços pequenos e coloque-os na tigela com as salsichas. \n")
-    instrucoes_texto.insert(
-        tk.END, "3. Coloque as azeitonas verdes na tigela. \n")
-    instrucoes_texto.insert(
-        tk.END, "4. Em uma tigela separada, misture o azeite, o vinagre balsâmico, a mostarda, o sal e a pimenta-do-reino. \n")
-    instrucoes_texto.insert(
-        tk.END, "5. Despeje a mistura sobre a salada e misture bem. \n")
-    instrucoes_texto.insert(
-        tk.END, "6. Sirva a salada de salsichas ainda quente. \n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaCaneloneVegetariano():
-    # Cria a janela principal
+def janelaPicanha(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Picanha")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Picanha"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1 picanha\nSal grosso\nAzeite\nAlho\nPimenta-do-reino\nLimão")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Lave a picanha com água e seque-a bem\n2. Coloque a picanha em uma assadeira e tempere com sal grosso, alho, pimenta-do-reino, azeite e limão\n3. Leve a assadeira ao forno pré-aquecido a 220ºC\n4. Deixe assar por aproximadamente 45 minutos ou até que o líquido se evapore\n5. Sirva a carne ainda quente")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="1 pacote de canelone (sem ovos)")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1 colher de sopa de azeite")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="1 cebola picada")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="2 dentes de alho picados")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="2 xícaras de molho de tomate")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="2 xícaras de ricota")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="2 xícaras de espinafre picado")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="1/2 xícara de queijo parmesão ralado")
-    ingrediente_8.pack()
-
-    ingrediente_9 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_9.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Canelone Vegetariano"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Em uma panela, aqueça o azeite e refogue a cebola e o alho.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Junte o molho de tomate e misture bem.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Em seguida, adicione a ricota, o espinafre e o queijo parmesão. Misture bem.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Tempere com sal e pimenta-do-reino a gosto.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Reserve.\n")
-    instrucoes_texto.insert(
-        tk.END, "6. Em uma assadeira, coloque uma camada de molho de tomate e, em seguida, coloque uma camada de canelone preenchido com a ricota.\n")
-    instrucoes_texto.insert(
-        tk.END, "7. Repita o processo até terminar todos os ingredientes.\n")
-    instrucoes_texto.insert(
-        tk.END, "8. Polvilhe o queijo parmesão ralado.\n")
-    instrucoes_texto.insert(
-        tk.END, "9. Leve ao forno preaquecido a 180°C por aproximadamente 25 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "10. Sirva quente.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaCogumelos():
-    # Cria a janela principal
+def janelaCaril(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Frango Caril")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Frango Caril"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n4 filés de frango\n1/4 xícara de azeite\n1 cebola picada\n2 dentes de alho picados\n1 xícara de tomate pelado\n2 xícaras de caldo de galinha\n1/2 xícara de leite de coco\n1 colher de chá de caril em pó\n1 colher de chá de gengibre em pó\n1 colher de chá de cominhos em pó\n1/2 colher de chá de pimenta caiena\n1/4 xícara de salsinha picada")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Aqueça o azeite em uma panela grande\n2. Junte a cebola e o alho e refogue por 3 minutos\n3. Adicione o tomate, o caldo de galinha, o leite de coco, o caril, o gengibre, os cominhos e a pimenta caiena\n4. Misture bem e deixe ferver por 5 minutos\n5. Adicione o frango e cozinhe por 15 minutos ou até que o frango esteja cozido\n6. Sirva em seguida com salsinha picada")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="4 cogumelos portobello")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1 colher de sopa de azeite")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="1/4 de xícara de cebola picada")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1 dente de alho picado")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="1/2 xícara de abobrinha em cubos")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1/2 xícara de tomate em cubos")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="1/4 xícara de queijo parmesão ralado")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="1 colher de sopa de salsa picada")
-    ingrediente_8.pack()
-
-    ingrediente_9 = tk.Label(janela, text="Sal e pimenta a gosto")
-    ingrediente_9.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Cogumelos Recheados Vegetarianos"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Pré-aqueça o forno a 200 °C.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Limpe os cogumelos e retire os talos e as gílias.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Em uma frigideira, aqueça o azeite e refogue a cebola e o alho.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Acrescente a abobrinha, o tomate, o queijo parmesão e a salsa. Misture bem e deixe cozinhar por 5 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Tempere com sal e pimenta a gosto.\n")
-    instrucoes_texto.insert(
-        tk.END, "6. Recheie os cogumelos com a mistura de legumes.\n")
-    instrucoes_texto.insert(
-        tk.END, "7. Coloque os cogumelos em uma assadeira untada com azeite.\n")
-    instrucoes_texto.insert(
-        tk.END, "8. Asse por 15 minutos ou até que os cogumelos estejam macios e dourados.\n")
-    instrucoes_texto.insert(
-        tk.END, "9. Sirva os cogumelos recheados ainda quentes.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaCrepeVegetariano():
-    # Cria a janela principal
+def janelaFrango(cat,entUtilizador):
+   #CRIAR UMA JANELA
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #DEFINIR O TÍTULO DA JANELA
+    janela.title("Frango")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #não permitir que a janela seja redimensionada
+    janela.resizable(0,0)
+    titulo_receita = "Frango"
+    #ADICIONAR UMA CAIXA DE TEXTO À JANELA
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADICIONAR TEXTO À CAIXA DE TEXTO CENTRALIZADO
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1 xícara de farinha\n1/2 xícara de manteiga\n3/4 xícara de água fria\n1/2 colher de sal\n2 ovos\n1/2 xícara de leite\n1/2 xícara de creme de leite\n2 xícaras de queijo cheddar ralado\n1/2 xícara de cebola picada\n1/2 xícara de bacon cozido e picado")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADICIONAR UMA CAIXA DE TEXTO À JANELA
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADICIONAR TEXTO À CAIXA DE TEXTO CENTRALIZADO
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Pré-aqueça o forno a 375 graus\n2. Misture a farinha, sal e manteiga\n3. Adicione água fria até que a mistura fique homogênea\n4. Abra a massa e coloque-a em um pirex de 9 polegadas\n5. Aqueça o bacon e a cebola por 3 minutos\n6. Misture o ovo, o leite, o creme de leite, o queijo, o bacon e a cebola\n7. Despeje a mistura no pirex\n8. Asse por 40 minutos ou até que esteja dourado")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="1 xícara de farinha de trigo")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1/2 xícara de leite")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="2 ovos")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1 colher de sopa de óleo")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="1/2 xícara de azeite")
-    ingrediente_5.pack()
- 
-    ingrediente_6 = tk.Label(janela, text="1/2 xícara de milho verde")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="2 cenouras raladas")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="1/2 xícara de cebola em cubos")
-    ingrediente_8.pack()
-
-    ingrediente_9 = tk.Label(janela, text="1/4 xícara de salsinha picada")
-    ingrediente_9.pack()
-
-    ingrediente_10 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_10.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Crepe Vegetariano"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Em uma tigela, misture a farinha, o leite, os ovos e o óleo. Misture bem até não haver grumos.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Despeje uma quantidade generosa de óleo em uma frigideira antiaderente e aqueça em fogo médio.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Despeje 1/4 xícara da massa na frigideira e espalhe-a para formar um círculo.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Cozinhe o crepe por cerca de 1 minuto, ou até que este fique dourado. Vire o crepe e cozinhe por mais 30 segundos.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Enquanto o crepe cozinha, misture o milho, as cenouras, a cebola, a salsinha e os temperos em uma tigela.\n")
-    instrucoes_texto.insert(
-        tk.END, "6. Quando o crepe estiver pronto, espalhe a mistura de vegetais por cima. Enrole o crepe e sirva.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaFolhadoVegetariano():
-    # Cria a janela principal
+def janelaEmpadaoCarne(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Empadão de Carne")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Empadão de Carne"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1/2 kg de carne moída\n1 cebola média picada\n1 xícara de molho de tomate\n1 colher (sopa) de cheiro verde\n1 colher (café) de orégano\n1 colher (sopa) de azeite\nsal a gosto\n2 xícaras de farinha de trigo\n1/2 xícara de óleo\n1/2 xícara de leite\n1 ovo")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Em uma panela, refogue a cebola e a carne moída\n2. Adicione o molho de tomate, o cheiro verde, o orégano, o azeite e o sal.\n3. Misture bem e deixe cozinhar por 5 minutos.\n4. Em uma tigela, misture a farinha com o óleo, o leite e o ovo.\n5. Misture bem até obter uma massa homogênea.\n6. Abra a massa em um refratário e coloque a carne refogada por cima.\n7. Cubra com a massa restante.\n8. Asse em forno pré-aquecido a 180°C por aproximadamente 40 minutos.")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="2 pacotes de massa folhada")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1 xícara de cebola em cubos")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="1/2 xícara de azeite")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1/2 xícara de queijo parmesão ralado")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="250mL de leite")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1 xícara de molho de tomate")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="1 cenoura em cubos pequenos")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="1/2 xícara de ervilhas")
-    ingrediente_8.pack()
-
-    ingrediente_9 = tk.Label(janela, text="1 colher de sopa de azeite extra-virgem")
-    ingrediente_9.pack()
-
-    ingrediente_10 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_10.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Folhado Vegetariano"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Pré-aqueça o forno a 180°C.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Em uma panela, coloque o azeite e a cebola e deixe refogar por alguns minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Acrescente o molho de tomate, a cenoura, as ervilhas, o sal e a pimenta-do-reino e deixe cozinhar por mais alguns minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Despeje o leite na panela, misture e deixe cozinhar por mais alguns minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Retire a panela do fogo e deixe esfriar.\n")
-    instrucoes_texto.insert(
-        tk.END, "6. Em uma assadeira, coloque uma das massas folhadas.\n")
-    instrucoes_texto.insert(
-        tk.END, "7. Espalhe a mistura de legumes sobre a massa folhada.\n")
-    instrucoes_texto.insert(
-        tk.END, "8. Cubra com a segunda massa folhada e pressione os bordos para fechar.\n")
-    instrucoes_texto.insert(
-        tk.END, "9. Pincele a superfície com o azeite extra-virgem e polvilhe o queijo parmesão.\n")
-    instrucoes_texto.insert(
-        tk.END, "10. Leve para assar em forno pré-aquecido por aproximadamente 25 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "11. Retire do forno e sirva quente.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaMigasVegetariano():
-    # Cria a janela principal
+def janelaBacalhau(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Bacalhau")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Bacalhau"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1 kg de bacalhau limpo\n2 colheres de sopa de azeite\n1 colher de sopa de alho picado\n2 tomates maduros picados\n2 cebolas grandes picadas\n1/2 xícara de azeitona verde\n1/2 xícara de azeitona preta\n1/2 xícara de salsinha picada\n1 copo de vinho branco\n1/2 xícara de passas\nSal e pimenta a gosto")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Coloque o bacalhau em uma assadeira\n2. Regue com o azeite, sal, pimenta e o alho picado\n3. Adicione as cebolas, o tomate, as azeitonas, a salsinha e as passas\n4. Regue com o vinho\n5. Leve ao forno pré-aquecido por 40 minutos ou até o bacalhau ficar dourado")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="2 colheres de sopa de azeite")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1 cebola grande em cubos")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="2 dentes de alho picados")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="3 tomates maduros picados")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="1 pimentão vermelho em cubos")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1/2 xícara de azeitonas verdes")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="1 xícara de pão em cubos")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_8.pack()
-
-    ingrediente_9 = tk.Label(janela, text="1/4 xícara de salsinha picada")
-    ingrediente_9.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Migas Vegetarianas"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Aqueça o azeite em uma panela grande.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Adicione a cebola, o alho, os tomates e o pimentão. Refogue por 5 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Adicione as azeitonas, o pão e tempere com sal e pimenta.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Refogue por mais 10 minutos, mexendo ocasionalmente.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Desligue o fogo e misture a salsinha.\n")
-    instrucoes_texto.insert(
-        tk.END, "6. Sirva quente.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaOvosVegetarianos():
-    # Cria a janela principal
+def janelaCamarao(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Camarão")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Camarão"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n500 g de camarão\n2 dentes de alho\n1 cebola grande\n2 colheres de sopa de azeite\n1 colher de sopa de manteiga\n1 colher de sopa de molho de tomate\n1/2 colher de chá de pimenta caiena\n1/2 colher de chá de pimenta-do-reino\n1/2 colher de chá de sal\n1/2 limão (sumo)")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Lave os camarões e coloque-os em uma tigela.\n2. Em uma tigela separada, misture o alho, a cebola, o azeite, a manteiga, o molho de tomate, a pimenta caiena, a pimenta-do-reino e o sal.\n3. Despeje a mistura de temperos sobre os camarões e misture bem.\n4. Deixe os camarões marinando por 15 minutos.\n5. Em uma frigideira grande, aqueça um pouco de azeite.\n6. Adicione os camarões e cozinhe por cerca de 5 minutos.\n7. Regue com o suco de limão e sirva.")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="4 ovos cozidos")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1/3 xícara de queijo ralado")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="2 colheres de sopa de salsa")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1/4 xícara de cebola picada")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="1/4 xícara de cenoura picada")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1/4 xícara de milho verde")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_7.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Ovos Recheados Vegetarianos"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Corte um dos lados dos ovos cozidos para abrir.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Retire a gema dos ovos e coloque em uma tigela.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Misture a gema dos ovos com o queijo, a salsa, a cebola, a cenoura e o milho.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Tempere com sal e pimenta-do-reino a gosto.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Recheie os ovos com a mistura anterior.\n")
-    instrucoes_texto.insert(
-        tk.END, "6. Sirva os ovos recheados ainda quentes.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaSopaCenoura():
-    # Cria a janela principal
+def janelaFeijoadaPeixe(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Feijoada de Peixe")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Feijoada de Peixe"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n2 xícaras de arroz\n3 xícaras de água\n1 cebola média picada\n1 dente de alho picado\n1/2 xícara de azeite de oliva\n1 lata de tomate pelado\n1/2 xícara de azeitonas pretas\n1/2 xícara de azeitonas verdes\n1 xícara de feijão preto cozido\n1/2 xícara de ervilhas congeladas\n1 colher de sopa de colorau\n1 lata de sardinhas em lata\n1/2 xícara de camarão cozido")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Coloque o arroz em uma panela e adicione água e sal\n2. Ferva por 15 minutos ou até o arroz estar cozido\n3. Escorra o arroz e reserve\n4. Aqueça o azeite em uma panela grande\n5. Adicione a cebola e o alho e cozinhe até que a cebola esteja murcha\n6. Adicione o tomate pelado, as azeitonas, o feijão, as ervilhas, o colorau, as sardinhas e o camarão\n7. Misture bem e deixe ferver por 10 minutos\n8. Adicione o arroz à panela e misture bem\n9. Deixe ferver por 10 minutos e sirva")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="2 cebolas picadas")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="5 cenouras raladas")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="1 litro de água")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1/2 xícara de azeite")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_5.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Sopa de Cenoura"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Em uma panela, aqueça o azeite e doure a cebola.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Adicione a cenoura e refogue por 5 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Adicione a água e deixe ferver por 10 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Tempere com sal e pimenta-do-reino a gosto.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Bata no liquidificador até obter uma consistência homogênea.\n")
-    instrucoes_texto.insert(
-        tk.END, "6. Sirva quente.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaSopaPedra():
-    # Cria a janela principal
+def janelaGaropa(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Garopa")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Garopa"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1/2 xícara de açúcar mascavo\n1/2 xícara de açúcar\n1/2 xícara de óleo de canola\n2 ovos\n1/2 xícara de leite\n1/2 xícara de suco de laranja\n2 xícaras de farinha de trigo\n1 colher de chá de canela em pó\n1 colher de chá de fermento em pó\n1/2 colher de chá de sal")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Pré-aqueça o forno a 375 graus\n2. Misture o açúcar mascavo, o açúcar, o óleo, o ovo e o leite\n3. Misture o suco de laranja, a farinha, a canela, o fermento e o sal\n4. Misture os dois misturas até obter uma massa homogênea\n5. Despeje a massa em uma forma untada\n6. Asse por 35 a 40 minutos ou até que esteja dourado")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="2 litros de água")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="2 cebolas médias cortadas em cubos")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="2 tomates grandes picados")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="2 colheres de sopa de azeite")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="2 dentes de alho picados")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="1 pedra de sal")
-    ingrediente_7.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Sopa Pedra"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Em uma panela grande, aqueça o azeite em fogo médio.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Acrescente a cebola, o alho e o tomate. Refogue por cerca de 5 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Despeje a água e coloque a pedra de sal.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Deixe cozinhar por cerca de 15 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Tempere com sal e pimenta-do-reino a gosto.\n")
-    instrucoes_texto.insert(
-        tk.END, "6. Desligue o fogo e sirva.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaSopaConquilha():
-    # Cria a janela principal
+def janelaPolvo(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Polvo")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Polvo"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1 Polvo\n1 Limão\n1 Cebola\n2 Dentes de alho\n1 Xícara de azeite de oliva\n1 Colher de sopa de vinho branco\n2 Colheres de sopa de salsa picada\n1 Colher de sopa de coentro picado\n1 Pitada de pimenta do reino\nSal a gosto")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Coloque o polvo em uma panela com água e sal\n2. Cozinhe por 25 minutos\n3. Retire o polvo da água e deixe esfriar\n4. Corte a cebola em pedaços pequenos\n5. Coloque o azeite em uma panela e adicione a cebola, o alho e o polvo\n6. Refogue por cerca de 5 minutos\n7. Junte o vinho branco, a salsa, o coentro, o limão, a pimenta do reino e sal a gosto\n8. Deixe cozinhar por mais 20 minutos")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="1 litro de água")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1/2 xícara de cebola em cubos")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="1/4 xícara de azeite")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="1/2 xícara de arroz integral")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="1 xícara de conquilhas")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1/2 xícara de tomate em cubos")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_7.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Sopa de Conquilha"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Em uma panela, aqueça o azeite e refogue a cebola. \n")
-    instrucoes_texto.insert(
-        tk.END, "2. Adicione o arroz e deixe por alguns minutos para refogar. \n")
-    instrucoes_texto.insert(
-        tk.END, "3. Adicione a água, o tomate e as conquilhas. \n")
-    instrucoes_texto.insert(
-        tk.END, "4. Tempere com sal e pimenta do reino a gosto. \n")
-    instrucoes_texto.insert(
-        tk.END, "5. Deixe a sopa cozinhar até que as conquilhas estejam prontas. \n")
-    instrucoes_texto.insert(
-        tk.END, "6. Sirva a sopa ainda quente. \n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaSopaPeixe():
-    # Cria a janela principal
+def janelaSalmao(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Salmão")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Salmão"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n2 filés de salmão\n2 colheres de sopa de manteiga\n1/4 de xícara de suco de limão\n1 colher de sopa de alho picado\n1/4 de colher de chá de sal\n1/4 de colher de chá de pimenta\n1/4 de xícara de salsa fresca picada")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Pré-aqueça o forno a 375 graus\n2. Coloque os filés de salmão em um prato para assar\n3. Derreta a manteiga em uma panela pequena\n4. Adicione o suco de limão, o alho, o sal e a pimenta\n5. Despeje a mistura de manteiga sobre o salmão\n6. Polvilhe a salsa fresca desidratada sobre o salmão\n7. Asse por 15 a 20 minutos ou até que o peixe esteja dourado e cozido")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="1 cebola picada")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="2 dentes de alho picados")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="1/2 xícara de azeite")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="2 tomates maduros cortados em cubos")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="2 xícaras de água")
-    ingrediente_5.pack()
-
-    ingrediente_6 = tk.Label(janela, text="1/2 xícara de vinho branco")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="1/2 colher de chá de pimenta-do-reino")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="1/4 colher de chá de sal")
-    ingrediente_8.pack()
-
-    ingrediente_9 = tk.Label(janela, text="1/4 xícara de azeitonas pretas picadas")
-    ingrediente_9.pack()
-
-    ingrediente_10 = tk.Label(janela, text="400 g de filé de peixe")
-    ingrediente_10.pack()
-
-    ingrediente_11 = tk.Label(janela, text="1 xícara de salsinha picada")
-    ingrediente_11.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Sopa de Peixe"
-
-    instrucoes_texto.insert(tk.END, "1. Em uma panela, aqueça o azeite e refogue a cebola e o alho por 2 minutos.\n")
-    instrucoes_texto.insert(tk.END, "2. Acrescente os tomates, a água, o vinho, a pimenta-do-reino, o sal e as azeitonas. Misture bem.\n")
-    instrucoes_texto.insert(tk.END, "3. Deixe ferver por 10 minutos.\n")
-    instrucoes_texto.insert(tk.END, "4. Adicione o peixe e deixe cozinhar por mais 5 minutos.\n")
-    instrucoes_texto.insert(tk.END, "5. Desligue o fogo e adicione a salsinha.\n")
-    instrucoes_texto.insert(tk.END, "6. Sirva a sopa quente.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaSopaJuliana():
-    # Cria a janela principal
+def janelaSbacalhau(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Salada de Bacalhau")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Salada de Bacalhau"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1/2 quilo de bacalhau desfiado\n2 ovos cozidos\n2 tomates maduros\n1/2 pimentão verde\n1/2 pimentão vermelho\n1 cebola roxa média\n50 ml de azeite\nSuco de 1/2 limão\n1/2 maço de salsinha")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Cozinhe o bacalhau em água até que esteja macio\n2. Desfie o bacalhau\n3. Pique os tomates, pimentões e cebola\n4. Corte os ovos cozidos em quartos\n5. Misture todos os ingredientes em uma tigela\n6. Tempere com azeite, suco de limão e sal\n7. Sirva a salada com salsinha picada")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="2 xícaras de arroz arbóreo")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="1 cebola média")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="2 dentes de alho")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="2 colheres de sopa de manteiga")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="1 litro de água")
-    ingrediente_5.pack()
- 
-    ingrediente_6 = tk.Label(janela, text="2 folhas de louro")
-    ingrediente_6.pack()
-
-    ingrediente_7 = tk.Label(janela, text="1 colher de sopa de colorau")
-    ingrediente_7.pack()
-
-    ingrediente_8 = tk.Label(janela, text="Sal a gosto")
-    ingrediente_8.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Sopa Juliana"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Pique a cebola e o alho e refogue com a manteiga em uma panela grande.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Acrescente o arroz e refogue por alguns minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Coloque a água, o louro, o colorau e sal a gosto.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Deixe ferver por 15 minutos, mexendo sempre.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Desligue o fogo e sirva a sopa quente.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4")
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
-def janelaSopaCaldoVerde():
-    # Cria a janela principal
+def janelaSbolonhesa(cat,entUtilizador):
+   #CREATE A WINDOW
     janela = tk.Tk()
-    janela.title("Receita")
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Salada de Bolonhesa")
 
-    # Cria os rótulos
-    titulo_receita = tk.Label(janela, text="Título da Receita")
-    titulo_receita.pack()
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Salada de Bolonhesa"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n2 xícaras de macarrão\n1/4 xícara de azeite\n1/4 xícara de água\n1/4 de colher de sal\n1/2 xícara de molho de tomate\n1/2 xícara de queijo parmesão ralado\n1/4 de xícara de cebola picada\n1/4 de xícara de alho picado\n1/2 xícara de ervilhas congeladas\n1/4 de xícara de bacon cozido e picado")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
 
-    ingredientes = tk.Label(janela, text="Ingredientes:")
-    ingredientes.pack()
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Cozinhe o macarrão de acordo com as instruções do pacote\n2. Enquanto isso, aqueça o azeite em uma panela\n3. Adicione o alho e a cebola e cozinhe até que estejam macios\n4. Adicione o molho de tomate, a água e o sal\n5. Deixe ferver por 5-10 minutos\n6. Despeje o molho em uma tigela e misture o macarrão, o queijo, as ervilhas e o bacon\n7. Sirva quente")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
 
-    ingrediente_1 = tk.Label(janela, text="1 cebola grande picada")
-    ingrediente_1.pack()
-
-    ingrediente_2 = tk.Label(janela, text="2 dentes de alho picados")
-    ingrediente_2.pack()
-
-    ingrediente_3 = tk.Label(janela, text="200g de batatas cortadas em cubos")
-    ingrediente_3.pack()
-
-    ingrediente_4 = tk.Label(janela, text="200g de couve portuguesa picada")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="1 lata de caldo de legumes")
-    ingrediente_5.pack()
-
-    ingrediente_4 = tk.Label(janela, text="Azeite")
-    ingrediente_4.pack()
-
-    ingrediente_5 = tk.Label(janela, text="Sal e pimenta-do-reino a gosto")
-    ingrediente_5.pack()
-
-    instrucoes = tk.Label(janela, text="Instruções de Preparo:")
-    instrucoes.pack()
-
-    # Cria a área de texto para as instruções de preparo
-    instrucoes_texto = tk.Text(janela)
-    instrucoes_texto.pack()
-
-    # Adiciona os dados da receita aos componentes
-    titulo_receita["text"] = "Sopa Caldo Verde"
-
-    instrucoes_texto.insert(
-        tk.END, "1. Em uma panela, aqueça o azeite e refogue a cebola e o alho por 2 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "2. Adicione as batatas e refogue por mais 5 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "3. Junte o caldo de legumes e a couve e deixe ferver.\n")
-    instrucoes_texto.insert(
-        tk.END, "4. Abaixe o fogo e cozinhe por 15 minutos.\n")
-    instrucoes_texto.insert(
-        tk.END, "5. Tempere com sal e pimenta-do-reino a gosto.\n")
-    instrucoes_texto.insert(
-        tk.END, "6. Sirva a sopa quente.\n")
     # Cria o botão para marcar a receita como favorita
     botao_favorito = tk.Button(
-        janela, text="Marcar como Favorita", width=20, height=2, bg="#ffff00")
-    botao_favorito.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
 
     # Cria o botão para adicionar um comentário
     botao_comentario = tk.Button(
-        janela, text="Adicionar Comentário", width=20, height=2, bg="#1f77b4",command=lambda:comentar(titulo_receita["text"]))
-    botao_comentario.pack(side=tk.LEFT, padx=10, pady=10)
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
 
     # Cria o botão para fechar a janela
-    botao_fechar = tk.Button(janela, text="Fechar", width=20,
-                             height=2, bg="#ff0000", command=janela.destroy)
-    botao_fechar.pack(side=tk.LEFT, padx=10, pady=10)
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+
+def janelaSbulgur(cat,entUtilizador):
+   #CREATE A WINDOW
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Salada de Bulgur")
+
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Salada de Bulgur"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1 xícara de bulgur\n1 xícara de água\n1/4 xícara de azeite de oliva\n1/4 xícara de suco de limão\n2 tomates maduros, sem sementes, picados\n1/4 xícara de cebola picada\n1/4 xícara de hortelã fresca\n1/4 xícara de passas\n1 colher de chá de sal")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=10)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Coloque o bulgur em uma tigela\n2. Aqueça a água em uma panela e despeje sobre o bulgur\n3. Deixe o bulgur de molho por 15 minutos\n4. Escorra o excesso de água\n5. Misture o azeite, suco de limão, tomate, cebola, hortelã e passas com o bulgur\n6. Tempere com sal a gosto\n7. Sirva")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+
+def janelaSdelicias(cat,entUtilizador):
+   #CREATE A WINDOW
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Salada de Delícias do Mar")
+
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Salada de Delícias do Mar"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1 xícara de camarão cozido\n1 xícara de salmão cozido\n1 xícara de atum em lata\n1 xícara de azeitona verde picada\n1/2 xícara de milho\n2 colheres de sopa de cebola picada\n2 colheres de sopa de azeite\n1/4 xícara de limão\nSal e pimenta a gosto")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Coloque todos os ingredientes em uma tigela grande\n2. Misture bem\n3. Adicione o azeite e o limão e misture novamente\n4. Tempere com sal e pimenta a gosto\n5. Deixe descansar na geladeira por 2-3 horas antes de servir")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+
+def janelaSfrango(cat,entUtilizador):
+   #CREATE A WINDOW
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Salada de Frango")
+
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Salada de Frango"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n3 xícaras de frango cozido e desfiado\n1 xícara de maçã verde picada\n1/2 xícara de castanha de caju\n1/2 xícara de passas\n1/2 xícara de abacaxi picado\n1/2 xícara de iogurte natural\n1 colher de chá de sal\n1/4 colher de chá de pimenta-do-reino")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Em uma tigela grande, misture o frango, a maçã, a castanha de caju, as passas e o abacaxi\n2. Em outra tigela pequena, misture o iogurte, o sal e a pimenta.\n3. Coloque a mistura de iogurte sobre o frango e misture até que todos os ingredientes fiquem bem misturados.\n4. Sirva a salada de frango fria.")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+
+def janelaSsalsichas(cat,entUtilizador):
+   #CREATE A WINDOW
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Salada de Salsichas")
+
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Salada de Salsichas"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=8)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n6 salsichas tipo frankfurt\n1/2 xícara de maionese\n1/3 xícara de mostarda\n1/2 xícara de azeite de oliva\n1/4 xícara de vinagre de vinho branco\n2 colheres de sopa de alcaparras\n1/2 xícara de cebola roxa picada\n1/4 xícara de picles picados")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=12)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Cozinhe as salsichas em água fervente por 10 minutos\n2. Escorra a água e deixe esfriar\n3. Corte as salsichas em pedaços de 2 polegadas\n4. Misture a maionese, a mostarda, o azeite, o vinagre, as alcaparras, a cebola e os picles em uma tigela\n5. Adicione as salsichas na tigela e misture bem\n6. Leve a tigela à geladeira por pelo menos 1 hora")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+
+def janelaCaneloneVegetariano(cat,entUtilizador):
+   #CREATE A WINDOW
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Canelone Vegetariano")
+
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Canelone Vegetariano"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n2 xícaras de ricota\n2 xícaras de espinafre picado\n1/2 xícara de queijo parmesão ralado\n1/4 xícara de cebola picada\n2 colheres de sopa de azeite\n1/2 colher de chá de sal\n1/4 colher de chá de pimenta\n1/4 xícara de nozes picadas\n1/4 xícara de salsa picada\n400 g de massa de canelone\n1 xícara de molho de tomate")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Pré-aqueça o forno a 375 graus\n2. Misture a ricota, o espinafre, o queijo parmesão, a cebola, o azeite, o sal e a pimenta\n3. Misture as nozes e a salsa\n4. Encha os canelones com a mistura\n5. Coloque os canelones em um pirex e despeje o molho de tomate\n6. Cubra com papel alumínio e leve ao forno por 25 minutos\n7. Retire o papel alumínio e asse por mais 10 minutos")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+
+def janelaCogumelos(cat,entUtilizador):
+   #CREATE A WINDOW
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Cogumelos")
+
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Cogumelos"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n2 xícaras de cogumelos picados\n3 colheres de sopa de azeite\n2 dentes de alho picados\n1/4 de xícara de cebola picada\n1/4 de xícara de salsinha picada\n1 colher de sopa de vinho branco\nSal e pimenta a gosto")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Aqueça o azeite em uma panela média\n2. Adicione o alho, a cebola e os cogumelos\n3. Cozinhe em fogo médio-alto por 5 minutos\n4. Acrescente a salsinha e o vinho branco\n5. Tempere com sal e pimenta a gosto\n6. Cozinhe por mais 5 minutos ou até que os cogumelos estejam macios\n7. Sirva quente")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+
+def janelaCrepeVegetariano(cat,entUtilizador):
+   #CREATE A WINDOW
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Crepes Vegetarianos")
+
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Crepes Vegetarianos"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1 xícara de farinha\n2 ovos\n1 xícara de leite\n1/4 de colher de sal\n2 colheres de sopa de óleo\n1/2 xícara de cebola picada\n1/4 xícara de cogumelos picados\n1/4 xícara de azeitona\n1/4 xícara de pimentão vermelho picado\n1/2 colher de chá de alho em pó\n1/4 colher de chá de pimenta do reino")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Misture a farinha, o sal e os ovos.\n2. Adicione o leite e mexa bem.\n3. Aqueça o óleo em uma frigideira.\n4. Adicione a cebola, os cogumelos, a azeitona, o pimentão, o alho e a pimenta e refogue por 5 minutos.\n5. Despeje a mistura de crepe na frigideira e cozinhe por 1 minuto.\n6. Vire a crepe e cozinhe por mais 1 minuto.\n7. Repita o processo até acabar toda a massa.")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+
+def janelaFolhadoVegetariano(cat,entUtilizador):
+    #CREATE A WINDOW
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Folhado Vegetariano")
+
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Folhado Vegetariano"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1 embalagem de massa folhada\n1 cebola grande picada\n2 dentes de alho picados\n1 colher de sopa de azeite\n1/2 xícara de cogumelos fatiados\n1/2 xícara de ervilha\n1/4 xícara de espinafre picado\n1/2 xícara de queijo ralado\n1/2 xícara de creme de leite\n1 ovo\nSal e pimenta a gosto")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Pré-aqueça o forno a 350 graus\n2. Em uma panela grande, doure a cebola e o alho no azeite\n3. Adicione os cogumelos, as ervilhas, o espinafre e refogue por 5 minutos\n4. Misture o queijo, o creme de leite e o ovo\n5. Tempere com sal e pimenta a gosto\n6. Abra a massa folhada e coloque-a em uma assadeira de tamanho médio\n7. Despeje a mistura de legumes e cubra com a massa folhada\n8. Asse por 40 minutos ou até que esteja dourado")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+
+def janelaMigasVegetariano(cat,entUtilizador):
+   #CREATE A WINDOW
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Migas Vegetariano")
+
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Migas Vegetariano"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n6 ovos\n1 colher (sopa) de azeite\n2 dentes de alho picados\n2 pimentões vermelhos picados\n3 tomates maduros picados\n1/2 xícara de pão ralado\n1/4 xícara de salsinha picada\n1/4 xícara de cebolinha verde picada\nSal e pimenta-do-reino a gosto")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Bata os ovos em uma tigela\n2. Aqueça o azeite em uma panela\n3. Refogue os alhos e os pimentões\n4. Adicione os tomates e deixe refogar por mais alguns minutos\n5. Adicione os ovos batidos, misture bem\n6. Junte o pão ralado, a salsinha e a cebolinha\n7. Tempere com sal e pimenta-do-reino\n8. Deixe cozinhar até que os ovos estejam no ponto desejado")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+
+def janelaOvosVegetarianos(cat,entUtilizador):
+   #CREATE A WINDOW
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Ovos Vegetarianos")
+
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Ovos Vegetarianos"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1/4 xícara de azeite de oliva\n1/2 cebola picada\n1/2 xícara de pimentão vermelho picado\n1/2 xícara de pimentão amarelo picado\n1/4 xícara de tomate picado\n2 dentes de alho picados\n3 ovos\n3 colheres de sopa de queijo ralado\nSal e pimenta a gosto")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Aqueça o azeite em uma panela média\n2. Adicione a cebola, o pimentão, o tomate e o alho\n3. Cozinhe até que a cebola esteja macia\n4. Assim que a cebola estiver macia, adicione os ovos e mexa até que eles estejam quase cozidos\n5. Polvilhe o queijo por cima dos ovos\n6. Tempere com sal e pimenta a gosto\n7. Tampe a panela e cozinhe por mais alguns minutos ou até o ovo estar completamente cozido")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+
+def janelaSopaCenoura(cat,entUtilizador):
+   #CREATE A WINDOW
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Sopa de Cenoura")
+
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Sopa de Cenoura"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1 kg de cenouras\n1 cebola média\n3 dentes de alho\n1 litro de água\n2 colheres de sopa de azeite\nSal e pimenta a gosto\n2 folhas de louro")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Lave, descasque e corte as cenouras em pedaços pequenos\n2. Em uma panela, coloque as cenouras, a cebola, o alho, a água, as folhas de louro, sal e pimenta a gosto e deixe cozinhar por 30 minutos\n3. Desligue o fogo e bata no liquidificador\n4. Volte a panela ao fogo, acrescente o azeite e deixe ferver por mais 10 minutos\n5. Sirva a sopa acompanhada de pão ou torradas")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+
+def janelaSopaPedra(cat,entUtilizador):
+   #CREATE A WINDOW
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Sopa Pedra")
+
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Sopa Pedra"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n2 colheres de sopa de óleo\n1/2 cebola picada\n1 dente de alho picado\n2 xícaras de caldo de frango\n3 colheres de sopa de manteiga\n3 colheres de sopa de farinha\n1 xícara de leite\n2 xícaras de repolho picado\n1 xícara de cenoura picada\n1/2 xícara de salsinha picada\n1/2 xícara de salsa picada")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Aqueça o óleo em uma panela grande\n2. Refogue a cebola e o alho até que fiquem macios\n3. Adicione o caldo de frango, a manteiga, a farinha, o leite, o repolho, a cenoura, a salsinha e a salsa\n4. Cozinhe em fogo médio por 20 minutos ou até que o repolho esteja macio\n5. Sirva a sopa em tigelas e polvilhe com salsinha para decorar")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+    
+
+def janelaSopaConquilha(cat,entUtilizador):
+   #CRIAR UMA JANELA
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #DEFINIR O TÍTULO DA JANELA
+    janela.title("Sopa de Conchilha")
+
+    #não permitir que a janela seja redimensionada
+    janela.resizable(0,0)
+    titulo_receita = "Sopa de Conchilha"
+    #ADICIONAR UMA CAIXA DE TEXTO À JANELA
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADICIONAR TEXTO À CAIXA DE TEXTO CENTRALIZADO
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n2 xícaras de conchilha seca\n3 xícaras de água\n1/4 de xícara de azeite de oliva\n1/4 de xícara de cebola picada\n1/4 de xícara de alho picado\n1/4 de xícara de tomate picado\n1/4 de xícara de pimentão verde picado\n1/4 de xícara de pimentão vermelho picado\n1/4 de xícara de azeitona verde picada\n1/2 colher de chá de sal\n1/4 colher de chá de pimenta-do-reino\n1/4 de xícara de queijo parmesão ralado")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADICIONAR UMA CAIXA DE TEXTO À JANELA
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADICIONAR TEXTO À CAIXA DE TEXTO CENTRALIZADO
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Deixe as conchilhas de molho na água por 30 minutos\n2. Aqueça o azeite em uma panela grande em fogo médio\n3. Adicione a cebola, o alho, o tomate, o pimentão, a azeitona e o sal\n4. Cozinhe por 5 minutos ou até que a cebola esteja macia\n5. Adicione as conchilhas e a água\n6. Cozinhe por 20 minutos ou até que as conchilhas estejam macias\n7. Tempere com pimenta-do-reino\n8. Despeje a sopa em tigelas individuais e polvilhe com queijo parmesão")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+
+def janelaSopaPeixe(cat,entUtilizador):
+   #CREATE A WINDOW
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Sopa de Peixe")
+
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Sopa de Peixe"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1 cebola média picada\n1 dente de alho picado\n2 colheres de sopa de azeite\n2 colheres de sopa de manteiga\n2 xícaras de água\n1 xícara de vinho branco\n1/2 xícara de leite\n1 cubo de caldo de peixe\n2 colheres de sopa de suco de limão\n1/2 colher de chá de sal\n1/4 colher de chá de pimenta\n1 1/2 xícaras de peixe cozido e desfiado\n1 xícara de cogumelos fatiados\n1 xícara de pimentão picado\n1/2 xícara de azeitonas verdes fatiadas")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Aqueça o azeite e a manteiga em uma panela\n2. Adicione a cebola e o alho e refogue por 5 minutos\n3. Adicione a água, o vinho, o leite, o caldo de peixe, o suco de limão, o sal e a pimenta\n4. Deixe ferver por 10 minutos\n5. Adicione o peixe, os cogumelos, o pimentão e as azeitonas\n6. Cozinhe por mais 10 minutos\n7. Sirva quente")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+
+def janelaSopaJuliana(cat,entUtilizador):
+   #CREATE A WINDOW
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Sopa Juliana")
+
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Sopa Juliana"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1/4 xícara de manteiga\n1/4 xícara de farinha\n3 xícaras de caldo de galinha\n2 xícaras de água\n1/2 xícara de cebola picada\n2 dentes de alho picados\n1/2 xícara de arroz\n1/2 xícara de cenoura ralada\n1/2 xícara de brócolis\n2 ovos cozidos picados\n1/4 xícara de salsa picada\n1/4 xícara de creme de leite\n1/4 xícara de queijo parmesão\nSal e pimenta a gosto")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Aqueça a manteiga e misture a farinha\n2. Acrescente o caldo de galinha e a água, mexendo por 1 minuto\n3. Adicione a cebola, alho, arroz, cenoura, brócolis, ovos e salsa\n4. Cozinhe por 15 minutos ou até que o arroz esteja cozido\n5. Acrescente o creme de leite e o queijo parmesão\n6. Tempere com sal e pimenta a gosto\n7. Sirva quente ou frio")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
+
+def janelaSopaCaldoVerde(cat,entUtilizador):
+    #CREATE A WINDOW
+    janela = tk.Tk()
+    w = 800
+    h = 700
+    ws = janela.winfo_screenwidth()
+    hs = janela.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    janela.geometry('%dx%d+%d+%d' % (w, h, x, y))
+    #SET THE TITLE OF THE WINDOW
+    janela.title("Sopa de Caldo Verde")
+
+    #dont let the window resize
+    janela.resizable(0,0)
+    titulo_receita = "Sopa de Caldo Verde"
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_ingredientes = tk.Text(janela, width=50, height=12)
+    text_box_ingredientes.place(x=190, y=50)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_ingredientes.insert(tk.END,titulo_receita + "\n\nIngredientes:\n\n1/4 xícara de azeite\n2 dentes de alho picados\n1 cebola média picada\n2 litros de caldo de legumes\n3 batatas médias cozidas e cortadas em cubos\n1/2 xícara de couve-flor congelada\n1/2 xícara de brócolis congelado\n2 xícaras de repolho roxo cortado em tiras finas\n1/4 xícara de salsinha picada\n1/4 xícara de cebolinha picada\nSal e pimenta a gosto")
+    text_box_ingredientes.tag_configure("center", justify='center')
+    text_box_ingredientes.tag_add("center", 1.0, "end")
+    text_box_ingredientes.config(state=DISABLED)
+
+    #ADD A TEXT BOX TO THE WINDOW
+    text_box_intruçoes = tk.Text(janela, width=50, height=20)
+    text_box_intruçoes.place(x=190, y=220)
+    #ADD TEXT TO THE TEXT BOX CENTRALIZED
+    text_box_intruçoes.insert(tk.END, "Instruções:\n\n1. Aqueça o azeite em uma panela grande em fogo médio\n2. Adicione o alho e a cebola e frite por 5 minutos\n3. Adicione o caldo de legumes, as batatas e os legumes congelados\n4. Deixe ferver por 10 minutos\n5. Adicione o repolho roxo e cozinhe por mais 5 minutos\n6. Desligue o fogo e misture a salsinha e a cebolinha\n7. Tempere com sal e pimenta a gosto\n8. Sirva quente")
+    text_box_intruçoes.tag_configure("center", justify='center')
+    text_box_intruçoes.tag_add("center", 1.0, "end")
+    text_box_intruçoes.config(state=DISABLED)
+
+    # Cria o botão para marcar a receita como favorita
+    botao_favorito = tk.Button(
+        janela, text="Marcar como Favorita", width=17, height=2, bg="#ffff00", command=lambda:marcarFavorito(cat,titulo_receita,entUtilizador))
+    botao_favorito.place(x=190, y=550)
+
+    # Cria o botão para adicionar um comentário
+    botao_comentario = tk.Button(
+        janela, text="Adicionar Comentário", width=17, height=2, bg="#1f77b4", command=lambda:comentar(titulo_receita,entUtilizador))
+    botao_comentario.place(x=330,y=550)
+
+    # Cria o botão para fechar a janela
+    botao_fechar = tk.Button(
+        janela, text="Fechar", width=17, height=2, bg="#ff0000", command=janela.destroy)
+    botao_fechar.place(x=470, y=550)
 
 # endregion
+
+def guardarFicheiro(entTitulo, txtIngredientes, txtInstrucoes, entFoto,janelaReceita):
+    # Get the values from the entry boxes
+    
+
+    fReceitas=open("./ficheiros/receitas.txt", "a",encoding="utf-8")
+
+    #Le todas as linhas do texto ingredientes
+    txtIngredientes = txtIngredientes.get("1.0", "end-1c")
+    txtInstrucoes = txtInstrucoes.get("1.0", "end-1c")
+
+
+    fReceitas.write(entTitulo + ";" + txtIngredientes + ";" + txtInstrucoes + ";" + entFoto + "\n")
+    fReceitas.close()
+    messagebox.showinfo("Sucesso", "Receita criada com sucesso!")
+    janelaReceita.destroy()
+
+def adicionarFoto(img):
+    #abrir um filelog para selecionar a foto
+    filename = filedialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("png files","*.png"),("jpeg files",".jpg"),("all files","*.*")))
+    img.set(filename)
 
 def janelaCriarReceita():
     global entry_title, entry_ingredients, entry_instructions, entry_photo, window
@@ -2528,7 +1818,7 @@ def janelaCriarReceita():
     lblTitulo.place(x=10, y=10)
 
     entTitulo = Entry(janelaReceita, width=30)
-    entTitulo.place(x=60, y=10)
+    entTitulo.place(x=80, y=10)
 
     # Label e textarea ingredientes
     lblIngredientes=Label(janelaReceita, text="Ingredientes:")
@@ -2548,36 +1838,22 @@ def janelaCriarReceita():
     lblFoto=Label(janelaReceita, text="Foto:")
     lblFoto.place(x=10, y=300)
 
-    imagem=StringVar()
-    entFoto = Entry(janelaReceita, width=30,textvariable=imagem)
+    img=StringVar()
+    entFoto = Entry(janelaReceita, width=30,textvariable=img)
     entFoto.place(x=80, y=300)
 
     # Botão para Guardar a direita
-    btnGuardar = Button(janelaReceita, text="Guardar", width=20,height=7, command=lambda:guardarFicheiro(entTitulo.get(), txtIngredientes.get("1.0",END), txtInstrucoes.get("1.0",END), entFoto.get()))
+    btnGuardar = Button(janelaReceita, text="Guardar", width=20,height=7, command=lambda:guardarFicheiro(entTitulo.get(), txtIngredientes, txtInstrucoes, entFoto.get(),janelaReceita))
     btnGuardar.place(x=400, y=10)
     # Botão para adicionar foto
 
     
-    btnFoto = Button(janelaReceita, text="Adicionar Foto", width=10, command=lambda:adicionarFoto(imagem))
-    btnFoto.place(x=400, y=150)
+    btnFoto = Button(janelaReceita, text="Adicionar Foto", width=20,height=7, command=lambda:adicionarFoto(img))
+    btnFoto.place(x=400, y=130)
 
     # Botão para Fechar a direita
-    btnFechar = Button(janelaReceita, text="Fechar", width=10, command=janelaReceita.destroy)
-    btnFechar.place(x=500, y=300)
-
-def guardarFicheiro(entTitulo, txtIngredientes, txtInstrucoes, entFoto):
-    # Get the values from the entry boxes
-    
-
-    fReceitas=open("./ficheiros/receitas.txt", "a",encoding="utf-8")
-    fReceitas.write(entTitulo + ";" + txtIngredientes + ";" + txtInstrucoes + ";" + entFoto + "\n")
-    fReceitas.close()
-    window.destroy()
-
-def adicionarFoto(imagem):
-    #abrir um filelog para selecionar a foto
-    file=filedialog.askopenfilename(initialdir = "./img/categorias",title = "Select file",filetypes = (("png files","*.png"),("gif files","*.gif"),("all files","*.*")))
-    imagem.set(file)
+    btnFechar = Button(janelaReceita, text="Fechar", width=20, height=7, command=janelaReceita.destroy)
+    btnFechar.place(x=400, y=250)
 
 
 #region Comentarios
@@ -2610,11 +1886,11 @@ def comentar(titulo_receita,entUtilizador):
     btnGuardar.place(x=10, y=150)
 
     #Botão para ver comentarios
-    btnVerComentarios = Button(window, text="Ver Comentários", width=20,height=5, command=lambda:janelaVerComentarios(titulo_receita,entUtilizador))
-    btnVerComentarios.place(x=110,y=150)
+    btnVerComentarios = Button(window, text="Ver Comentários", width=20,height=5, command=lambda:janelaVerComentarios(titulo_receita))
+    btnVerComentarios.place(x=170, y=150)
     # Botão para Fechar a direita
     btnFechar = Button(window, text="Fechar", width=20, height=5 , command=window.destroy)
-    btnFechar.place(x=210, y=150)
+    btnFechar.place(x=330, y=150)
 
 #função para guardar comentario
 def guardarComentario(comentario, titulo_receita,entUtilizador):
@@ -2626,7 +1902,7 @@ def guardarComentario(comentario, titulo_receita,entUtilizador):
     window.destroy()
 
 #função para ver comentarios
-def janelaVerComentarios(titulo_receita,entUtilizador):
+def janelaVerComentarios(titulo_receita):
     
     # Create the main window
     window = tk.Tk()
@@ -2649,16 +1925,16 @@ def janelaVerComentarios(titulo_receita,entUtilizador):
     #Botão para fechar
     btnFechar = Button(window, text="Fechar", width=15, command=window.destroy)
     btnFechar.place(x=10, y=350)
-    inserirListbox(listbox,titulo_receita,entUtilizador)
+    inserirListbox(listbox,titulo_receita)
 
 #Função para inserir na listbox
-def inserirListbox(listbox,titulo_receita,entUtilizador):
+def inserirListbox(listbox,titulo_receita):
     fReceitas=open("./ficheiros/comentarios.txt", "r",encoding="utf-8")
     linhas=fReceitas.readlines()
     #Procurar comentarios com o titulo da receita
     for linha in linhas:
         campos=linha.split(";")
-        if titulo_receita == campos[0] and entUtilizador == campos[1]:
+        if titulo_receita == campos[0]:
             print(campos[1] + " : " + campos[2])
             #Adicionar a listbox
             listbox.insert(END, campos[1] + " : " + campos[2])
@@ -2698,13 +1974,43 @@ def marcarFavorito(cat,titulo_receita, entUtilizador):
 def ordenarCategoriasGostos(catEntradas,catSopas,catCarnes,catPeixes,catSaladas,catVegeta):
     fGostos = open("ficheiros\\gostos.txt", "r")
     linhas = fGostos.readlines()
-    fGostos.close()
-
     
+
+    ordenar=[]    
    
     #Contar linhas com a mesma categoria
     for lin in linhas:
-        campos=lin.split(";")
+        ordenar.append([])
+        for i in range(len(linhas)):    
+            campos=lin.split(";")
+            if campos[0] == ~catEntradas:
+                countEntradas=countEntradas+1
+                ordenar.append(catEntradas, countEntradas)
+            elif campos[0] == catSopas:
+                countSopas=countSopas+1
+                ordenar.append(catSopas, countSopas)
+            elif campos[0] == catCarnes:
+                countCarnes=countCarnes+1
+                ordenar.append(catCarnes, countCarnes)
+            elif campos[0] == catPeixes:
+                countPeixes=countPeixes+1
+                ordenar.append(catPeixes, countPeixes)
+            elif campos[0] == catSaladas:
+                countSaladas=countSaladas+1
+                ordenar.append(catSaladas, countSaladas)
+            elif campos[0] == catVegeta:
+                countVegeta=countVegeta+1
+                ordenar.append(catVegeta, countVegeta)
+
+    fGostos.close()
+    #Ordenar por ordem decrescente de gostos
+
+    ordenar.sort(reverse=True)
+
+
+
+
+        
 
 
 

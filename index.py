@@ -142,7 +142,7 @@ def janelaInicial():
     ctnImg.place(x=185, y=50)
 
     # Insere Texto
-    lblBemVindo.place(x=230, y=230)
+    lblBemVindo.place(x=211, y=230)
 
     # Insere os botões
     btnCriar.place(x=130, y=280)
@@ -1128,8 +1128,8 @@ imgIcone = PhotoImage(file=".//img//icone.png")
 ctnImg.create_image(100, 78, image=imgIcone)
 
 # Label Bem Vindo
-lblBemVindo = Label(window, text="Bem Vindo :)", fg="black",
-                    relief="raised", font=("Playfair", 20), bd=-2, bg="white")
+lblBemVindo = Label(window, text="Bem Vindo", fg="white",
+                    relief="raised", font=("Playfair", 20), bd=-2, bg="#1E486C", padx=10, pady=1)
 
 # Botão Criar Conta
 btnCriar = Button(window, text="Criar Conta", fg="white",
@@ -1302,51 +1302,51 @@ btnVegeta = Button(window, width=350, height=250, image=imgVegeta,command=janela
 
 #Botões Entradas
 btnPao = Button(window, width=350, height=250, image=imgPao,command=lambda:janelaPao(catEntradas,entUtilizador.get()))
-btnPizza = Button(window, width=350, height=250, image=imgPizza,command=janelaPizza)
-btnQuiche = Button(window, width=350, height=250, image=imgQuiche,command=janelaQuiche)
-btnSupremo = Button(window, width=350, height=250, image=imgSupremo,command=janelaSupremo)
-btnRissois = Button(window, width=350, height=250, image=imgRissois,command=janelaRissois)
-btnTapas = Button(window, width=350, height=250, image=imgTapas,command=janelaTapas)
+btnPizza = Button(window, width=350, height=250, image=imgPizza,command=lambda:janelaPizza(catEntradas,entUtilizador.get()))
+btnQuiche = Button(window, width=350, height=250, image=imgQuiche,command=lambda:janelaQuiche(catEntradas,entUtilizador.get()))
+btnSupremo = Button(window, width=350, height=250, image=imgSupremo,command=lambda:janelaSupremo(catEntradas,entUtilizador.get()))
+btnRissois = Button(window, width=350, height=250, image=imgRissois,command=lambda:janelaRissois(catEntradas,entUtilizador.get()))
+btnTapas = Button(window, width=350, height=250, image=imgTapas,command=lambda:janelaTapas(catEntradas,entUtilizador.get()))
 
 #Botões Carnes
-btnFrancesinha = Button(window, width=350, height=250, image=imgFrancesinha,command=janelaFrancesinha)
-btnBifesPeru = Button(window, width=350, height=250, image=imgBifesPeru,command=janelaBifesPeru)
-btnPicanha = Button(window, width=350, height=250, image=imgPicanha,command=janelaPicanha)
-btnCaril = Button(window, width=350, height=250, image=imgCaril,command=janelaCaril)
-btnFrango = Button(window, width=350, height=250, image=imgFrango,command=janelaFrango)
-btnEmpadao = Button(window, width=350, height=250, image=imgEmpadao,command=janelaEmpadaoCarne)
+btnFrancesinha = Button(window, width=350, height=250, image=imgFrancesinha,command=lambda:janelaFrancesinha(catCarnes,entUtilizador.get()))
+btnBifesPeru = Button(window, width=350, height=250, image=imgBifesPeru,command=lambda:janelaBifesPeru(catCarnes,entUtilizador.get()))
+btnPicanha = Button(window, width=350, height=250, image=imgPicanha,command=lambda:janelaPicanha(catCarnes,entUtilizador.get()))
+btnCaril = Button(window, width=350, height=250, image=imgCaril,command=lambda:janelaCaril(catCarnes,entUtilizador.get()))
+btnFrango = Button(window, width=350, height=250, image=imgFrango,command=lambda:janelaFrango(catCarnes,entUtilizador.get()))
+btnEmpadao = Button(window, width=350, height=250, image=imgEmpadao,command=lambda:janelaEmpadaoCarne(catCarnes,entUtilizador.get()))
 
 #Botões Peixes
-btnbacalhau = Button(window, width=350, height=250, image=imgBacalhau,command=janelaBacalhau)
-btnCamarao = Button(window, width=350, height=250, image=imgCamarao,command=janelaCamarao)
-btnFeijoada = Button(window, width=350, height=250, image=imgFeijoada,command=janelaFeijoadaPeixe)
-btnGaroupa = Button(window, width=350, height=250, image=imgGaroupa,command=janelaGaropa)
-btnPolvo = Button(window, width=350, height=250, image=imgPolvo,command=janelaPolvo)
-btnSalmao = Button(window, width=350, height=250, image=imgSalmao,command=janelaSalmao)
+btnbacalhau = Button(window, width=350, height=250, image=imgBacalhau,command=lambda:janelaBacalhau(catPeixes,entUtilizador.get()))
+btnCamarao = Button(window, width=350, height=250, image=imgCamarao,command=lambda:janelaCamarao(catPeixes,entUtilizador.get()))
+btnFeijoada = Button(window, width=350, height=250, image=imgFeijoada,command=lambda:janelaFeijoadaPeixe(catPeixes,entUtilizador.get()))
+btnGaroupa = Button(window, width=350, height=250, image=imgGaroupa,command=lambda:janelaGaropa(catPeixes,entUtilizador.get()))
+btnPolvo = Button(window, width=350, height=250, image=imgPolvo,command=lambda:janelaPolvo(catPeixes,entUtilizador.get()))
+btnSalmao = Button(window, width=350, height=250, image=imgSalmao,command=lambda:janelaSalmao(catPeixes,entUtilizador.get()))
 
 #Botões Saladas
-btnSbacalhau=Button(window, width=350, height=250, image=imgSbacalhau,command=janelaSbacalhau)
-btnSbolonhesa=Button(window, width=350, height=250, image=imgSbolonhesa,command=janelaSbolonhesa)
-btnSbulgur=Button(window, width=350, height=250, image=imgSbulgur,command=janelaSbulgur)
-btnSdelicias=Button(window, width=350, height=250, image=imgSdelicias,command=janelaSdelicias)
-btnSfrango=Button(window, width=350, height=250, image=imgSfrango,command=janelaSfrango)
-btnSsalsichas=Button(window, width=350, height=250, image=imgSsalsichas,command=janelaSsalsichas)
+btnSbacalhau=Button(window, width=350, height=250, image=imgSbacalhau,command=lambda:janelaSbacalhau(catSaladas,entUtilizador.get()))
+btnSbolonhesa=Button(window, width=350, height=250, image=imgSbolonhesa,command=lambda:janelaSbolonhesa(catSaladas,entUtilizador.get()))
+btnSbulgur=Button(window, width=350, height=250, image=imgSbulgur,command=lambda:janelaSbulgur(catSaladas,entUtilizador.get()))
+btnSdelicias=Button(window, width=350, height=250, image=imgSdelicias,command=lambda:janelaSdelicias(catSaladas,entUtilizador.get()))
+btnSfrango=Button(window, width=350, height=250, image=imgSfrango,command=lambda:janelaSfrango(catSaladas,entUtilizador.get()))
+btnSsalsichas=Button(window, width=350, height=250, image=imgSsalsichas,command=lambda:janelaSsalsichas(catSaladas,entUtilizador.get()))
 
 #Botões Vegetarianas
-btnCanelone=Button(window, width=350, height=250, image=imgCanelone,command=janelaCaneloneVegetariano)
-btnCogumelos=Button(window, width=350, height=250, image=imgCogumelos,command=janelaCogumelos)
-btnCrepe=Button(window, width=350, height=250, image=imgCrepe,command=janelaCrepeVegetariano)
-btnFolhadinhos=Button(window, width=350, height=250, image=imgFolhadinhos,command=janelaFolhadoVegetariano)
-btnMigas=Button(window, width=350, height=250, image=imgMigas,command=janelaMigasVegetariano)
-btnOvos=Button(window, width=350, height=250, image=imgOvos,command=janelaOvosVegetarianos)
+btnCanelone=Button(window, width=350, height=250, image=imgCanelone,command=lambda:janelaCaneloneVegetariano(catVegeta,entUtilizador.get()))
+btnCogumelos=Button(window, width=350, height=250, image=imgCogumelos,command=lambda:janelaCogumelos(catVegeta,entUtilizador.get()))
+btnCrepe=Button(window, width=350, height=250, image=imgCrepe,command=lambda:janelaCrepeVegetariano(catVegeta,entUtilizador.get()))
+btnFolhadinhos=Button(window, width=350, height=250, image=imgFolhadinhos,command=lambda:janelaFolhadoVegetariano(catVegeta,entUtilizador.get()))
+btnMigas=Button(window, width=350, height=250, image=imgMigas,command=lambda:janelaMigasVegetariano(catVegeta,entUtilizador.get()))
+btnOvos=Button(window, width=350, height=250, image=imgOvos,command=lambda:janelaOvosVegetarianos(catVegeta,entUtilizador.get()))
 
 #Botões Sopas
-btnSopaCenoura=Button(window, width=350, height=250, image=imgSopaCenoura,command=janelaSopaCenoura)
-btnSopaPedra=Button(window, width=350, height=250, image=imgSopaPedra,command=janelaSopaPedra)
-btnSopaConquilha=Button(window, width=350, height=250, image=imgSopaConquilha,command=janelaSopaConquilha)
-btnSopaPeixe=Button(window, width=350, height=250, image=imgSopaPeixe,command=janelaSopaPeixe)
-btnSopaJuliana=Button(window, width=350, height=250, image=imgSopaJuliana,command=janelaSopaJuliana)
-btnCaldoVerde=Button(window, width=350, height=250, image=imgCaldoVerde,command=janelaSopaCaldoVerde)
+btnSopaCenoura=Button(window, width=350, height=250, image=imgSopaCenoura,command=lambda:janelaSopaCenoura(catSopas,entUtilizador.get()))
+btnSopaPedra=Button(window, width=350, height=250, image=imgSopaPedra,command=lambda:janelaSopaPedra(catSopas,entUtilizador.get()))
+btnSopaConquilha=Button(window, width=350, height=250, image=imgSopaConquilha,command=lambda:janelaSopaConquilha(catSopas,entUtilizador.get()))
+btnSopaPeixe=Button(window, width=350, height=250, image=imgSopaPeixe,command=lambda:janelaSopaPeixe(catSopas,entUtilizador.get()))
+btnSopaJuliana=Button(window, width=350, height=250, image=imgSopaJuliana,command=lambda:janelaSopaJuliana(catSopas,entUtilizador.get()))
+btnCaldoVerde=Button(window, width=350, height=250, image=imgCaldoVerde,command=lambda:janelaSopaCaldoVerde(catSopas,entUtilizador.get()))
 #endregion
 
 #region Interface Conta Utilizador
